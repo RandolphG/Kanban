@@ -32,7 +32,6 @@ class TrelloCreate extends React.PureComponent {
   };
 
   handleAddList = () => {
-    console.log(`handleAddList () : `);
     const { dispatch } = this.props;
     const { text } = this.state;
 
@@ -93,7 +92,6 @@ class TrelloCreate extends React.PureComponent {
     const { text } = this.state;
     const { list } = this.props;
 
-    console.log(`list is now --->`, list);
     return this.state.formOpen ? (
       <TrelloForm
         text={text}

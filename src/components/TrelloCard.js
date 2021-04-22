@@ -47,9 +47,9 @@ const DeleteButton = styled(Icon)`
   }
 `;
 
-const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
+const TrelloCard = React.memo(({ card, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [cardText, setText] = useState(text);
+  const [cardText, setText] = useState(card.title);
 
   const closeForm = (e) => {
     setIsEditing(false);
@@ -62,13 +62,13 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
   const saveCard = (e) => {
     e.preventDefault();
 
-    dispatch(editCard(id, listID, cardText));
+    dispatch(editCard(card.id, listID, cardText));
     setIsEditing(false);
   };
 
   const handleDeleteCard = (e) => {
     console.log(listID);
-    dispatch(deleteCard(id, listID));
+    dispatch(deleteCard(card.id, listID));
   };
 
   const renderEditForm = () => {
@@ -81,7 +81,7 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
 
   const renderCard = () => {
     return (
-      <Draggable draggableId={String(id)} index={index}>
+      <Draggable draggableId={String(card.id)} index={index}>
         {(provided) => (
           <CardContainer
             {...provided.draggableProps}
@@ -101,7 +101,15 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
               </DeleteButton>
 
               <CardContent>
-                <Typography>{text}</Typography>
+                <Typography>{card.title}</Typography>
+                <Typography>{card.assignee}</Typography>
+                <Typography>{card.reporter}</Typography>
+                <Typography>
+                  {card.tags.map((tag, idx) => (
+                    <p key={idx}>{tag}</p>
+                  ))}
+                </Typography>
+                <Typography>{card.description}</Typography>
               </CardContent>
             </Card>
           </CardContainer>

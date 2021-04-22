@@ -53,11 +53,13 @@ class TrelloBoard extends PureComponent {
     const { boardID } = match.params;
     const board = boards[boardID];
 
+    /*
     console.log(`\nLISTS --> `, lists);
     console.log(`CARDS --> `, cards);
     console.log(`BOARDS --> `, boards);
     console.log(`BOARDID --> `, boardID);
     console.log(`BOARD --> `, board);
+    */
 
     if (!board) {
       return <p>Board not found</p>;

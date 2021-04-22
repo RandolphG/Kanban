@@ -55,6 +55,17 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
+  console.log(
+    `\n\ntitle`,
+    title,
+    `\ncards`,
+    cards,
+    ` \nlistID`,
+    listID,
+    ` \nindex`,
+    index
+  );
+
   const renderEditInput = () => {
     return (
       <form onSubmit={handleFinishEditing}>
@@ -115,8 +126,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                   {cards.map((card, index) => (
                     <TrelloCard
                       key={card.id}
-                      text={card.text}
-                      id={card.id}
+                      card={card}
                       index={index}
                       listID={listID}
                     />
