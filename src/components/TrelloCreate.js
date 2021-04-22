@@ -2,7 +2,7 @@ import React from "react";
 import Icon from "@material-ui/core/Icon";
 import TrelloButton from "./TrelloButton";
 import { connect } from "react-redux";
-import { addList, addCard } from "../actions";
+import { addList, addCard } from "../store/actions";
 import styled from "styled-components";
 import TrelloForm from "./TrelloForm";
 import TrelloOpenForm from "./TrelloOpenForm";
@@ -10,24 +10,24 @@ import TrelloOpenForm from "./TrelloOpenForm";
 class TrelloCreate extends React.PureComponent {
   state = {
     formOpen: false,
-    text: ""
+    text: "",
   };
 
   openForm = () => {
     this.setState({
-      formOpen: true
+      formOpen: true,
     });
   };
 
-  closeForm = e => {
+  closeForm = (e) => {
     this.setState({
-      formOpen: false
+      formOpen: false,
     });
   };
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({
-      text: e.target.value
+      text: e.target.value,
     });
   };
 
@@ -38,7 +38,7 @@ class TrelloCreate extends React.PureComponent {
 
     if (text) {
       this.setState({
-        text: ""
+        text: "",
       });
       dispatch(addList(text));
     }
@@ -52,7 +52,7 @@ class TrelloCreate extends React.PureComponent {
 
     if (text) {
       this.setState({
-        text: ""
+        text: "",
       });
       dispatch(addCard(listID, text));
     }
@@ -93,7 +93,7 @@ class TrelloCreate extends React.PureComponent {
     const { text } = this.state;
     const { list } = this.props;
 
-    console.log(`list is now --->`,list)
+    console.log(`list is now --->`, list);
     return this.state.formOpen ? (
       <TrelloForm
         text={text}

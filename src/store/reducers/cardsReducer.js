@@ -1,11 +1,11 @@
-import { CONSTANTS } from "../../actions";
+import { CONSTANTS } from "../actions";
 
 const initialState = {
   "card-0": {
     text: "Last Episode",
     id: `card-0`,
-    list: "list-0"
-  }
+    list: "list-0",
+  },
 };
 
 const cardsReducer = (state = initialState, action) => {
@@ -16,7 +16,7 @@ const cardsReducer = (state = initialState, action) => {
       const newCard = {
         text,
         id: `card-${id}`,
-        list: listID
+        list: listID,
       };
 
       return { ...state, [`card-${id}`]: newCard };

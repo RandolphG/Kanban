@@ -1,4 +1,4 @@
-import { CONSTANTS } from "../../actions";
+import { CONSTANTS } from "../actions";
 
 const initialState = null;
 

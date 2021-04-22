@@ -4,7 +4,7 @@ import TrelloCreate from "./TrelloCreate";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { editTitle, deleteList } from "../actions";
+import { editTitle, deleteList } from "../store/actions";
 import Icon from "@material-ui/core/Icon";
 
 const ListContainer = styled.div`
@@ -70,16 +70,16 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
     );
   };
 
-  const handleFocus = e => {
+  const handleFocus = (e) => {
     e.target.select();
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.preventDefault();
     setListTitle(e.target.value);
   };
 
-  const handleFinishEditing = e => {
+  const handleFinishEditing = (e) => {
     setIsEditing(false);
     dispatch(editTitle(listID, listTitle));
   };
@@ -90,14 +90,14 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
 
   return (
     <Draggable draggableId={String(listID)} index={index}>
-      {provided => (
+      {(provided) => (
         <ListContainer
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
           <Droppable droppableId={String(listID)} type="card">
-            {provided => (
+            {(provided) => (
               <div>
                 <div>
                   {isEditing ? (

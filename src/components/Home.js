@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addBoard } from "../actions";
+import { addBoard } from "../store/actions";
 import BoardThumbnail from "./BoardThumbnail";
 
 const Thumbnails = styled.div`
@@ -47,18 +47,18 @@ const Home = ({ boards, boardOrder, dispatch }) => {
 
   const [newBoardTitle, setNewBoardTitle] = useState("");
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setNewBoardTitle(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`title sent`,newBoardTitle)
+    console.log(`title sent`, newBoardTitle);
     dispatch(addBoard(newBoardTitle));
   };
 
   const renderBoards = () => {
-    return boardOrder.map(boardID => {
+    return boardOrder.map((boardID) => {
       const board = boards[boardID];
 
       return (
@@ -95,9 +95,9 @@ const Home = ({ boards, boardOrder, dispatch }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   boards: state.boards,
-  boardOrder: state.boardOrder
+  boardOrder: state.boardOrder,
 });
 
 export default connect(mapStateToProps)(Home);

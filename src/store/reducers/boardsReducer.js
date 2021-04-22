@@ -1,11 +1,11 @@
-import { CONSTANTS } from "../../actions";
+import { CONSTANTS } from "../actions";
 
 const initialState = {
   "board-0": {
     id: "board-0",
     lists: ["list-0"],
-    title: "myboard"
-  }
+    title: "myboard",
+  },
 };
 
 const boardsReducer = (state = initialState, action) => {
@@ -27,7 +27,7 @@ const boardsReducer = (state = initialState, action) => {
         droppableIndexEnd,
         droppableIndexStart,
 
-        type
+        type,
       } = action.payload;
 
       // draggin lists around
@@ -44,7 +44,7 @@ const boardsReducer = (state = initialState, action) => {
       const { listID, boardID } = action.payload;
       const board = state[boardID];
       const lists = board.lists;
-      const newLists = lists.filter(id => id !== listID);
+      const newLists = lists.filter((id) => id !== listID);
       board.lists = newLists;
       return { ...state, [boardID]: board };
     }
@@ -57,7 +57,7 @@ const boardsReducer = (state = initialState, action) => {
       const newBoard = {
         id: newID,
         title,
-        lists: []
+        lists: [],
       };
 
       return { ...state, [newID]: newBoard };

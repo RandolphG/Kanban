@@ -6,7 +6,7 @@ import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import Icon from "@material-ui/core/Icon";
 import TrelloForm from "./TrelloForm";
-import { editCard, deleteCard } from "../actions";
+import { editCard, deleteCard } from "../store/actions";
 import { connect } from "react-redux";
 import TrelloButton from "./TrelloButton";
 
@@ -51,22 +51,22 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(text);
 
-  const closeForm = e => {
+  const closeForm = (e) => {
     setIsEditing(false);
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setText(e.target.value);
   };
 
-  const saveCard = e => {
+  const saveCard = (e) => {
     e.preventDefault();
 
     dispatch(editCard(id, listID, cardText));
     setIsEditing(false);
   };
 
-  const handleDeleteCard = e => {
+  const handleDeleteCard = (e) => {
     console.log(listID);
     dispatch(deleteCard(id, listID));
   };
@@ -82,7 +82,7 @@ const TrelloCard = React.memo(({ text, id, listID, index, dispatch }) => {
   const renderCard = () => {
     return (
       <Draggable draggableId={String(id)} index={index}>
-        {provided => (
+        {(provided) => (
           <CardContainer
             {...provided.draggableProps}
             {...provided.dragHandleProps}

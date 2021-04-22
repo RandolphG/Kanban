@@ -1,12 +1,12 @@
-import { CONSTANTS } from "../../actions";
+import { CONSTANTS } from "../actions";
 
 const initialState = {
   "list-0": {
     id: "list-0",
     cards: ["card-0"],
     title: "myList",
-    board: "board-0"
-  }
+    board: "board-0",
+  },
 };
 
 const listsReducer = (state = initialState, action) => {
@@ -16,7 +16,7 @@ const listsReducer = (state = initialState, action) => {
       const newList = {
         title: title,
         id: `list-${id}`,
-        cards: []
+        cards: [],
       };
 
       const newState = { ...state, [`list-${id}`]: newList };
@@ -38,7 +38,7 @@ const listsReducer = (state = initialState, action) => {
         droppableIndexEnd,
         droppableIndexStart,
 
-        type
+        type,
       } = action.payload;
 
       // draggin lists around - the listOrderReducer should handle this
@@ -68,7 +68,7 @@ const listsReducer = (state = initialState, action) => {
         return {
           ...state,
           [droppableIdStart]: listStart,
-          [droppableIdEnd]: listEnd
+          [droppableIdEnd]: listEnd,
         };
       }
       return state;
@@ -77,7 +77,7 @@ const listsReducer = (state = initialState, action) => {
       const { listID, id } = action.payload;
 
       const list = state[listID];
-      const newCards = list.cards.filter(cardID => cardID !== id);
+      const newCards = list.cards.filter((cardID) => cardID !== id);
 
       return { ...state, [listID]: { ...list, cards: newCards } };
     }

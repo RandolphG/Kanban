@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import TrelloCreate from "./TrelloCreate";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { sort, setActiveBoard } from "../actions";
+import { sort, setActiveBoard } from "../store/actions";
 import { Link } from "react-router-dom";
 
 const ListsContainer = styled.div`

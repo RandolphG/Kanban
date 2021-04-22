@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import Store from "./store";
 import App from "./components/App";
 import "./index.css";
 import { createGlobalStyle } from "styled-components";
-import $ from "jquery";
 import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import { store } from "./store";
 
-const { persistor, store } = Store();
+let persistor = persistStore(store);
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -21,8 +21,10 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <GlobalStyle />
-      <App />
+      <div>
+        <GlobalStyle />
+        <App />
+      </div>
     </PersistGate>
   </Provider>,
   document.getElementById("root")
