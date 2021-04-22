@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../store/actions";
 import Icon from "@material-ui/core/Icon";
+import { CardLayout } from "./CardLayout";
 
 const ListContainer = styled.div`
   background-color: #dfe3e6;
@@ -55,16 +56,21 @@ const List = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
+  /*
   console.log(
-    `\n\ntitle`,
+    `\n\nLIST PARAMETERS : --->`,
+    `\nLIST title : `,
     title,
-    `\ncards`,
+    `\nLIST cards : `,
     cards,
-    ` \nlistID`,
+    ` \nLIST listID : `,
     listID,
-    ` \nindex`,
-    index
+    ` \nLIST index : `,
+    index,
+    `LIST cards.length :`,
+    cards.length
   );
+  */
 
   const renderEditInput = () => {
     return (
@@ -124,12 +130,20 @@ const List = ({ title, cards, listID, index, dispatch }) => {
                 </div>
                 <div {...provided.droppableProps} ref={provided.innerRef}>
                   {cards.map((card, index) => (
-                    <Card
-                      key={card.id}
-                      card={card}
-                      index={index}
-                      listID={listID}
-                    />
+                    <>
+                      <Card
+                        key={`card-${card.id}`}
+                        card={card}
+                        index={index}
+                        listID={listID}
+                      />
+                      <CardLayout
+                        key={card.id}
+                        index={index}
+                        listID={listID}
+                        card={card}
+                      />
+                    </>
                   ))}
                   {provided.placeholder}
                   <TrelloCreate listID={listID} />

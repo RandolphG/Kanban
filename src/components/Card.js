@@ -37,6 +37,8 @@ const Card = React.memo(({ card, listID, index, dispatch }) => {
     );
   };
 
+  console.log(`CARD : --->`, card);
+
   const renderCard = () => {
     return (
       <Draggable draggableId={String(card.id)} index={index}>

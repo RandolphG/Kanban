@@ -5,6 +5,7 @@ import TrelloCreate from "./TrelloCreate";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { sort, setActiveBoard } from "../store/actions";
 import { Link } from "react-router-dom";
+import { CardLayout } from "./CardLayout";
 
 // TODO: Fix performance issue
 
@@ -47,11 +48,11 @@ class Board extends PureComponent {
     const board = boards[boardID];
 
     /*
-    console.log(`\nLISTS --> `, lists);
-    console.log(`CARDS --> `, cards);
-    console.log(`BOARDS --> `, boards);
-    console.log(`BOARDID --> `, boardID);
-    console.log(`BOARD --> `, board);
+     console.log(`\nLISTS --> `, lists);
+     console.log(`CARDS --> `, cards);
+     console.log(`BOARDS --> `, boards);
+     console.log(`BOARDID --> `, boardID);
+     console.log(`BOARD --> `, board);
     */
 
     if (!board) {
