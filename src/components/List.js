@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TrelloCard from "./TrelloCard";
+import Card from "./Card";
 import TrelloCreate from "./TrelloCreate";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
@@ -51,7 +51,7 @@ const ListTitle = styled.h4`
   }
 `;
 
-const TrelloList = ({ title, cards, listID, index, dispatch }) => {
+const List = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
@@ -124,7 +124,7 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
                 </div>
                 <div {...provided.droppableProps} ref={provided.innerRef}>
                   {cards.map((card, index) => (
-                    <TrelloCard
+                    <Card
                       key={card.id}
                       card={card}
                       index={index}
@@ -143,4 +143,4 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   );
 };
 
-export default connect()(TrelloList);
+export default connect()(List);

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addBoard } from "../store/actions";
-import BoardThumbnail from "./BoardThumbnail";
+import Thumbnail from "./Thumbnail";
 
 const Thumbnails = styled.div`
   flex: 1;
@@ -67,7 +67,7 @@ const Home = ({ boards, boardOrder, dispatch }) => {
           to={`/${board.id}`}
           style={{ textDecoration: "none" }}
         >
-          <BoardThumbnail {...board} />
+          <Thumbnail {...board} />
         </Link>
       );
     });

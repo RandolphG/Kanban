@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import TrelloList from "./TrelloList";
 import { connect } from "react-redux";
 import TrelloCreate from "./TrelloCreate";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
