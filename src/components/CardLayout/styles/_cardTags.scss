@@ -1,0 +1,106 @@
+@import "fonts";
+
+.tags-input {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-height: 48px;
+  width: 100%;
+  font-family: $font-main;
+  input {
+    font-family: $font-main;
+    flex: 1;
+    border: none;
+    height: 46px;
+    font-size: 14px;
+    padding: 0px 0 0 5px;
+    &:focus {
+      outline: transparent;
+    }
+  }
+  .tag {
+    //background: transparent;
+    -webkit-animation: rainbow 8s ease infinite;
+    animation: rainbow 8s ease infinite;
+    background-image: linear-gradient(124deg, #ff470f, #ff3860, #b86bff, #3273dc);
+    background-size: 800% 800%;
+    font-family: $font-main;
+    cursor: pointer;
+    border: 1px solid #cacaca;
+    width: auto;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    padding: 0 8px;
+    font-size: 14px;
+    list-style: none;
+    border-radius: 6px;
+    margin: 0 8px 8px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    transition: all 0.1s ease-in;
+    &:hover{
+      box-shadow: none;
+      color: #FEE01C;
+    }
+    &:active {
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.25);
+    }
+    .tag-close-icon {
+      display: block;
+      width: 12px;
+      height: 12px;
+      line-height: 12px;
+      text-align: center;
+      font-size: 14px;
+      margin-left: 8px;
+      color: white;
+      border-radius: 50%;
+      background: black;
+      cursor: pointer;
+    }
+  }
+}
+#tags {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+@media screen and (max-width: 567px) {
+  .tags-input {
+    width: calc(100vw - 32px);
+  }
+}
+
+.rainbow {
+  -webkit-animation: rainbow 8s ease infinite;
+  animation: rainbow 8s ease infinite;
+  background-image: linear-gradient(124deg, #ff470f, #ff3860, #b86bff, #3273dc);
+  background-size: 800% 800%
+}
+
+@-webkit-keyframes rainbow {
+  0% {
+    background-position: 1% 80%
+  }
+  50% {
+    background-position: 99% 20%
+  }
+  100% {
+    background-position: 1% 80%
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 1% 80%
+  }
+  50% {
+    background-position: 99% 20%
+  }
+  100% {
+    background-position: 1% 80%
+  }
+}

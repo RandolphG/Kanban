@@ -11,7 +11,7 @@ import CardTags from "./CardTags";
 import { deleteCard, editCard } from "../../store/actions";
 import "./styles/_cardLayout.scss";
 
-const CardLayout = ({ card, listID }) => {
+const CardLayout = ({ card, listID, index }) => {
   const dispatch = useDispatch();
   const cardInfo = useSelector(getCards);
   const [isEditing, setIsEditing] = useState(false);
@@ -41,24 +41,27 @@ const CardLayout = ({ card, listID }) => {
   return (
     <ErrorBoundary>
       <div className="cardLayout">
-        <span>CardLayout</span>
-
         <div
           style={{ background: "red", margin: "1rem 0" }}
           onMouseDown={handleDeleteCard}
         >
           delete
         </div>
-
-        <CardTitle title={card.title} details={card} />
+        <div className="cardLayout__enclosure__top">
+          <CardTitle title={card.title} details={card} />
+          <CardActionButtons
+            key={card.id}
+            id={card.id}
+            card={card}
+            index={index}
+            listID={listID}
+            details={card}
+          />
+        </div>
         <CardAssignee assignee={card.assignee} details={card} />
         <CardReporter reporter={card.reporter} details={card} />
-        <div>
-          {card.tags.map((tag, idx) => (
-            <p key={idx}>{tag}</p>
-          ))}
-        </div>
-        <div>{card.description}</div>
+        <CardTags tags={card.tags} />
+        <CardDescription description={card.description} details={card} />
       </div>
     </ErrorBoundary>
   );

@@ -8,7 +8,7 @@ import {
   handleSave,
 } from "./store";
 
-const CardActionButtons = ({ id, listID, index, task }) => {
+const CardActionButtons = ({ id, listID, index, details }) => {
   const dispatch = useDispatch();
   const inEditMode = useSelector(getInEditMode);
 
@@ -51,7 +51,7 @@ const CardActionButtons = ({ id, listID, index, task }) => {
     <button
       className="btn-cancel"
       onClick={() => {
-        dispatch(handleEdit(task.key));
+        dispatch(handleEdit(details.key));
       }}
     >
       edit
@@ -60,7 +60,7 @@ const CardActionButtons = ({ id, listID, index, task }) => {
 
   return (
     <div className="actions">
-      {inEditMode.status && inEditMode.rowKey === task.key ? (
+      {inEditMode.status && inEditMode.rowKey === details.key ? (
         <Fragment>
           {SaveButton()}
           {CancelButton()}

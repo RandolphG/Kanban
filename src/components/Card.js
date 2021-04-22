@@ -63,14 +63,6 @@ const Card = React.memo(({ card, listID, index, dispatch }) => {
                 <div>{card.title}</div>
                 <div>{card.assignee}</div>
                 <div>{card.reporter}</div>
-                <CardActionButtons
-                  key={card.id}
-                  id={card.id}
-                  card={card}
-                  index={index}
-                  listID={listID}
-                  task={card}
-                />
                 <div>
                   {card.tags.map((tag, idx) => (
                     <p key={idx}>{tag}</p>
