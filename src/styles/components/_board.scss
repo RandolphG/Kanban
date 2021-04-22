@@ -1,0 +1,92 @@
+@import "../fonts";
+@import "../colors";
+@import "src/styles/colors";
+
+.board {
+  //background-color: #FEE01C;
+  border: 3px solid black;
+  box-sizing: border-box;
+  position: relative;
+  width: fit-content;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_container {
+    background: rgba(0, 0, 0, 0.2);
+    border: 3px solid black;
+    box-sizing: border-box;
+    margin: .5rem;
+    width: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    padding: .5rem;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &_topbar {
+      background-color: #0086e4;
+      box-sizing: border-box;
+      padding: .5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: .5rem;
+      &_title{
+        color: white;
+      }
+      &_delete-button{
+        font-family: $font-main;
+        color: white;
+        background: transparent;
+        border: none;
+      }
+    }
+  }
+}
+
+.card-holder{
+  background: #FEE01C;
+  width: 100%;
+}
+
+.addBoardButton {
+  background: rgba(0, 0, 0, 0.2);
+  border: 3px solid black;
+  box-sizing: border-box;
+  margin: .5rem;
+  width: 300px;
+  min-height: 400px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: .5rem;
+
+  &_plus {
+    color: white;
+    margin: .5rem;
+    font-size: 1rem;
+  }
+}
+
+.addCardButton {
+  position: absolute;
+  background-color:#3b5999;
+  width: 90%;
+  display: flex;
+  padding: .5rem;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  bottom: 5rem;
+}

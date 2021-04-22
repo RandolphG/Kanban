@@ -1,0 +1,77 @@
+@import "../fonts";
+@import "../colors";
+@import "src/styles/colors";
+
+.projects {
+  //background: blue;
+  font-family: $font-main;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+  .topbar {
+    //background-color: #0086e4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: flex-start;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100px;
+    padding: 0 1rem;
+
+    &_title {
+      //background-color: #FEE01C;
+      color: grey;
+      position: absolute;
+      left: 5.2rem;
+      top: 4rem;
+    }
+
+    &_back-button {
+      //background-color: #b86bff;
+     color: #142824;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      text-decoration: none;
+      font-size: 2rem;
+    }
+  }
+
+  .container {
+    //background-color: green;
+    //border: #142824 2px solid;
+    box-sizing: border-box;
+    position: relative;
+    width: 80%;
+    height: 800px;
+    align-items: center;
+    flex-direction: column;
+
+    &__border {
+      background-color: #ff3860;
+      //border: 2px black solid;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 500px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      overflow: scroll;
+    }
+
+    .logo {
+      position: absolute;
+      top: 1rem;
+      left: 3rem;
+    }
+  }
+}
+

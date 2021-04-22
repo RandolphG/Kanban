@@ -1,0 +1,195 @@
+@import "src/styles/fonts";
+
+/* colors */
+$title-color: #626262;
+
+/* label font size */
+$label-font-size: 1rem;
+#card {
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
+  min-height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  padding: .5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  &:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.22);
+  }
+}
+
+.card-body {
+  &__enclosure {
+    //background-color: lightpink;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    margin-bottom: .2rem;
+
+    /* title section of card */
+    &__top {
+      //background-color: lightseagreen;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: .2rem;
+      border-bottom: 2px solid black;
+
+      &__td-key {
+        //background-color: lightgreen;
+        font-size: 1rem;
+        margin-right: 1rem;
+
+        .input {
+          color: #999999;
+          font-family: $font-main;
+          font-size: 1rem;
+          border: none;
+          background: transparent;
+          width: 90px;
+        }
+      }
+
+      &__td-label {
+        //background-color: lightgray;
+        color: black;
+        font-size: 1rem;
+
+        .input-label {
+          color: #999999;
+          font-family: $font-main;
+          font-size: 1rem;
+          border: none;
+          background: transparent;
+          width: 90px;
+        }
+      }
+    }
+
+    $font-size:.9rem;
+
+    &_assignee-reporter {
+      //background-color: #FEE01C;
+      display: flex;
+      width: 100%;
+      height: 50px;
+      margin-bottom: 1rem;
+
+      .reporter {
+        //background-color: #F5BA58;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        //margin-top: .5rem;
+        margin-bottom: .5rem;
+
+        &_label {
+          //background: aquamarine;
+          display: flex;
+          color: $title-color;
+          font-size: $font-size;
+        }
+
+        &_type {
+          //background-color: #0086e4;
+          font-size: 1rem;
+          color: black;
+
+          &__select {
+            //background-color: #0086e4;
+            color: #999999;
+            font-family: $font-main;
+            font-size: 1rem;
+            border: none;
+
+            &_option {
+              //background-color: orange;
+            }
+          }
+        }
+      }
+
+      .assignee {
+        //background-color: #F5BA58;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        //margin-top: .5rem;
+        margin-bottom: .5rem;
+
+        &_label {
+          //background: aquamarine;
+          display: flex;
+          color: $title-color;
+          font-size: $font-size;
+
+        }
+
+        &_type {
+          //background-color: #0086e4;
+          font-size: 1rem;
+          color: black;
+
+          &__select {
+            //background-color: #0086e4;
+            color: #999999;
+            font-family: $font-main;
+            font-size: 1rem;
+            border: none;
+
+            &_option {
+              font-size: 1rem;
+              //background-color: orange;
+            }
+          }
+        }
+      }
+    }
+
+
+    &__description {
+      font-family: $font-main;
+      //background-color: lightskyblue;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: fit-content;
+      padding-bottom: .5rem;
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+
+      &_label {
+        display: flex;
+        color: $title-color;
+        font-size: $font-size;
+
+      }
+
+      .input-value {
+        color: #cacaca;
+        font-family: $font-main;
+        font-size: 1rem;
+        border: none;
+        background: transparent;
+        width: 100%;
+
+        input[type=text] {
+          word-wrap: break-word;
+          word-break: break-all;
+        }
+      }
+    }
+  }
+}

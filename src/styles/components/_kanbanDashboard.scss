@@ -1,0 +1,13 @@
+@import "src/styles/fonts";
+@import "src/styles/colors";
+
+.dashboard {
+  box-sizing: border-box;
+  background: $background-color;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

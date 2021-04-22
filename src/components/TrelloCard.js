@@ -104,11 +104,11 @@ const TrelloCard = React.memo(({ card, listID, index, dispatch }) => {
                 <Typography>{card.title}</Typography>
                 <Typography>{card.assignee}</Typography>
                 <Typography>{card.reporter}</Typography>
-                <Typography>
+                <div>
                   {card.tags.map((tag, idx) => (
                     <p key={idx}>{tag}</p>
                   ))}
-                </Typography>
+                </div>
                 <Typography>{card.description}</Typography>
               </CardContent>
             </Card>
