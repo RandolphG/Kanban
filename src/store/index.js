@@ -10,13 +10,14 @@ import cardsReducer from "./reducers/cardsReducer";
 import boardsReducer from "./reducers/boardsReducer";
 import boardOrderReducer from "./reducers/boardOrderReducer";
 import activeBoardReducer from "./reducers/activeBoardReducer";
+
 const reducers = combineReducers({
   lists: listsReducer,
   cards: cardsReducer,
   boards: boardsReducer,
   boardOrder: boardOrderReducer,
   activeBoard: activeBoardReducer,
-  kanban: card,
+  card,
 });
 
 const persistConfig = {

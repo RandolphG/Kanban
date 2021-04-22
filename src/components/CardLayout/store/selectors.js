@@ -1,13 +1,14 @@
 import { createSelector } from "reselect";
 
 /* get state */
-export const getState = (state) => state.kanban;
-export const getNotifications = (state) => state.kanban.notifications;
-export const getCardInfo = (state) => state.kanban.cardInfo;
-export const getTempInfo = (state) => state.kanban.tempInfo;
-export const getInEditMode = (state) => state.kanban.inEditMode;
-export const getLoading = (state) => state.kanban.loading;
+export const getState = (state) => state.card;
+export const getCardInfo = (state) => state.card.cardInfo;
+export const getTempInfo = (state) => state.card.tempInfo;
+export const getInEditMode = (state) => state.card.inEditMode;
+export const getLoading = (state) => state.card.loading;
+/*
 export const getTags = createSelector(
   getCardInfo,
   (cardInfo) => cardInfo[0].tags
 );
+*/

@@ -1,0 +1,57 @@
+.actions {
+  //background: white;
+
+  &__update {
+    //background-color: purple;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &_btn-edit {
+      background-color: transparent;
+      border: none;
+      height: fit-content;
+
+      &:hover {
+        //color: lightseagreen;
+      }
+
+      &_svg {
+        //background: #F5BA58;
+        width: 15px;
+      }
+    }
+
+    &_btn-delete {
+      background-color: transparent;
+      border: none;
+      height: fit-content;
+      &:hover {
+        color: red;
+      }
+      &_svg {
+        //background-color: yellow;
+        display: flex;
+        align-items: center;
+        height: 15px;
+      }
+    }
+  }
+
+  .btn-save {
+    background-color: transparent;
+    //color: green;
+    font-family: $font-main;
+    font-size: 1rem;
+    border: none;
+  }
+
+  .btn-cancel {
+    margin-left: 8px;
+    //color: red;
+    background-color: transparent;
+    font-family: $font-main;
+    font-size: 1rem;
+    border: none;
+  }
+}

@@ -1,9 +1,11 @@
 @import "cardActionButtons";
-@import "../../fonts";
-@import "../../colors";
+@import "fonts";
+@import "colors";
 
 $title-color: #626262;
 $label-font-size: 1rem;
+$font-main: 'operatorMonoBoldItalic', sans-serif;
+
 
 .cardLayout {
   position: relative;

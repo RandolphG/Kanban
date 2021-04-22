@@ -4,6 +4,7 @@ import TrelloForm from "./TrelloForm";
 import { editCard, deleteCard } from "../store/actions";
 import { connect } from "react-redux";
 import TrelloButton from "./TrelloButton";
+import CardActionButtons from "./CardLayout/CardActionButtons";
 
 const Card = React.memo(({ card, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -62,6 +63,14 @@ const Card = React.memo(({ card, listID, index, dispatch }) => {
                 <div>{card.title}</div>
                 <div>{card.assignee}</div>
                 <div>{card.reporter}</div>
+                <CardActionButtons
+                  key={card.id}
+                  id={card.id}
+                  card={card}
+                  index={index}
+                  listID={listID}
+                  task={card}
+                />
                 <div>
                   {card.tags.map((tag, idx) => (
                     <p key={idx}>{tag}</p>

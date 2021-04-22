@@ -3,7 +3,7 @@ import { add, remove } from "../../../utils";
 import { current } from "@reduxjs/toolkit";
 
 export const reducers = {
-  addEntry: (state) => {
+  addCard: (state) => {
     const entry = {
       key: uuidv4(),
       title: "",
@@ -17,12 +17,6 @@ export const reducers = {
     return {
       ...state,
       cardInfo: [...state.cardInfo, entry],
-    };
-  },
-  onSetSortedList: (state, action) => {
-    return {
-      ...state,
-      cardInfo: action.payload,
     };
   },
   onEdit: (state, action) => {
@@ -63,20 +57,7 @@ export const reducers = {
       },
     };
   },
-  onAddNotification: (state, action) => {
-    const message = action.payload.message;
 
-    return {
-      ...state,
-      notifications: add(state.notifications, message),
-    };
-  },
-  onRemoveNotification: (state, action) => {
-    return {
-      ...state,
-      notifications: remove(state.notifications, action.payload),
-    };
-  },
   onTagRemove: (state, action) => {
     return {
       ...state,
@@ -109,12 +90,7 @@ export const reducers = {
       }),
     };
   },
-  onToggleControlPanel: (state) => {
-    return {
-      ...state,
-      controlPanel: !state.controlPanel,
-    };
-  },
+
   setAllTags: (state, action) => {
     return {
       ...state,

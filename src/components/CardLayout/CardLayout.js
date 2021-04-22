@@ -9,6 +9,7 @@ import CardDescription from "./CardDescription";
 import CardAssignee from "./CardAssignee";
 import CardTags from "./CardTags";
 import { deleteCard, editCard } from "../../store/actions";
+import "./styles/_cardLayout.scss";
 
 const CardLayout = ({ card, listID }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,12 @@ const CardLayout = ({ card, listID }) => {
 
   const closeForm = (e) => {
     setIsEditing(false);
+  };
+
+  console.log(`cardInfo`, cardInfo);
+
+  const handleChange = (e) => {
+    /*setText(e.target.value);*/
   };
 
   const handleDeleteCard = (e) => {
@@ -43,9 +50,9 @@ const CardLayout = ({ card, listID }) => {
           delete
         </div>
 
-        <div>{card.title}</div>
-        <div>{card.assignee}</div>
-        <div>{card.reporter}</div>
+        <CardTitle title={card.title} details={card} />
+        <CardAssignee assignee={card.assignee} details={card} />
+        <CardReporter reporter={card.reporter} details={card} />
         <div>
           {card.tags.map((tag, idx) => (
             <p key={idx}>{tag}</p>
