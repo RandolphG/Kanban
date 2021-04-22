@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./components/App";
-import "./index.css";
+import "./styles/_styles.scss";
 import { createGlobalStyle } from "styled-components";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";

@@ -1,11 +1,10 @@
-@import "src/styles/fonts";
+@import "../../fonts";
+@import "../../colors";
 
-/* colors */
 $title-color: #626262;
-
-/* label font size */
 $label-font-size: 1rem;
-#card {
+
+.cardLayout {
   position: relative;
   box-sizing: border-box;
   background-color: white;
@@ -21,11 +20,8 @@ $label-font-size: 1rem;
   &:hover {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.22);
   }
-}
-
-.card-body {
   &__enclosure {
-    //background-color: lightpink;
+    background-color: lightpink;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -76,7 +72,7 @@ $label-font-size: 1rem;
       }
     }
 
-    $font-size:.9rem;
+    $font-size: .9rem;
 
     &_assignee-reporter {
       //background-color: #FEE01C;

@@ -9,19 +9,19 @@ const Card = React.memo(({ card, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setText] = useState(card.title);
 
+  const saveCard = (e) => {
+    e.preventDefault();
+
+    dispatch(editCard(card.id, listID));
+    setIsEditing(false);
+  };
+
   const closeForm = (e) => {
     setIsEditing(false);
   };
 
   const handleChange = (e) => {
     setText(e.target.value);
-  };
-
-  const saveCard = (e) => {
-    e.preventDefault();
-
-    dispatch(editCard(card.id, listID, cardText));
-    setIsEditing(false);
   };
 
   const handleDeleteCard = (e) => {
@@ -51,7 +51,12 @@ const Card = React.memo(({ card, listID, index, dispatch }) => {
           >
             <div>
               <div onMouseDown={() => setIsEditing(true)}>edit</div>
-              <div onMouseDown={handleDeleteCard}>delete</div>
+              <div
+                style={{ background: "red", margin: "1rem 0" }}
+                onMouseDown={handleDeleteCard}
+              >
+                delete
+              </div>
 
               <div>
                 <div>{card.title}</div>
