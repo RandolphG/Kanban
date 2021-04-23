@@ -4,8 +4,8 @@ export const initialState = {
   tags: [],
   details: [
     {
-      id: `card-0`,
-      key: "1",
+      id: `card-${uuid()}`,
+      key: uuid(),
       list: "list-0",
       title: "#1 develop ideas",
       description: "brainstorm the things that should happen...",
@@ -14,8 +14,8 @@ export const initialState = {
       assignee: "Anton",
     },
     {
-      id: `card-1`,
-      key: "2",
+      id: `card-${uuid()}`,
+      key: uuid(),
       list: "list-0",
       title: "#2 develop ideas",
       description: "brainstorm the things that should happen...",

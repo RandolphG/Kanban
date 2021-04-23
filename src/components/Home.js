@@ -5,30 +5,6 @@ import { connect } from "react-redux";
 import { addBoard } from "../store/actions";
 import Thumbnail from "./Thumbnail";
 
-const Thumbnails = styled.div`
-  flex: 1;
-  height: 50%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
-const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-`;
-
-const CreateTitle = styled.h3`
-  font-size: 48px;
-  color: white;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-`;
-
 const CreateInput = styled.input`
   width: 400px;
   height: 80px;
@@ -76,7 +52,7 @@ const Home = ({ boards, boardOrder, dispatch }) => {
   const renderCreateBoard = () => {
     return (
       <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
-        <CreateTitle>Create a new Board</CreateTitle>
+        <div>Create a new Board</div>
         <CreateInput
           onChange={handleChange}
           value={newBoardTitle}
@@ -88,10 +64,10 @@ const Home = ({ boards, boardOrder, dispatch }) => {
   };
 
   return (
-    <HomeContainer>
-      <Thumbnails>{renderBoards()}</Thumbnails>
+    <div>
+      <div>{renderBoards()}</div>
       {renderCreateBoard()}
-    </HomeContainer>
+    </div>
   );
 };
 

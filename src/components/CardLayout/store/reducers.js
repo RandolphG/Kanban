@@ -1,36 +1,36 @@
-import { v4 as uuidv4 } from "uuid";
-import { add, remove } from "../../../utils";
+import { v4 as uuid, v4 as uuidv4 } from "uuid";
 import { current } from "@reduxjs/toolkit";
 
 export const reducers = {
   addCard: (state) => {
-    const entry = {
+    const card = {
+      id: `card-${uuid()}`,
       key: uuidv4(),
+      list: "list-0",
       title: "",
       description: "",
       tags: [],
       reporter: "",
       assignee: "",
-      blocked: [],
     };
 
     return {
       ...state,
-      cardInfo: [...state.cardInfo, entry],
+      cardInfo: [...state.details, card],
     };
   },
   onEdit: (state, action) => {
     return {
       ...state,
-      tempInfo: state.cardInfo.find((item) => item.key === action.payload),
+      tempInfo: state.details.find((item) => item.key === action.payload),
       inEditMode: { status: true, rowKey: action.payload },
     };
   },
   onDelete: (state, action) => {
-    state.cardInfo.splice(action.payload, 1);
+    state.details.splice(action.payload, 1);
   },
   onSave: (state) => {
-    const data = state.cardInfo.map((item) =>
+    const data = state.details.map((item) =>
       item.key === state.tempInfo.key ? state.tempInfo : item
     );
 
@@ -61,7 +61,7 @@ export const reducers = {
   onTagRemove: (state, action) => {
     return {
       ...state,
-      cardInfo: current(state).cardInfo.map((task, idx) => {
+      cardInfo: current(state).details.map((task, idx) => {
         console.log(idx, action.payload.index);
         if (idx === action.payload.index) {
           return Object.entries(task).reduce((taskCopyAcc, [key, prop]) => {
@@ -75,11 +75,11 @@ export const reducers = {
   },
   onTagAdd: (state, action) => {
     const idx = action.payload.index;
-    const tags = [...state.cardInfo[idx].tags, ...action.payload.tags];
+    const tags = [...state.details[idx].tags, ...action.payload.tags];
 
     return {
       ...state,
-      cardInfo: state.cardInfo.map((task, idx) => {
+      cardInfo: state.details.map((task, idx) => {
         if (idx === action.payload.index) {
           return Object.entries(task).reduce((taskCopyAcc, [key, prop]) => {
             if (key === "tags") {

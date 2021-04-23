@@ -1,6 +1,6 @@
 {
-  "homepage": "http://selfdevtv.github.io/trello-clone",
-  "name": "trello-clone",
+  "author": "randolph gordon - randolph.gordon@poplogics.com",
+  "name": "agency_04_kanban",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

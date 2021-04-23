@@ -1,0 +1,55 @@
+@import "fonts";
+@import "colors";
+
+$title-color: #626262;
+$label-font-size: 1rem;
+$font-main: 'operatorMonoBoldItalic', sans-serif;
+
+.listLayout {
+  background-color: #999999;
+  width: 350px;
+  padding: .5rem;
+  height: fit-content;
+  margin: .5rem;
+  border: 2px solid red;
+  border-radius: .5rem;
+
+  &_section {
+    background-color: #FEE01C;
+
+    &_header {
+      background-color: #0086e4;
+      display: flex;
+      width: 100%;
+      margin-bottom: .5rem;
+      &_listTitleEditableInput{
+        font-family: $font-main;
+        width: 100%;
+        border: none;
+        outline-color: blue;
+        border-radius: .5rem;
+        padding: 5px;
+      }
+      &_elements {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        &_listTitle {
+          background-color: green;
+          font-size: 1.3rem;
+        }
+
+        &_deleteButton {
+          background-color: darkgoldenrod;
+          cursor: pointer;
+          transition: opacity 0.3s ease-in-out;
+          opacity: 0.4;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}

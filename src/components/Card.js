@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import TrelloForm from "./TrelloForm";
+import TrelloForm from "./ListLayout/components/TrelloForm";
 import { editCard, deleteCard } from "../store/actions";
 import { connect } from "react-redux";
-import TrelloButton from "./TrelloButton";
-import CardActionButtons from "./CardLayout/CardActionButtons";
+import TrelloButton from "./ListLayout/components/TrelloButton";
 
 const Card = React.memo(({ card, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);

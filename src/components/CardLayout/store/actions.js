@@ -1,4 +1,6 @@
 import { slice } from "./card";
+// import { CONSTANTS } from "./index";
+import { v4 as uuid } from "uuid";
 
 const {
   onEdit,
@@ -16,8 +18,9 @@ export const handleEdit = (key) => async (dispatch) => {
   dispatch(onEdit(key));
 };
 
-export const handleAddCard = () => async (dispatch) => {
-  dispatch(addCard());
+export const handleAddCard = (listID, text) => async (dispatch) => {
+  const id = uuid();
+  dispatch(addCard({ listID, id }));
 };
 
 export const handleDelete = (index) => async (dispatch) => {
@@ -47,3 +50,27 @@ export const handleTagsRemove = (tags, index) => async (dispatch) => {
 export const setUniqueTags = (tags) => async (dispatch) => {
   dispatch(setAllTags(tags));
 };
+
+/*
+export const addCard = (listID, text) => {
+  const id = uuid();
+  return {
+    type: CONSTANTS.ADD_CARD,
+    payload: { text, listID, id },
+  };
+};
+
+export const editCard = (id, listID, newText) => {
+  return {
+    type: CONSTANTS.EDIT_CARD,
+    payload: { id, listID, newText },
+  };
+};
+
+export const deleteCard = (id, listID) => {
+  return {
+    type: CONSTANTS.DELETE_CARD,
+    payload: { id, listID },
+  };
+};
+*/
