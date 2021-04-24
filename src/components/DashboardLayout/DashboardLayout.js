@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getDashboard, handAddBoardToDashboard } from "./store";
 import { useDispatch, useSelector } from "react-redux";
-import { getBoards, handleAddBoard } from "../BoardLayout";
+import { getBoards } from "../BoardLayout";
 import { Project } from "./components";
 import "./styles/_dashboardLayout.scss";
 import { v4 as uuid } from "uuid";
@@ -17,27 +17,29 @@ const DashboardLayout = () => {
     setTitle(e.target.value);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const id = uuid();
-    dispatch(handAddBoardToDashboard(id));
-    dispatch(handleAddBoard(title, id));
+    dispatch(handAddBoardToDashboard(id, title));
   }
 
   const renderBoards = () => {
-    return boardOrder.map((boardID) => {
-      const board = boards[boardID];
+    return (
+      boardOrder &&
+      boardOrder.map((boardID) => {
+        const board = boards[boardID];
 
-      return (
-        <Link
-          className="dashboardLayout_section_projects_link"
-          key={boardID}
-          to={`/${board.id}`}
-        >
-          <Project {...board} />
-        </Link>
-      );
-    });
+        return (
+          <Link
+            className="dashboardLayout_section_projects_link"
+            key={boardID}
+            to={`/${board.id}`}
+          >
+            <Project {...board} />
+          </Link>
+        );
+      })
+    );
   };
 
   const addNewBoardInput = () => {
@@ -56,8 +58,6 @@ const DashboardLayout = () => {
       </form>
     );
   };
-
-  // console.log(`boards`, boardOrder);
 
   useEffect(() => {}, [boardOrder]);
 

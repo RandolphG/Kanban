@@ -3,9 +3,11 @@ import { current } from "@reduxjs/toolkit";
 
 export const reducers = {
   addCard: (state) => {
+    const id = uuid();
+    const key = uuid();
     const card = {
-      id: `card-${uuid()}`,
-      key: uuidv4(),
+      id: `card-${id}`,
+      key: key,
       list: "list-0",
       title: "",
       description: "",
@@ -16,7 +18,7 @@ export const reducers = {
 
     return {
       ...state,
-      cardInfo: [...state.details, card],
+      cards: { ...state.cards, [`card-${id}`]: card },
     };
   },
   onEdit: (state, action) => {
@@ -27,17 +29,17 @@ export const reducers = {
     };
   },
   onDelete: (state, action) => {
-    state.details.splice(action.payload, 1);
+    state.cards.splice(action.payload, 1);
   },
   onSave: (state) => {
-    const data = state.details.map((item) =>
+    const data = state.cards.map((item) =>
       item.key === state.tempInfo.key ? state.tempInfo : item
     );
 
     return {
       ...state,
       inEditMode: { status: false, rowKey: null },
-      cardInfo: data,
+      cards: data,
     };
   },
   onCancel: (state) => {
@@ -60,8 +62,7 @@ export const reducers = {
 
   onTagRemove: (state, action) => {
     return {
-      ...state,
-      cardInfo: current(state).details.map((task, idx) => {
+      cardInfo: state.cards.map((task, idx) => {
         console.log(idx, action.payload.index);
         if (idx === action.payload.index) {
           return Object.entries(task).reduce((taskCopyAcc, [key, prop]) => {

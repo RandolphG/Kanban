@@ -13,6 +13,7 @@ export const {
   addBoardDetails,
   addListToBoard,
   setDeleteList,
+  setActiveBoard,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

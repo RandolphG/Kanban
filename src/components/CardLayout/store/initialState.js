@@ -2,8 +2,8 @@ import { v4 as uuid } from "uuid";
 
 export const initialState = {
   tags: [],
-  details: [
-    {
+  cards: {
+    "card-0": {
       id: `card-${uuid()}`,
       key: uuid(),
       list: "list-0",
@@ -13,7 +13,7 @@ export const initialState = {
       reporter: "Randolph",
       assignee: "Anton",
     },
-    {
+    "card-1": {
       id: `card-${uuid()}`,
       key: uuid(),
       list: "list-0",
@@ -23,7 +23,7 @@ export const initialState = {
       reporter: "Randolph",
       assignee: "Anton",
     },
-  ],
+  },
   tempInfo: {},
   inEditMode: { status: false, rowKey: null },
 };

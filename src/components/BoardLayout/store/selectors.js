@@ -1,1 +1,1 @@
-export const getBoards = (state) => state.boards;
+export const getBoards = (state) => state.board;

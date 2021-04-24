@@ -15,12 +15,13 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
   align-items: center;
   &_section{
     &_projects{
+      display: flex;
       &_link{
         text-decoration: none;
         &_project{
           background-color: #FEE01C;
           width: 200px;
-          height: 200px;
+          height: 70px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -32,7 +33,7 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
 
     &_form {
       background-color: #999999;
-      height: 300px;
+      height: 250px;
       width: 425px;
       display: flex;
       flex-direction: column;

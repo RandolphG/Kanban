@@ -10,7 +10,6 @@ const initialState = {
     tags: ["plan", "prototype", "debugging"],
     reporter: "Randolph",
     assignee: "Anton",
-    blocked: [1, 2, 3],
   },
   "card-1": {
     id: `card-1`,
@@ -21,7 +20,6 @@ const initialState = {
     tags: ["brainstorm", "develop"],
     reporter: "Randolph",
     assignee: "Anton",
-    blocked: [1, 2, 3],
   },
   "card-2": {
     id: `card-2`,
@@ -32,7 +30,6 @@ const initialState = {
     tags: ["prototype", "debugging"],
     reporter: "Randolph",
     assignee: "Anton",
-    blocked: [1, 2, 3],
   },
 };
 

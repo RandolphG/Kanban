@@ -16,3 +16,5 @@ export const {
   setAddList,
   addCardToList,
 } = listSlice.actions;
+
+export default listSlice.reducer;

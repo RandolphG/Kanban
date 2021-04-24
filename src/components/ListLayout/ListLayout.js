@@ -77,14 +77,15 @@ const ListLayout = ({ title, cards, listID, index, dispatch }) => {
                   )}
                 </div>
                 <div {...provided.droppableProps} ref={provided.innerRef}>
-                  {cards.map((card, index) => (
-                    <CardLayout
-                      key={card.id}
-                      card={card}
-                      index={index}
-                      listID={listID}
-                    />
-                  ))}
+                  {cards &&
+                    cards.map((card, index) => (
+                      <CardLayout
+                        key={card.id}
+                        card={card}
+                        index={index}
+                        listID={listID}
+                      />
+                    ))}
                   {provided.placeholder}
                   <TrelloCreate listID={listID} />
                 </div>

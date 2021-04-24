@@ -1,28 +1,25 @@
 import React, { useEffect } from "react";
-import { ListLayout } from "../ListLayout";
+import { getList, ListLayout } from "../ListLayout";
 import { useDispatch, useSelector } from "react-redux";
 import TrelloCreate from "../ListLayout/components/TrelloCreate";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { setActiveBoard, sort } from "../../store/actions";
+import { sort } from "../../store/actions";
+import { getBoards, setActiveBoard } from "./store";
 
 import { Link, useParams } from "react-router-dom";
+import { getCardDetails } from "../CardLayout/store";
 
 const BoardLayout = () => {
   const dispatch = useDispatch();
-  const lists = ["list-0"];
-  const cards = ["card-0", "card-1"];
-  const boards = ["board-0"];
+  const lists = useSelector(getList);
+  const card = useSelector(getCardDetails);
+  const boards = useSelector(getBoards);
   const { boardID } = useParams();
   const board = boards[boardID];
 
-  // const board = boards[boardID];
-  // const lists = useSelector(getList);
-  // const cards = useSelector(getCard);
-  // const boards = useSelector(getBoard);
-
   useEffect(() => {
     dispatch(setActiveBoard(boardID));
-  });
+  }, []);
 
   function onDragEnd(result) {
     const { destination, source, draggableId, type } = result;
@@ -44,13 +41,11 @@ const BoardLayout = () => {
     );
   }
 
-  function getListOrder(list) {
-    return list.cards.map((cardID) => cards[cardID]);
+  function getCardOrder(list) {
+    return list.cards.map((cardID) => card[cardID]);
   }
 
-  // const listOrder = board.lists;
-
-  const listOrder = ["list-0", "list-1"];
+  const listOrder = board.lists;
 
   const nothingToRender = () => {
     if (!board) {
@@ -63,8 +58,7 @@ const BoardLayout = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Link to="/">Go Back</Link>
-      {/*<h2>{board.title}</h2>*/}
-      <h2>Title</h2>
+      <h2>{board.title}</h2>
       <Droppable droppableId="all-lists" direction="horizontal" type="list">
         {(provided) => (
           <div
@@ -76,7 +70,7 @@ const BoardLayout = () => {
               listOrder.map((listID, index) => {
                 const list = lists[listID];
                 if (list) {
-                  const listCards = getListOrder(list);
+                  const listCards = getCardOrder(list);
 
                   return (
                     <ListLayout

@@ -42,11 +42,10 @@ export const reducers = {
 
     const newBoard = {
       id: newID,
-      title,
       lists: [],
+      title,
     };
 
-    // console.log("addBoardDetails : newBoard -->", newBoard);
     return { ...state, [newID]: newBoard };
   },
   setActiveBoard: (state, action) => {

@@ -1,3 +1,4 @@
 export * from "./BoardLayout";
 export * from "./DashboardLayout";
-export { default as Home } from "./Home";
+export * from "./ListLayout";
+export * from "./CardLayout";
