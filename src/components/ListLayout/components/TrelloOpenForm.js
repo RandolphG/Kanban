@@ -1,5 +1,4 @@
 import React from "react";
-import Icon from "@material-ui/core/Icon";
 import styled from "styled-components";
 
 const TrelloOpenForm = ({ list, children, onClick }) => {
@@ -24,7 +23,7 @@ const TrelloOpenForm = ({ list, children, onClick }) => {
 
   return (
     <OpenFormButton onClick={onClick}>
-      <Icon>add</Icon>
+      <div>add</div>
       <p style={{ flexShrink: 0 }}>{children}</p>
     </OpenFormButton>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import Icon from "@material-ui/core/Icon";
 import TrelloButton from "./TrelloButton";
 import { connect } from "react-redux";
 import { addList, addCard } from "../../../store/actions";
@@ -82,7 +81,7 @@ class TrelloCreate extends React.PureComponent {
 
     return (
       <OpenFormButton onClick={this.openForm}>
-        <Icon>add</Icon>
+        <div>add</div>
         <p style={{ flexShrink: 0 }}>{buttonText}</p>
       </OpenFormButton>
     );

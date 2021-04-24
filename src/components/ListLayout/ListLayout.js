@@ -2,19 +2,9 @@ import React, { useState } from "react";
 import "./styles/_listLayout.scss";
 import TrelloCreate from "./components/TrelloCreate";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import styled from "styled-components";
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../../store/actions";
 import { CardLayout } from "../CardLayout";
-
-const StyledInput = styled.input`
-  width: 100%;
-  border: none;
-  outline-color: blue;
-  border-radius: 3px;
-  margin-bottom: 3px;
-  padding: 5px;
-`;
 
 const ListLayout = ({ title, cards, listID, index, dispatch }) => {
   const [isEditing, setIsEditing] = useState(false);

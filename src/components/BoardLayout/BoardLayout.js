@@ -1,29 +1,38 @@
-import React, { PureComponent } from "react";
+import React, { useEffect } from "react";
 import { ListLayout } from "../ListLayout";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TrelloCreate from "../ListLayout/components/TrelloCreate";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { sort, setActiveBoard } from "../../store/actions";
-import { Link } from "react-router-dom";
+import { setActiveBoard, sort } from "../../store/actions";
 
-// TODO: Fix performance issue
+import { Link, useParams } from "react-router-dom";
 
-class BoardLayout extends PureComponent {
-  componentDidMount() {
-    // set active trello board here
-    const { boardID } = this.props.match.params;
+const BoardLayout = () => {
+  const dispatch = useDispatch();
+  const lists = ["list-0"];
+  const cards = ["card-0", "card-1"];
+  const boards = ["board-0"];
+  const { boardID } = useParams();
+  const board = boards[boardID];
 
-    this.props.dispatch(setActiveBoard(boardID));
-  }
+  // const board = boards[boardID];
+  // const lists = useSelector(getList);
+  // const cards = useSelector(getCard);
+  // const boards = useSelector(getBoard);
 
-  onDragEnd = (result) => {
+  useEffect(() => {
+    dispatch(setActiveBoard(boardID));
+  });
+
+  function onDragEnd(result) {
     const { destination, source, draggableId, type } = result;
+    dispatch(setActiveBoard(boardID));
 
     if (!destination) {
       return;
     }
 
-    this.props.dispatch(
+    dispatch(
       sort(
         source.droppableId,
         destination.droppableId,
@@ -33,33 +42,41 @@ class BoardLayout extends PureComponent {
         type
       )
     );
-  };
+  }
 
-  render() {
-    const { lists, cards, match, boards } = this.props;
-    const { boardID } = match.params;
-    const board = boards[boardID];
+  function getListOrder(list) {
+    return list.cards.map((cardID) => cards[cardID]);
+  }
 
+  // const listOrder = board.lists;
+
+  const listOrder = ["list-0", "list-1"];
+
+  const nothingToRender = () => {
     if (!board) {
       return <p>Board not found</p>;
     }
-    const listOrder = board.lists;
+  };
 
-    return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Link to="/">Go Back</Link>
-        <h2>{board.title}</h2>
-        <Droppable droppableId="all-lists" direction="horizontal" type="list">
-          {(provided) => (
-            <div
-              style={{ background: "green", display: "flex" }}
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {listOrder.map((listID, index) => {
+  nothingToRender();
+
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Link to="/">Go Back</Link>
+      {/*<h2>{board.title}</h2>*/}
+      <h2>Title</h2>
+      <Droppable droppableId="all-lists" direction="horizontal" type="list">
+        {(provided) => (
+          <div
+            style={{ background: "green", display: "flex" }}
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {listOrder &&
+              listOrder.map((listID, index) => {
                 const list = lists[listID];
                 if (list) {
-                  const listCards = list.cards.map((cardID) => cards[cardID]);
+                  const listCards = getListOrder(list);
 
                   return (
                     <ListLayout
@@ -72,20 +89,13 @@ class BoardLayout extends PureComponent {
                   );
                 }
               })}
-              {provided.placeholder}
-              <TrelloCreate list />
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    );
-  }
-}
+            {provided.placeholder}
+            <TrelloCreate list />
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
+  );
+};
 
-const mapStateToProps = (state) => ({
-  lists: state.lists,
-  cards: state.cards,
-  boards: state.boards,
-});
-
-export default connect(mapStateToProps)(BoardLayout);
+export default BoardLayout;

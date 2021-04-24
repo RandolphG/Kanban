@@ -1,18 +1,15 @@
-import { slice } from "./card";
-// import { CONSTANTS } from "./index";
 import { v4 as uuid } from "uuid";
-
-const {
-  onEdit,
+import {
   addCard,
-  onDelete,
-  onSave,
   onCancel,
+  onDelete,
+  onEdit,
   onInputChange,
+  onSave,
   onTagAdd,
   onTagRemove,
   setAllTags,
-} = slice.actions;
+} from "./card";
 
 export const handleEdit = (key) => async (dispatch) => {
   dispatch(onEdit(key));

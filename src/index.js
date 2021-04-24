@@ -1,30 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import App from "./components/App";
-import "./_styles.scss";
-import { createGlobalStyle } from "styled-components";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import Routes from "./routes";
 import { store } from "./store";
+import "./_styles.scss";
 
 let persistor = persistStore(store);
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    background-color: orange;
-    box-sizing: border-box;
-    transition: all 0.5s ease-in;
-  }
-`;
 
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <div>
-        <GlobalStyle />
-        <App />
-      </div>
+      <Routes />
     </PersistGate>
   </Provider>,
   document.getElementById("root")

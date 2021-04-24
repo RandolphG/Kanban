@@ -1,17 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "@material-ui/core/Icon";
 import Textarea from "react-textarea-autosize";
-import Card from "@material-ui/core/Card";
 
 const Container = styled.div`
   width: 284px;
   margin-bottom: 8px;
-`;
-
-const StyledCard = styled(Card)`
-  min-height: 85px;
-  padding: 6px 8px 2px;
 `;
 
 const StyledTextArea = styled(Textarea)`
@@ -29,11 +22,6 @@ const ButtonContainer = styled.div`
   margin-left: 8px;
 `;
 
-const StyledIcon = styled(Icon)`
-  margin-left: 8px;
-  cursor: pointer;
-`;
-
 const TrelloForm = React.memo(
   ({ list, text = "", onChange, closeForm, children }) => {
     const placeholder = list
@@ -46,7 +34,7 @@ const TrelloForm = React.memo(
 
     return (
       <Container>
-        <StyledCard>
+        <div>
           <StyledTextArea
             placeholder={placeholder}
             autoFocus
@@ -55,10 +43,10 @@ const TrelloForm = React.memo(
             onChange={(e) => onChange(e)}
             onBlur={closeForm}
           />
-        </StyledCard>
+        </div>
         <ButtonContainer>
           {children}
-          <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
+          <div onMouseDown={closeForm}>close</div>
         </ButtonContainer>
       </Container>
     );

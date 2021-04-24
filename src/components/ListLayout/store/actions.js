@@ -1,34 +1,13 @@
 import { v4 as uuid } from "uuid";
-
-/*
-export const CONSTANTS = {
-  ADD_CARD: "ADD_CARD",
-  ADD_LIST: "ADD_LIST",
-  DRAG_HAPPENED: "DRAG_HAPPENED",
-  EDIT_CARD: "EDIT_CARD",
-  DELETE_CARD: "DELETE_CARD",
-  EDIT_LIST_TITLE: "EDIT_LIST_TITLE",
-  DELETE_LIST: "DELETE_LIST",
-  SET_ACTIVE_BOARD: "SET_ACTIVE_BOARD",
-  ADD_BOARD: "ADD_BOARD",
-};
-
-export const addCard = (listID, text) => {
-  const id = uuid();
-  return {
-    type: CONSTANTS.ADD_CARD,
-    payload: { text, listID, id },
-  };
-};
-*/
-export const {
-  deleteCardFromList,
+import {
+  addCardToList,
   deleteList,
   dragList,
   editListTitle,
   setAddList,
-  addCardToList,
-} = listSlice.actions;
+} from "./list";
+import { addListToBoard, dragBoard } from "../../BoardLayout/store/board";
+import { addCard } from "../../../store/actions";
 
 export const addList = (title) => (dispatch, getState) => {
   const boardID = getState().activeBoard;
@@ -71,7 +50,7 @@ export const sort = (
   );
 };
 
-export const editTitle = (listID, newTitle) => (dispatch) => {
+export const handleEditTitle = (listID, newTitle) => (dispatch) => {
   dispatch(
     editListTitle({
       listID,
@@ -80,7 +59,7 @@ export const editTitle = (listID, newTitle) => (dispatch) => {
   );
 };
 
-export const setDeleteList = (listID) => (dispatch, getState) => {
+export const handleDeleteList = (listID) => (dispatch, getState) => {
   const boardID = getState().activeBoard;
   dispatch(
     deleteList({

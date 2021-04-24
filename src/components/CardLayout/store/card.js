@@ -8,4 +8,16 @@ export const slice = createSlice({
   reducers,
 });
 
+export const {
+  onEdit,
+  addCard,
+  onDelete,
+  onSave,
+  onCancel,
+  onInputChange,
+  onTagAdd,
+  onTagRemove,
+  setAllTags,
+} = slice.actions;
+
 export default slice.reducer;

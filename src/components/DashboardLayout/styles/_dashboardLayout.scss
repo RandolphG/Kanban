@@ -1,0 +1,62 @@
+@import "fonts";
+@import "colors";
+
+$title-color: #626262;
+$label-font-size: 1rem;
+$font-main: 'operatorMonoBoldItalic', sans-serif;
+
+.dashboardLayout {
+  box-sizing: border-box;
+  background-color: #0086e4;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &_section{
+    &_projects{
+      &_link{
+        text-decoration: none;
+        &_project{
+          background-color: #FEE01C;
+          width: 200px;
+          height: 200px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: .5rem;
+          border-radius: .5rem;
+        }
+      }
+    }
+
+    &_form {
+      background-color: #999999;
+      height: 300px;
+      width: 425px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &_title {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      &_input {
+        font-family: $font-main;
+        width: 400px;
+        height: 80px;
+        font-size: 22px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 3px;
+        border: none;
+        outline-color: blue;
+        box-shadow: 0 2px 4px grey;
+        align-self: center;
+      }
+    }
+  }
+}

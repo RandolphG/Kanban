@@ -7,3 +7,12 @@ export const listSlice = createSlice({
   initialState,
   reducers,
 });
+
+export const {
+  deleteCardFromList,
+  deleteList,
+  dragList,
+  editListTitle,
+  setAddList,
+  addCardToList,
+} = listSlice.actions;

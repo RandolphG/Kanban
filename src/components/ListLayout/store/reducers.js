@@ -28,15 +28,6 @@ export const reducers = {
       type,
     } = action.payload;
 
-    console.log(
-      `\nDRAG_LIST: const { droppableIdStart, droppableIdEnd, droppableIndexEnd, droppableIndexStart, type, } = action.payload;`,
-      droppableIdStart,
-      droppableIdEnd,
-      droppableIndexEnd,
-      droppableIndexStart,
-      type
-    );
-
     // dragging lists around - the listOrderReducer should handle this
     if (type === "list") {
       console.log(`\ntype === "list"`);
