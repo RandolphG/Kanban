@@ -1,8 +1,9 @@
-import { slice } from "./dashboard";
+import { dashboardSlice } from "./dashboard";
 
-const { addBoard } = slice.actions;
+const { addBoard } = dashboardSlice.actions;
 
 export const handAddBoardToDashboard = (id) => (dispatch) => {
   console.log(`handAddBoardToDashboard`, id);
-  dispatch(addBoard({ payload: id }));
+
+  dispatch(addBoard(id));
 };

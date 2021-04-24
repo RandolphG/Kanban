@@ -10,7 +10,7 @@ export const boardSlice = createSlice({
 
 export const {
   dragBoard,
-  setBoardInfo,
+  addBoardDetails,
   addListToBoard,
   setDeleteList,
 } = boardSlice.actions;

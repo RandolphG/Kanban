@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
 import { reducers } from "./reducers";
 
-export const slice = createSlice({
+export const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
   reducers,
 });
 
-export default slice.reducer;
+export const { addBoard } = dashboardSlice.actions;
+
+export default dashboardSlice.reducer;

@@ -10,6 +10,8 @@ import cardsReducer from "./reducers/cardsReducer";
 import boardsReducer from "./reducers/boardsReducer";
 import boardOrderReducer from "./reducers/boardOrderReducer";
 import activeBoardReducer from "./reducers/activeBoardReducer";
+import board from "../components/BoardLayout/store/board";
+import dashboard from "../components/DashboardLayout/store/dashboard";
 
 const reducers = combineReducers({
   lists: listsReducer,
@@ -17,6 +19,8 @@ const reducers = combineReducers({
   boards: boardsReducer,
   boardOrder: boardOrderReducer,
   activeBoard: activeBoardReducer,
+  board,
+  dashboard,
   card,
 });
 

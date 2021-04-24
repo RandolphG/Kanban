@@ -1,1 +1,1 @@
-export const initialState = { boardOrder: ["board-0"] };
+export const initialState = ["board-0"];

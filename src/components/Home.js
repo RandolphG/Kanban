@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addBoard } from "../store/actions";
+// import { addBoard } from "../store/actions";
 import Thumbnail from "./Thumbnail";
 
 const CreateInput = styled.input`
@@ -30,7 +30,7 @@ const Home = ({ boards, boardOrder, dispatch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(`title sent`, newBoardTitle);
-    dispatch(addBoard(newBoardTitle));
+    // dispatch(addBoard(newBoardTitle));
   };
 
   const renderBoards = () => {

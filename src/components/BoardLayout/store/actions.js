@@ -1,11 +1,9 @@
-import { handAddBoardToDashboard } from "../../DashboardLayout";
-import { addListToBoard, setBoardInfo } from "./board";
-import { v4 as uuid } from "uuid";
+import { addListToBoard, addBoardDetails } from "./board";
 
-export const handleAddBoard = (title) => (dispatch) => {
-  const id = uuid();
-  dispatch(setBoardInfo({ title, id }));
-  handAddBoardToDashboard(id);
+export const handleAddBoard = (title, id) => (dispatch) => {
+  console.log(`handleAddBoard`, title);
+
+  dispatch(addBoardDetails({ title, id }));
 };
 
 export const handleAddListToBoard = (id) => (dispatch) => {

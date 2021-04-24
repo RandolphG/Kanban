@@ -1,1 +1,1 @@
-export const getDashboard = (state) => state.boardOrder;
+export const getDashboard = (state) => state.dashboard;

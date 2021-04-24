@@ -36,15 +36,17 @@ export const reducers = {
     board.lists = newLists;
     return { ...state, [boardID]: board };
   },
-  setBoardInfo: (state, action) => {
+  addBoardDetails: (state, action) => {
     const { title, id } = action.payload;
     const newID = `board-${id}`;
+
     const newBoard = {
       id: newID,
       title,
       lists: [],
     };
 
+    // console.log("addBoardDetails : newBoard -->", newBoard);
     return { ...state, [newID]: newBoard };
   },
   setActiveBoard: (state, action) => {

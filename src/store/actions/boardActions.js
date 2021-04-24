@@ -8,6 +8,7 @@ export const setActiveBoard = (id) => {
   };
 };
 
+/*
 export const addBoard = (title) => {
   const id = uuid();
   console.log(`title : `, title);
@@ -17,3 +18,4 @@ export const addBoard = (title) => {
     payload: { title, id },
   };
 };
+*/
