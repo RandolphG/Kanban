@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-const CardTags = ({ index, tags }) => {
+const CardTags = ({ card }) => {
   const dispatch = useDispatch();
 
   const handleTagAdd = (e) => {
     const { value } = e.target;
-    if (tags && !tags.includes(value)) {
+    if (card.tags && !card.tags.includes(value)) {
       if (e.keyCode === 13 || e.key === "," || e.key === "Enter") {
         let tag = [value.trim().split(",")[0]];
         if (tag.length > 0) {
@@ -18,7 +18,7 @@ const CardTags = ({ index, tags }) => {
   };
 
   const handleRemove = (tag) => {
-    const values = tags.filter((val) => val !== tag);
+    const values = card.tags.filter((val) => val !== tag);
     dispatch(/*handleTagsRemove(values, index)*/);
   };
 
@@ -33,8 +33,8 @@ const CardTags = ({ index, tags }) => {
 
   const Tags = () => (
     <ul id="tags">
-      {tags
-        ? tags.map((value, index) => (
+      {card && card.tags
+        ? card.tags.map((value, index) => (
             <li className="tag" key={index}>
               <span className="tag-title">{value}</span>
               <span

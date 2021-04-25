@@ -1,5 +1,4 @@
-import { v4 as uuid, v4 as uuidv4 } from "uuid";
-import { current } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
 
 export const reducers = {
   addCard: (state) => {
@@ -24,7 +23,7 @@ export const reducers = {
   onEdit: (state, action) => {
     return {
       ...state,
-      tempInfo: state.details.find((item) => item.key === action.payload),
+      tempInfo: state.card.find((item) => item.key === action.payload),
       inEditMode: { status: true, rowKey: action.payload },
     };
   },

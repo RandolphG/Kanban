@@ -5,8 +5,7 @@
 
 $title-color: #626262;
 $label-font-size: 1rem;
-$font-main: 'operatorMonoBoldItalic', sans-serif;
-
+$font-size: .9rem;
 
 .cardLayout {
   position: relative;
@@ -76,10 +75,9 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
       }
     }
 
-    $font-size: .9rem;
 
-    &_assignee-reporter {
-      //background-color: #FEE01C;
+    &_participants {
+      background-color: #FEE01C;
       display: flex;
       width: 100%;
       height: 50px;

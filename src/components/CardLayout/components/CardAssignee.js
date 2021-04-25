@@ -10,14 +10,16 @@ const options = [
   { value: "Alen" },
 ];
 
-const CardAssignee = ({ assignee, details }) => {
+const CardAssignee = ({ card }) => {
   const dispatch = useDispatch();
   const inEditMode = useSelector(getInEditMode);
   const tempInfo = useSelector(getTempInfo);
 
+  // console.log(`\ninEditMode ASSIGNEE : -->`, inEditMode);
+
   return (
     <div className="assignee_type">
-      {inEditMode.status && inEditMode.rowKey === details.key ? (
+      {inEditMode.status && inEditMode.rowKey === card.key ? (
         <select
           className="assignee_type__select"
           name="assignee"
@@ -41,7 +43,7 @@ const CardAssignee = ({ assignee, details }) => {
             ))}
         </select>
       ) : (
-        assignee
+        card.assignee
       )}
     </div>
   );

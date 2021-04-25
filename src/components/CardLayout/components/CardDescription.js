@@ -2,14 +2,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getInEditMode, getTempInfo, handleInputChange } from "../store";
 
-const CardDescription = ({ description, details }) => {
+const CardDescription = ({ card }) => {
   const dispatch = useDispatch();
   const inEditMode = useSelector(getInEditMode);
   const tempInfo = useSelector(getTempInfo);
 
+  // console.log(`\ninEditMode DESCRIPTION : -->`, inEditMode);
+
   return (
     <div className="description">
-      {inEditMode.status && inEditMode.rowKey === details.key ? (
+      {inEditMode.status && inEditMode.rowKey === card.key ? (
         <input
           className="input-value"
           type="text"
@@ -23,7 +25,7 @@ const CardDescription = ({ description, details }) => {
           }
         />
       ) : (
-        description
+        card.description
       )}
     </div>
   );

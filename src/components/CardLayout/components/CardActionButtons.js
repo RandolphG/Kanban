@@ -8,9 +8,11 @@ import {
   handleSave,
 } from "../store";
 
-const CardActionButtons = ({ id, listID, index, details }) => {
+const CardActionButtons = ({ listID, index, card }) => {
   const dispatch = useDispatch();
   const inEditMode = useSelector(getInEditMode);
+
+  // console.log(`\ninEditMode ACTION BUTTONS : -->`, inEditMode);
 
   const SaveButton = () => (
     <button
@@ -51,7 +53,7 @@ const CardActionButtons = ({ id, listID, index, details }) => {
     <button
       className="btn-cancel"
       onClick={() => {
-        dispatch(handleEdit(details.key));
+        dispatch(handleEdit(card.key));
       }}
     >
       edit
@@ -60,7 +62,7 @@ const CardActionButtons = ({ id, listID, index, details }) => {
 
   return (
     <div className="actions">
-      {inEditMode.status && inEditMode.rowKey === details.key ? (
+      {inEditMode.status && inEditMode.rowKey === card.key ? (
         <Fragment>
           {SaveButton()}
           {CancelButton()}

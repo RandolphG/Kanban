@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getList, ListLayout } from "../ListLayout";
 import { useDispatch, useSelector } from "react-redux";
-import TrelloCreate from "../ListLayout/components/TrelloCreate";
+import AddListButton from "./components/AddListButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { sort } from "../../store/actions";
 import { getBoards, setActiveBoard } from "./store";
@@ -84,7 +84,7 @@ const BoardLayout = () => {
                 }
               })}
             {provided.placeholder}
-            <TrelloCreate list />
+            <AddListButton list />
           </div>
         )}
       </Droppable>
