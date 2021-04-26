@@ -23,12 +23,7 @@ const boardsReducer = (state = initialState, action) => {
       const { boardID } = action.payload;
       const board = state[boardID];
       const lists = board.lists;
-      const {
-        droppableIndexEnd,
-        droppableIndexStart,
-
-        type,
-      } = action.payload;
+      const { droppableIndexEnd, droppableIndexStart, type } = action.payload;
 
       // draggin lists around
       if (type === "list") {

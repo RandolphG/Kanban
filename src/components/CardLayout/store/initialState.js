@@ -40,7 +40,7 @@ export const initialState = {
       id: `card-3`,
       key: uuid(),
       list: "list-1",
-      title: "#3 develop ideas",
+      title: "#4 develop ideas",
       description: "brainstorm the things that should happen...",
       tags: ["brainstorm", "plan", "prototype"],
       reporter: "Randolph",

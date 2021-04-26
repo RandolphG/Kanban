@@ -7,26 +7,20 @@ export const reducers = {
     return { ...state, [boardID]: board };
   },
   dragBoard: (state, action) => {
-    const { boardID } = action.payload;
+    const { boardID, source, destination, type } = action.payload;
     const board = state[boardID];
     const lists = board.lists;
-    const { droppableIndexEnd, droppableIndexStart, type } = action.payload;
 
-    // dragging lists around
+    /* dragging lists around */
     if (type === "list") {
-      console.log(`\nboardReducer : "`);
-      const pulledOutList = lists.splice(droppableIndexStart, 1);
+      const pulledOutList = lists.splice(destination.index, 1);
+      lists.splice(source.index, 0, ...pulledOutList);
 
-      console.log(
-        `\nboardReducer : lists.splice(droppableIndexStart, 1) "`,
-        pulledOutList
-      );
-      lists.splice(droppableIndexEnd, 0, ...pulledOutList);
       board.lists = lists;
 
       // return { ...state, [boardID]: board };
     }
-    // return state;
+    return state;
   },
   setDeleteList: (state, action) => {
     const { listID, boardID } = action.payload;

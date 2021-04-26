@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import ErrorBoundary from "../../ErrorBoundary";
 import { Draggable } from "react-beautiful-dnd";
 import {
@@ -10,35 +9,14 @@ import {
   CardActionButtons,
   CardReporter,
 } from "./components";
-import { editCard } from "../../store/actions";
-import { getCardDetails, getInEditMode } from "./store";
 
 import "./styles/_cardLayout.scss";
 
 const CardLayout = ({ card, listID, index }) => {
-  const cardList = useSelector(getCardDetails);
-
   const [inEditMode, setInEditMode] = useState({
     status: false,
     rowKey: card.id,
   });
-  const [tempInfo, setRowInfo] = useState();
-  const dispatch = useDispatch();
-
-  const closeForm = (e) => {
-    setInEditMode({ ...inEditMode, status: false });
-  };
-
-  const handleChange = (e) => {
-    /*setText(e.target.value);*/
-  };
-
-  const saveCard = (e) => {
-    e.preventDefault();
-    dispatch(editCard(card.id, listID));
-
-    setInEditMode({ ...inEditMode, status: false });
-  };
 
   const TopBar = () => (
     <div className="cardLayout__topbar">

@@ -53,12 +53,6 @@ const cardsReducer = (state = initialState, action) => {
       return { ...state, [`card-${id}`]: card };
     }
 
-    case CONSTANTS.DELETE_CARD: {
-      const { id } = action.payload;
-      const newState = state;
-      delete newState[id];
-      return newState;
-    }
     default:
       return state;
   }

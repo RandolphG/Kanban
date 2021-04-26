@@ -78,15 +78,7 @@ const listsReducer = (state = initialState, action) => {
         };
       }
       return state;
-
-    case CONSTANTS.DELETE_CARD: {
-      const { listID, id } = action.payload;
-
-      const list = state[listID];
-      const newCards = list.cards.filter((cardID) => cardID !== id);
-
-      return { ...state, [listID]: { ...list, cards: newCards } };
-    }
+      W;
 
     case CONSTANTS.EDIT_LIST_TITLE: {
       const { listID, newTitle } = action.payload;

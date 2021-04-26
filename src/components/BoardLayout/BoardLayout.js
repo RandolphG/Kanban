@@ -3,11 +3,10 @@ import { getList, ListLayout } from "../ListLayout";
 import { useDispatch, useSelector } from "react-redux";
 import AddListButton from "./components/AddListButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { sort } from "../../store/actions";
-import { getBoards, setActiveBoard } from "./store";
-
+import { dragBoard, getBoards, setActiveBoard } from "./store";
 import { Link, useParams } from "react-router-dom";
 import { getCardDetails } from "../CardLayout";
+import { dragList } from "../ListLayout/store/list";
 
 const BoardLayout = () => {
   const dispatch = useDispatch();
@@ -25,19 +24,45 @@ const BoardLayout = () => {
     const { destination, source, draggableId, type } = result;
     dispatch(setActiveBoard(boardID));
 
+    /*
+    console.log(
+      `BOARD_ID`,
+      boardID,
+      `\ndestination,`,
+      destination,
+      `\ndraggableId`,
+      draggableId,
+      `\ntype`,
+      type,
+      `\nsource`,
+      source,
+
+      `\ntype`,
+      type
+    );
+*/
+
     if (!destination) {
       return;
     }
 
     dispatch(
-      sort(
-        source.droppableId,
-        destination.droppableId,
-        source.index,
-        destination.index,
+      dragBoard({
+        source,
+        destination,
         draggableId,
-        type
-      )
+        type,
+        boardID,
+      })
+    );
+    dispatch(
+      dragList({
+        source,
+        destination,
+        draggableId,
+        type,
+        boardID,
+      })
     );
   }
 
