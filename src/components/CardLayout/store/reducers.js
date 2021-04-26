@@ -13,6 +13,7 @@ export const reducers = {
       tags: [],
       reporter: "",
       assignee: "",
+      isInEditMode: { status: false },
     };
 
     return {
@@ -21,11 +22,30 @@ export const reducers = {
     };
   },
   onEdit: (state, action) => {
-    return {
-      ...state,
-      tempInfo: state.card.find((item) => item.key === action.payload),
-      inEditMode: { status: true, rowKey: action.payload },
-    };
+    const { card } = action.payload;
+    const cards = { ...state.cards[card.id] };
+
+    if (cards.id === card.id) {
+      cards.isInEditMode = true;
+      return {
+        ...state,
+        tempInfo: cards,
+        cards: { ...state.cards, [card.id]: cards },
+      };
+    }
+  },
+  onCancel: (state, action) => {
+    const { card } = action.payload;
+    const cards = { ...state.cards[card.id] };
+
+    if (cards.id === card.id) {
+      cards.isInEditMode = false;
+      return {
+        ...state,
+        tempInfo: null,
+        cards: { ...state.cards, [card.id]: cards },
+      };
+    }
   },
   onDelete: (state, action) => {
     state.cards.splice(action.payload, 1);
@@ -41,12 +61,7 @@ export const reducers = {
       cards: data,
     };
   },
-  onCancel: (state) => {
-    return {
-      ...state,
-      inEditMode: { status: false, rowKey: null },
-    };
-  },
+
   onInputChange: (state, action) => {
     const key = Object.keys(action.payload)[0];
 

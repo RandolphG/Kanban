@@ -1,10 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getInEditMode, getTempInfo, handleInputChange } from "../store";
+import { getTempInfo, handleInputChange } from "../store";
 
 const CardTitle = ({ card }) => {
   const dispatch = useDispatch();
-  const inEditMode = useSelector(getInEditMode);
   const tempInfo = useSelector(getTempInfo);
 
   const handleFocus = (e) => {
@@ -12,8 +11,8 @@ const CardTitle = ({ card }) => {
   };
 
   return (
-    <div className="card-body__enclosure__top__td-label">
-      {inEditMode.status && inEditMode.rowKey === card.key ? (
+    <div className="cardLayout__topbar_label">
+      {card.isInEditMode ? (
         <input
           className="input-label"
           type="text"

@@ -6,7 +6,10 @@ import {
   handleDelete,
   handleEdit,
   handleSave,
+  onCancel,
+  onEdit,
 } from "../store";
+import { deleteCard } from "../../../store/actions";
 
 const CardActionButtons = ({ listID, index, card }) => {
   const dispatch = useDispatch();
@@ -29,7 +32,7 @@ const CardActionButtons = ({ listID, index, card }) => {
     <button
       className="btn-cancel"
       onClick={() => {
-        dispatch(handleCancel());
+        dispatch(onCancel({ card: card }));
       }}
     >
       Cancel
@@ -40,9 +43,13 @@ const CardActionButtons = ({ listID, index, card }) => {
     <button
       className="btn-cancel"
       onClick={() => {
+        console.log(listID);
+        console.log(card.id);
+
+        // dispatch(deleteCard(card.id, listID));
         // dispatch(setDeleteCard(id, listID, index));
         // dispatch(handleNotification({ message: "Deleted Task." }));
-        dispatch(handleDelete(index));
+        // dispatch(handleDelete(index));
       }}
     >
       delete
@@ -53,7 +60,7 @@ const CardActionButtons = ({ listID, index, card }) => {
     <button
       className="btn-cancel"
       onClick={() => {
-        dispatch(handleEdit(card.key));
+        dispatch(onEdit({ card: card }));
       }}
     >
       edit
@@ -62,7 +69,7 @@ const CardActionButtons = ({ listID, index, card }) => {
 
   return (
     <div className="actions">
-      {inEditMode.status && inEditMode.rowKey === card.key ? (
+      {card.isInEditMode ? (
         <Fragment>
           {SaveButton()}
           {CancelButton()}

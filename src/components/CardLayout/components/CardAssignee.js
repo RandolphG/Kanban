@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getInEditMode, getTempInfo, handleInputChange } from "../store";
+import { getTempInfo, handleInputChange } from "../store";
 
 const options = [
   { value: "Randolph" },
@@ -12,14 +12,11 @@ const options = [
 
 const CardAssignee = ({ card }) => {
   const dispatch = useDispatch();
-  const inEditMode = useSelector(getInEditMode);
   const tempInfo = useSelector(getTempInfo);
-
-  // console.log(`\ninEditMode ASSIGNEE : -->`, inEditMode);
 
   return (
     <div className="assignee_type">
-      {inEditMode.status && inEditMode.rowKey === card.key ? (
+      {card.isInEditMode ? (
         <select
           className="assignee_type__select"
           name="assignee"

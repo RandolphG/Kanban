@@ -10,36 +10,38 @@ import {
   CardActionButtons,
   CardReporter,
 } from "./components";
-import { deleteCard, editCard } from "../../store/actions";
-import { getInEditMode } from "./store";
+import { editCard } from "../../store/actions";
+import { getCardDetails, getInEditMode } from "./store";
+
 import "./styles/_cardLayout.scss";
 
 const CardLayout = ({ card, listID, index }) => {
+  const cardList = useSelector(getCardDetails);
+
+  const [inEditMode, setInEditMode] = useState({
+    status: false,
+    rowKey: card.id,
+  });
+  const [tempInfo, setRowInfo] = useState();
   const dispatch = useDispatch();
-  const [isEditing, setIsEditing] = useState(false);
+
   const closeForm = (e) => {
-    setIsEditing(false);
+    setInEditMode({ ...inEditMode, status: false });
   };
-  const inEditMode = useSelector(getInEditMode);
 
   const handleChange = (e) => {
     /*setText(e.target.value);*/
-  };
-
-  const handleDeleteCard = (e) => {
-    console.log(listID);
-    dispatch(deleteCard(card.id, listID));
   };
 
   const saveCard = (e) => {
     e.preventDefault();
     dispatch(editCard(card.id, listID));
 
-    setIsEditing(false);
+    setInEditMode({ ...inEditMode, status: false });
   };
 
   const TopBar = () => (
-    <div className="cardLayout__enclosure__top">
+    <div className="cardLayout__topbar">
       <CardTitle card={card} />
       <CardActionButtons card={card} index={index} listID={listID} />
     </div>
@@ -52,25 +54,21 @@ const CardLayout = ({ card, listID, index }) => {
     </div>
   );
 
-  console.log(`\nisEditing CardLayout : --> `, isEditing);
-
   return (
     <ErrorBoundary>
       <Draggable draggableId={String(card.id)} index={index}>
         {(provided) => (
           <div
+            className="cardLayout"
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            onDoubleClick={() => setIsEditing(true)}
+            onDoubleClick={() => setInEditMode({ ...inEditMode, status: true })}
           >
-            <div className="cardLayout">
-              <div onMouseDown={handleDeleteCard}>delete</div>
-              <TopBar />
-              <Participants />
-              <CardTags card={card} />
-              <CardDescription card={card} />
-            </div>
+            <TopBar />
+            <Participants />
+            <CardDescription card={card} />
+            <CardTags card={card} />
           </div>
         )}
       </Draggable>

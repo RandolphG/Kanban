@@ -4,7 +4,7 @@ export const initialState = {
   tags: [],
   cards: {
     "card-0": {
-      id: `card-${uuid()}`,
+      id: `card-0`,
       key: uuid(),
       list: "list-0",
       title: "#1 develop ideas",
@@ -12,9 +12,10 @@ export const initialState = {
       tags: ["brainstorm", "develop", "plan", "prototype", "debugging"],
       reporter: "Randolph",
       assignee: "Anton",
+      isInEditMode: false,
     },
     "card-1": {
-      id: `card-${uuid()}`,
+      id: `card-1`,
       key: uuid(),
       list: "list-0",
       title: "#2 develop ideas",
@@ -22,9 +23,10 @@ export const initialState = {
       tags: ["brainstorm", "develop", "plan", "prototype", "debugging"],
       reporter: "Randolph",
       assignee: "Anton",
+      isInEditMode: false,
     },
     "card-2": {
-      id: `card-${uuid()}`,
+      id: `card-2`,
       key: uuid(),
       list: "list-1",
       title: "#3 develop ideas",
@@ -32,9 +34,10 @@ export const initialState = {
       tags: ["brainstorm", "plan", "prototype"],
       reporter: "Randolph",
       assignee: "Anton",
+      isInEditMode: false,
     },
     "card-3": {
-      id: `card-${uuid()}`,
+      id: `card-3`,
       key: uuid(),
       list: "list-1",
       title: "#3 develop ideas",
@@ -42,8 +45,9 @@ export const initialState = {
       tags: ["brainstorm", "plan", "prototype"],
       reporter: "Randolph",
       assignee: "Anton",
+      isInEditMode: false,
     },
   },
   tempInfo: {},
-  inEditMode: { status: false, rowKey: null },
+  inEditMode: { status: false },
 };

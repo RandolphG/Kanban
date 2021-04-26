@@ -7,7 +7,7 @@ import { sort } from "../../store/actions";
 import { getBoards, setActiveBoard } from "./store";
 
 import { Link, useParams } from "react-router-dom";
-import { getCardDetails } from "../CardLayout/store";
+import { getCardDetails } from "../CardLayout";
 
 const BoardLayout = () => {
   const dispatch = useDispatch();

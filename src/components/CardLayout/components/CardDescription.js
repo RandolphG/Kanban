@@ -1,17 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getInEditMode, getTempInfo, handleInputChange } from "../store";
+import { getTempInfo, handleInputChange } from "../store";
 
 const CardDescription = ({ card }) => {
   const dispatch = useDispatch();
-  const inEditMode = useSelector(getInEditMode);
   const tempInfo = useSelector(getTempInfo);
 
-  // console.log(`\ninEditMode DESCRIPTION : -->`, inEditMode);
-
   return (
-    <div className="description">
-      {inEditMode.status && inEditMode.rowKey === card.key ? (
+    <div className="cardLayout__description">
+      {card.isInEditMode ? (
         <input
           className="input-value"
           type="text"
