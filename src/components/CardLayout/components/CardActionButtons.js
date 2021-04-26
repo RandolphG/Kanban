@@ -7,9 +7,11 @@ import {
   handleEdit,
   handleSave,
   onCancel,
+  onDelete,
   onEdit,
 } from "../store";
 import { deleteCard } from "../../../store/actions";
+import { deleteCardFromList } from "../../ListLayout/store/list";
 
 const CardActionButtons = ({ listID, index, card }) => {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const CardActionButtons = ({ listID, index, card }) => {
     <button
       className="btn-cancel"
       onClick={() => {
-        dispatch(onCancel({ card: card }));
+        dispatch(onCancel({ card }));
       }}
     >
       Cancel
@@ -43,10 +45,8 @@ const CardActionButtons = ({ listID, index, card }) => {
     <button
       className="btn-cancel"
       onClick={() => {
-        console.log(listID);
-        console.log(card.id);
-
-        // dispatch(deleteCard(card.id, listID));
+        dispatch(onDelete({ card }));
+        dispatch(deleteCardFromList({ card, listID }));
         // dispatch(setDeleteCard(id, listID, index));
         // dispatch(handleNotification({ message: "Deleted Task." }));
         // dispatch(handleDelete(index));
@@ -60,7 +60,7 @@ const CardActionButtons = ({ listID, index, card }) => {
     <button
       className="btn-cancel"
       onClick={() => {
-        dispatch(onEdit({ card: card }));
+        dispatch(onEdit({ card }));
       }}
     >
       edit

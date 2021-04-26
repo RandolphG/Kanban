@@ -21,6 +21,17 @@ export const reducers = {
       cards: { ...state.cards, [`card-${id}`]: card },
     };
   },
+  onInputChange: (state, action) => {
+    const key = Object.keys(action.payload)[0];
+
+    return {
+      ...state,
+      tempInfo: {
+        ...state.tempInfo,
+        [key]: action.payload[key],
+      },
+    };
+  },
   onEdit: (state, action) => {
     const { card } = action.payload;
     const cards = { ...state.cards[card.id] };
@@ -48,7 +59,12 @@ export const reducers = {
     }
   },
   onDelete: (state, action) => {
-    state.cards.splice(action.payload, 1);
+    const { card } = action.payload;
+    const cards = { ...state.cards };
+
+    const { [card.id]: _, ...rest } = cards;
+
+    return { ...state, cards: rest };
   },
   onSave: (state) => {
     const data = state.cards.map((item) =>
@@ -59,18 +75,6 @@ export const reducers = {
       ...state,
       inEditMode: { status: false, rowKey: null },
       cards: data,
-    };
-  },
-
-  onInputChange: (state, action) => {
-    const key = Object.keys(action.payload)[0];
-
-    return {
-      ...state,
-      tempInfo: {
-        ...state.tempInfo,
-        [key]: action.payload[key],
-      },
     };
   },
 

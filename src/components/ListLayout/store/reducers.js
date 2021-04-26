@@ -60,10 +60,11 @@ export const reducers = {
     // return state;
   },
   deleteCardFromList: (state, action) => {
-    const { listID, id } = action.payload;
+    const { listID, card } = action.payload;
     const newState = state;
     const list = newState[listID];
-    const newCards = list.cards.filter((cardID) => cardID !== id);
+    const newCards = list.cards.filter((cardID) => cardID !== card.id);
+
     list.cards = newCards;
   },
   editListTitle: (state, action) => {
