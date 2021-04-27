@@ -1,21 +1,10 @@
 export const reducers = {
   addListToBoard: (state, action) => {
     const { board: boardID, id } = action.payload;
-
     const newListID = `list-${id}`;
-
     const board = state[boardID.activeBoard];
 
     board.lists = [...board.lists, newListID];
-
-    console.log(
-      `\nboard, id, newListID, board --->`,
-      boardID.activeBoard,
-      id,
-      newListID,
-      board
-    );
-    // return { ...state, [boardID.activeBoard]: board };
   },
   dragBoard: (state, action) => {
     const { boardID, source, destination, type } = action.payload;
@@ -33,13 +22,15 @@ export const reducers = {
     }
     return state;
   },
-  setDeleteList: (state, action) => {
-    const { listID, boardID } = action.payload;
-    const board = state[boardID];
+  deleteListFromBoard: (state, action) => {
+    const { listID, board: boardID } = action.payload;
+
+    const board = state[boardID.activeBoard];
     const lists = board.lists;
+
     const newLists = lists.filter((id) => id !== listID);
+
     board.lists = newLists;
-    return { ...state, [boardID]: board };
   },
   addBoardDetails: (state, action) => {
     const { title, id } = action.payload;

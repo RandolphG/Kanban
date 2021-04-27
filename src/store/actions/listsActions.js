@@ -46,8 +46,9 @@ export const editTitle = (listID, newTitle) => {
     },
   };
 };
+/*
 
-export const deleteList = (listID) => {
+export const setdeleteList = (listID) => {
   return (dispatch, getState) => {
     const boardID = getState().activeBoard;
     return dispatch({
@@ -59,3 +60,4 @@ export const deleteList = (listID) => {
     });
   };
 };
+*/

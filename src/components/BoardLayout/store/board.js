@@ -12,7 +12,7 @@ export const {
   dragBoard,
   addBoardDetails,
   addListToBoard,
-  setDeleteList,
+  deleteListFromBoard,
   setActiveBoard,
 } = boardSlice.actions;
 

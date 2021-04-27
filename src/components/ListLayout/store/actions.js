@@ -1,12 +1,10 @@
 import { v4 as uuid } from "uuid";
+import { addCardToList, remove, dragList, editListTitle, add } from "./list";
 import {
-  addCardToList,
-  deleteList,
-  dragList,
-  editListTitle,
-  add,
-} from "./list";
-import { addListToBoard, dragBoard } from "../../BoardLayout";
+  addListToBoard,
+  deleteListFromBoard,
+  dragBoard,
+} from "../../BoardLayout";
 import { addCard } from "../../../store/actions";
 
 export const addList = (title) => (dispatch, getState) => {
@@ -50,23 +48,27 @@ export const sort = (
   );
 };
 
-export const handleEditTitle = (listID, newTitle) => (dispatch) => {
+export const handleEditTitle = ({ listID, listTitle }) => (dispatch) => {
+  console.log(`handleEditTitle : --->`, listID, listTitle);
+
   dispatch(
     editListTitle({
       listID,
-      newTitle,
+      listTitle,
     })
   );
 };
 
-export const handleDeleteList = (listID) => (dispatch, getState) => {
-  const boardID = getState().activeBoard;
+export const deleteList = ({ listID }) => (dispatch, getState) => {
+  const board = getState().board;
+
   dispatch(
-    deleteList({
+    remove({
       listID,
-      boardID,
     })
   );
+
+  dispatch(deleteListFromBoard({ listID, board }));
 };
 
 export const handleAddCardToList = (listID, text) => (dispatch) => {

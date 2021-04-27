@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "./styles/_listLayout.scss";
 import { AddCardButton } from "./components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import { editTitle, deleteList } from "../../store/actions";
 import { CardLayout } from "../CardLayout";
+import { deleteList, handleEditTitle } from "./store";
+import { useDispatch } from "react-redux";
 
-const ListLayout = ({ title, cards, listID, index, dispatch }) => {
+const ListLayout = ({ title, cards, listID, index }) => {
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
@@ -36,19 +38,20 @@ const ListLayout = ({ title, cards, listID, index, dispatch }) => {
 
   const handleFinishEditing = (e) => {
     setIsEditing(false);
-    dispatch(editTitle(listID, listTitle));
+    dispatch(handleEditTitle({ listID, listTitle }));
   };
 
   const handleDeleteList = () => {
-    dispatch(deleteList(listID));
+    console.log(`title, cards, listID, index`, title, cards, listID, index);
+    dispatch(deleteList({ listID }));
   };
 
   const Topbar = () => (
-    <div
-      className="listLayout_section_header_elements"
-      onClick={() => setIsEditing(true)}
-    >
-      <div className="listLayout_section_header_elements_listTitle">
+    <div className="listLayout_section_header_elements">
+      <div
+        onClick={() => setIsEditing(true)}
+        className="listLayout_section_header_elements_listTitle"
+      >
         {listTitle}
       </div>
       <div

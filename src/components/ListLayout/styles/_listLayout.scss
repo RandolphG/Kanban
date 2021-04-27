@@ -15,10 +15,10 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
   border-radius: .5rem;
 
   &_section {
-    background-color: #FEE01C;
+    //background-color: #FEE01C;
 
     &_header {
-      background-color: #0086e4;
+      //background-color: #0086e4;
       display: flex;
       width: 100%;
       margin-bottom: .5rem;
@@ -41,7 +41,8 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
         }
 
         &_deleteButton {
-          background-color: darkgoldenrod;
+          color: #000;
+          //background-color: darkgoldenrod;
           cursor: pointer;
           transition: opacity 0.3s ease-in-out;
           opacity: 0.4;

@@ -10,11 +10,11 @@ export const listSlice = createSlice({
 
 export const {
   deleteCardFromList,
-  deleteList,
   dragList,
   editListTitle,
   add,
   addCardToList,
+  remove,
 } = listSlice.actions;
 
 export default listSlice.reducer;

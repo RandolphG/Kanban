@@ -11,6 +11,13 @@ export const reducers = {
 
     return { ...state, [`list-${id}`]: newList };
   },
+  remove: (state, action) => {
+    const { listID } = action.payload;
+    const newState = state;
+    delete newState[listID];
+    // return newState;
+  },
+
   addCardToList: (state, action) => {
     const { listID, id } = action.payload;
     const newCardID = `card-${id}`;
@@ -67,16 +74,9 @@ export const reducers = {
     list.cards = newCards;
   },
   editListTitle: (state, action) => {
-    const { listID, newTitle } = action.payload;
-
+    const { listID, listTitle } = action.payload;
     const list = state[listID];
-    list.title = newTitle;
-    return { ...state, [listID]: list };
-  },
-  deleteList: (state, action) => {
-    const { listID } = action.payload;
-    const newState = state;
-    delete newState[listID];
-    return newState;
+
+    list.title = listTitle;
   },
 };
