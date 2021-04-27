@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import {
-  addCard,
+  add,
   onCancel,
   onDelete,
   onEdit,
@@ -10,14 +10,16 @@ import {
   onTagRemove,
   setAllTags,
 } from "./card";
+import { addCardToList } from "../../ListLayout/store/list";
 
 export const handleEdit = (key) => async (dispatch) => {
   dispatch(onEdit(key));
 };
 
-export const handleAddCard = (listID, text) => async (dispatch) => {
+export const addCard = ({ listID, titleText }) => async (dispatch) => {
   const id = uuid();
-  dispatch(addCard({ listID, id }));
+  dispatch(add({ listID, titleText, id }));
+  dispatch(addCardToList({ listID, id }));
 };
 
 export const handleDelete = (index) => async (dispatch) => {
@@ -47,27 +49,3 @@ export const handleTagsRemove = (tags, index) => async (dispatch) => {
 export const setUniqueTags = (tags) => async (dispatch) => {
   dispatch(setAllTags(tags));
 };
-
-/*
-export const addCard = (listID, text) => {
-  const id = uuid();
-  return {
-    type: CONSTANTS.ADD_CARD,
-    payload: { text, listID, id },
-  };
-};
-
-export const editCard = (id, listID, newText) => {
-  return {
-    type: CONSTANTS.EDIT_CARD,
-    payload: { id, listID, newText },
-  };
-};
-
-export const deleteCard = (id, listID) => {
-  return {
-    type: CONSTANTS.DELETE_CARD,
-    payload: { id, listID },
-  };
-};
-*/

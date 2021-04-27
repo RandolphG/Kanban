@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
-import { addCard } from "../../../store/actions";
 import Form from "./Form";
 import OpenForm from "./OpenForm";
+import { addCard } from "../../CardLayout";
 
 const AddCardButton = ({ listID }) => {
   const dispatch = useDispatch();
   const [formOpen, setFormOpen] = useState(false);
-  const [text, setText] = useState("");
+  const [titleText, setText] = useState("");
 
   function openForm() {
     setFormOpen(true);
@@ -23,14 +23,14 @@ const AddCardButton = ({ listID }) => {
   }
 
   function handleAddCard() {
-    if (text) {
+    if (titleText) {
       setText("");
-      dispatch(addCard(listID, text));
+      dispatch(addCard({ listID, titleText }));
     }
   }
 
   return formOpen ? (
-    <Form text={text} onChange={handleInputChange} closeForm={closeForm}>
+    <Form text={titleText} onChange={handleInputChange} closeForm={closeForm}>
       <Button onClick={handleAddCard}>{"Add Card"}</Button>
     </Form>
   ) : (

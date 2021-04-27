@@ -17,13 +17,11 @@ export const reducers = {
     delete newState[listID];
     // return newState;
   },
-
   addCardToList: (state, action) => {
     const { listID, id } = action.payload;
     const newCardID = `card-${id}`;
     const list = state[listID];
-    const newCards = [...list.cards, newCardID];
-    list.cards = newCards;
+    list.cards = [...list.cards, newCardID];
   },
   dragList: (state, action) => {
     const { source, destination, type } = action.payload;

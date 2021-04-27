@@ -10,7 +10,7 @@ export const slice = createSlice({
 
 export const {
   onEdit,
-  addCard,
+  add,
   onDelete,
   onSave,
   onCancel,

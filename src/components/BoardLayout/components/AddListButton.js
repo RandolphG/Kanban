@@ -23,7 +23,6 @@ const AddListButton = () => {
   }
 
   function handleAddList() {
-    console.log(`clicked`);
     if (text) {
       setText("");
       dispatch(addList(text));

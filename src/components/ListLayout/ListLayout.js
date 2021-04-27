@@ -89,7 +89,7 @@ const ListLayout = ({ title, cards, listID, index }) => {
                       />
                     ))}
                   {provided.placeholder}
-                  <AddCardButton />
+                  <AddCardButton listID={listID} />
                 </div>
               </div>
             )}

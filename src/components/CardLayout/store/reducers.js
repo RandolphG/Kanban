@@ -1,18 +1,15 @@
-import { v4 as uuid } from "uuid";
-
 export const reducers = {
-  addCard: (state) => {
-    const id = uuid();
-    const key = uuid();
+  add: (state, action) => {
+    const { listID, titleText: title, id } = action.payload;
     const card = {
       id: `card-${id}`,
-      key: key,
-      list: "list-0",
-      title: "",
-      description: "",
-      tags: [],
-      reporter: "",
-      assignee: "",
+      key: id,
+      list: listID,
+      title,
+      description: "type something here..",
+      tags: ["one", "two", "three"],
+      reporter: "Anton",
+      assignee: "Marija",
       isInEditMode: { status: false },
     };
 
