@@ -1,18 +1,15 @@
-import { current } from "@reduxjs/toolkit";
-
 export const reducers = {
-  setAddList: (state, action) => {
-    const { title, id, boardID } = action.payload;
+  add: (state, action) => {
+    const { title, id, board } = action.payload;
+
     const newList = {
       title: title,
       id: `list-${id}`,
       cards: [],
-      board: boardID,
+      board: board.activeBoard,
     };
 
-    const newState = { ...state, [`list-${id}`]: newList };
-
-    return newState;
+    return { ...state, [`list-${id}`]: newList };
   },
   addCardToList: (state, action) => {
     const { listID, id } = action.payload;
@@ -24,7 +21,7 @@ export const reducers = {
   dragList: (state, action) => {
     const { source, destination, type } = action.payload;
 
-    /* dragging lists around - the listOrderReducer should handle this */
+    /* dragging lists around - the boardReducer should handle this */
     if (type === "list") {
       console.log(`\ntype === "list"`);
       return state;

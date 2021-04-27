@@ -13,7 +13,7 @@ export const {
   deleteList,
   dragList,
   editListTitle,
-  setAddList,
+  add,
   addCardToList,
 } = listSlice.actions;
 

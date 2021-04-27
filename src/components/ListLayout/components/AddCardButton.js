@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
-// import { addList } from "../store/actions";
+import { addCard } from "../../../store/actions";
 import Form from "./Form";
-import { addList } from "../../ListLayout";
+import OpenForm from "./OpenForm";
 
-const AddListButton = () => {
+const AddCardButton = ({ listID }) => {
   const dispatch = useDispatch();
   const [formOpen, setFormOpen] = useState(false);
   const [text, setText] = useState("");
@@ -22,23 +22,20 @@ const AddListButton = () => {
     setText(e.target.value);
   }
 
-  function handleAddList() {
-    console.log(`clicked`);
+  function handleAddCard() {
     if (text) {
       setText("");
-      dispatch(addList(text));
+      dispatch(addCard(listID, text));
     }
   }
 
   return formOpen ? (
     <Form text={text} onChange={handleInputChange} closeForm={closeForm}>
-      <Button onClick={handleAddList}>{"Add List"}</Button>
+      <Button onClick={handleAddCard}>{"Add Card"}</Button>
     </Form>
   ) : (
-    <button className="addListButton" onClick={openForm}>
-      {"Add another list"}
-    </button>
+    <OpenForm onClick={openForm}>{"Add another card"}</OpenForm>
   );
 };
 
-export default AddListButton;
+export default AddCardButton;

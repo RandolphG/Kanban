@@ -1,1 +1,1 @@
-export { default as AddCardButton } from "./ListAddCardButton";
+export { default as AddCardButton } from "./AddCardButton";

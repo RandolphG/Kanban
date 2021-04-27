@@ -1,0 +1,41 @@
+@import "fonts";
+@import "colors";
+@import "addListButton";
+
+$title-color: #626262;
+$label-font-size: 1rem;
+
+.boardLayout {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b86bff;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  //overflow: hidden;
+
+  &__container {
+    box-sizing: border-box;
+    background-color: #F5BA58;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &_topbar {
+      background-color: #626262;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 80%;
+    }
+
+    &_boards {
+      display: flex;
+      flex-direction: row;
+      overflow: scroll;
+    }
+  }
+}

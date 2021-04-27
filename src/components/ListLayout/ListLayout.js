@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./styles/_listLayout.scss";
-import TrelloCreate from "./components/TrelloCreate";
+import { AddCardButton } from "./components";
 import { Droppable, Draggable } from "react-beautiful-dnd";
-import { connect } from "react-redux";
 import { editTitle, deleteList } from "../../store/actions";
 import { CardLayout } from "../CardLayout";
 
@@ -44,6 +43,23 @@ const ListLayout = ({ title, cards, listID, index, dispatch }) => {
     dispatch(deleteList(listID));
   };
 
+  const Topbar = () => (
+    <div
+      className="listLayout_section_header_elements"
+      onClick={() => setIsEditing(true)}
+    >
+      <div className="listLayout_section_header_elements_listTitle">
+        {listTitle}
+      </div>
+      <div
+        className="listLayout_section_header_elements_deleteButton"
+        onClick={handleDeleteList}
+      >
+        delete
+      </div>
+    </div>
+  );
+
   return (
     <Draggable draggableId={String(listID)} index={index}>
       {(provided) => (
@@ -57,24 +73,7 @@ const ListLayout = ({ title, cards, listID, index, dispatch }) => {
             {(provided) => (
               <div className="listLayout_section">
                 <div className="listLayout_section_header">
-                  {isEditing ? (
-                    renderEditTitleInput()
-                  ) : (
-                    <div
-                      className="listLayout_section_header_elements"
-                      onClick={() => setIsEditing(true)}
-                    >
-                      <div className="listLayout_section_header_elements_listTitle">
-                        {listTitle}
-                      </div>
-                      <div
-                        className="listLayout_section_header_elements_deleteButton"
-                        onClick={handleDeleteList}
-                      >
-                        delete
-                      </div>
-                    </div>
-                  )}
+                  {isEditing ? renderEditTitleInput() : Topbar()}
                 </div>
                 <div {...provided.droppableProps} ref={provided.innerRef}>
                   {cards &&
@@ -87,7 +86,7 @@ const ListLayout = ({ title, cards, listID, index, dispatch }) => {
                       />
                     ))}
                   {provided.placeholder}
-                  <TrelloCreate listID={listID} />
+                  <AddCardButton />
                 </div>
               </div>
             )}
@@ -98,4 +97,4 @@ const ListLayout = ({ title, cards, listID, index, dispatch }) => {
   );
 };
 
-export default connect()(ListLayout);
+export default ListLayout;

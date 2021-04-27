@@ -1,10 +1,21 @@
 export const reducers = {
   addListToBoard: (state, action) => {
-    const { boardID, id } = action.payload;
+    const { board: boardID, id } = action.payload;
+
     const newListID = `list-${id}`;
-    const board = state[boardID];
+
+    const board = state[boardID.activeBoard];
+
     board.lists = [...board.lists, newListID];
-    return { ...state, [boardID]: board };
+
+    console.log(
+      `\nboard, id, newListID, board --->`,
+      boardID.activeBoard,
+      id,
+      newListID,
+      board
+    );
+    // return { ...state, [boardID.activeBoard]: board };
   },
   dragBoard: (state, action) => {
     const { boardID, source, destination, type } = action.payload;

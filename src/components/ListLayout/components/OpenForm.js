@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const TrelloOpenForm = ({ list, children, onClick }) => {
-  const buttonTextOpacity = list ? 1 : 0.5;
-  const buttonTextColor = list ? "white" : "inherit";
-  const buttonTextBackground = list ? "rgba(0,0,0,.15)" : "inherit";
+const OpenForm = ({ children, onClick }) => {
+  const buttonTextOpacity = 1;
+  const buttonTextColor = "white";
+  const buttonTextBackground = "rgba(0,0,0,.15)";
 
   const OpenFormButton = styled.div`
     display: flex;
@@ -29,4 +29,4 @@ const TrelloOpenForm = ({ list, children, onClick }) => {
   );
 };
 
-export default TrelloOpenForm;
+export default OpenForm;

@@ -2,7 +2,6 @@
   font-family: 'operatorMonoBoldItalic';
   src: url("./fonts/operatorMono/OperatorMono-BoldItalic.woff") format("woff");
 }
-
 $font-main: 'operatorMonoBoldItalic', sans-serif;
 
 html, body, div, span, applet, object, iframe,
@@ -21,10 +20,11 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: baseline;
   font-family: $font-main;
 }
 
+/*
 * {
   box-sizing: border-box;
 }
+*/

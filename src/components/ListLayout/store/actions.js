@@ -4,17 +4,17 @@ import {
   deleteList,
   dragList,
   editListTitle,
-  setAddList,
+  add,
 } from "./list";
-import { addListToBoard, dragBoard } from "../../BoardLayout/store/board";
+import { addListToBoard, dragBoard } from "../../BoardLayout";
 import { addCard } from "../../../store/actions";
 
 export const addList = (title) => (dispatch, getState) => {
-  const boardID = getState().activeBoard;
+  const board = getState().board;
   const id = uuid();
 
-  dispatch(setAddList({ title, boardID, id }));
-  dispatch(addListToBoard({ boardID, id }));
+  dispatch(add({ title, board, id }));
+  dispatch(addListToBoard({ board, id }));
 };
 
 export const sort = (

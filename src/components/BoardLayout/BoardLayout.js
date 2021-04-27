@@ -7,6 +7,7 @@ import { dragBoard, getBoards, setActiveBoard } from "./store";
 import { Link, useParams } from "react-router-dom";
 import { getCardDetails } from "../CardLayout";
 import { dragList } from "../ListLayout/store/list";
+import "./styles/_boardLayout.scss";
 
 const BoardLayout = () => {
   const dispatch = useDispatch();
@@ -23,24 +24,6 @@ const BoardLayout = () => {
   function onDragEnd(result) {
     const { destination, source, draggableId, type } = result;
     dispatch(setActiveBoard(boardID));
-
-    /*
-    console.log(
-      `BOARD_ID`,
-      boardID,
-      `\ndestination,`,
-      destination,
-      `\ndraggableId`,
-      draggableId,
-      `\ntype`,
-      type,
-      `\nsource`,
-      source,
-
-      `\ntype`,
-      type
-    );
-*/
 
     if (!destination) {
       return;
@@ -82,37 +65,43 @@ const BoardLayout = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Link to="/">Go Back</Link>
-      <h2>{board.title}</h2>
-      <Droppable droppableId="all-lists" direction="horizontal" type="list">
-        {(provided) => (
-          <div
-            style={{ background: "green", display: "flex" }}
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {listOrder &&
-              listOrder.map((listID, index) => {
-                const list = lists[listID];
-                if (list) {
-                  const listCards = getCardOrder(list);
-
-                  return (
-                    <ListLayout
-                      listID={list.id}
-                      key={list.id}
-                      title={list.title}
-                      cards={listCards}
-                      index={index}
-                    />
-                  );
-                }
-              })}
-            {provided.placeholder}
-            <AddListButton list />
+      <div className="boardLayout">
+        <div className="boardLayout__container">
+          <div className="boardLayout__container_topbar">
+            <h2>{board.title}</h2>
+            <Link to="/">Go Back</Link>
           </div>
-        )}
-      </Droppable>
+          <Droppable droppableId="all-lists" direction="horizontal" type="list">
+            {(provided) => (
+              <div
+                className="boardLayout__container_boards"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {listOrder &&
+                  listOrder.map((listID, index) => {
+                    const list = lists[listID];
+                    if (list) {
+                      const listCards = getCardOrder(list);
+
+                      return (
+                        <ListLayout
+                          listID={list.id}
+                          key={list.id}
+                          title={list.title}
+                          cards={listCards}
+                          index={index}
+                        />
+                      );
+                    }
+                  })}
+                {provided.placeholder}
+                <AddListButton list />
+              </div>
+            )}
+          </Droppable>
+        </div>
+      </div>
     </DragDropContext>
   );
 };
