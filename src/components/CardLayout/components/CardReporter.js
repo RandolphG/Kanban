@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTempInfo, handleInputChange } from "../store";
 
 const options = [
-  { value: "Marija" },
   { value: "Randolph" },
   { value: "Anton" },
   { value: "Pavao" },
   { value: "Tihomir" },
   { value: "Alen" },
+  { value: "Marija" },
 ];
-
 const CardReporter = ({ card }) => {
   const dispatch = useDispatch();
   const tempInfo = useSelector(getTempInfo);

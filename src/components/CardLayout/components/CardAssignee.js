@@ -8,6 +8,7 @@ const options = [
   { value: "Pavao" },
   { value: "Tihomir" },
   { value: "Alen" },
+  { value: "Marija" },
 ];
 
 const CardAssignee = ({ card }) => {

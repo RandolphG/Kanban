@@ -1,29 +1,16 @@
 import React, { Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getInEditMode,
-  handleCancel,
-  handleDelete,
-  handleEdit,
-  handleSave,
-  onCancel,
-  onDelete,
-  onEdit,
-} from "../store";
-import { deleteCard } from "../../../store/actions";
+import { useDispatch } from "react-redux";
+import { handleSave, onCancel, onDelete, onEdit } from "../store";
 import { deleteCardFromList } from "../../ListLayout/store/list";
 
-const CardActionButtons = ({ listID, index, card }) => {
+const CardActionButtons = ({ listID, card }) => {
   const dispatch = useDispatch();
-  const inEditMode = useSelector(getInEditMode);
-
-  // console.log(`\ninEditMode ACTION BUTTONS : -->`, inEditMode);
 
   const SaveButton = () => (
     <button
       className="btn-save"
       onClick={() => {
-        dispatch(handleSave());
+        dispatch(handleSave({ card }));
       }}
     >
       Save
@@ -47,9 +34,6 @@ const CardActionButtons = ({ listID, index, card }) => {
       onClick={() => {
         dispatch(onDelete({ card }));
         dispatch(deleteCardFromList({ card, listID }));
-        // dispatch(setDeleteCard(id, listID, index));
-        // dispatch(handleNotification({ message: "Deleted Task." }));
-        // dispatch(handleDelete(index));
       }}
     >
       delete

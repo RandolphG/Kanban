@@ -63,18 +63,15 @@ export const reducers = {
 
     return { ...state, cards: rest };
   },
-  onSave: (state) => {
-    const data = state.cards.map((item) =>
-      item.key === state.tempInfo.key ? state.tempInfo : item
-    );
+  onSave: (state, action) => {
+    const { card } = action.payload;
+    const tempInfo = { ...state.tempInfo };
 
-    return {
-      ...state,
-      inEditMode: { status: false, rowKey: null },
-      cards: data,
-    };
+    if (card.id === state.tempInfo.id) {
+      tempInfo.isInEditMode = false;
+      return { ...state, cards: { ...state.cards, [card.id]: tempInfo } };
+    }
   },
-
   onTagRemove: (state, action) => {
     return {
       cardInfo: state.cards.map((task, idx) => {
@@ -106,7 +103,6 @@ export const reducers = {
       }),
     };
   },
-
   setAllTags: (state, action) => {
     return {
       ...state,
