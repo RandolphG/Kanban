@@ -32,8 +32,10 @@ export const handleKeywordAdd = ({ tag, index, card }) => async (dispatch) => {
   dispatch(onTagAdd({ tag, index, card }));
 };
 
-export const handleTagsRemove = (tags, index) => async (dispatch) => {
-  dispatch(onTagRemove({ tags, index }));
+export const handleTagsRemove = ({ values, index, card }) => async (
+  dispatch
+) => {
+  dispatch(onTagRemove({ values, index, card }));
 };
 
 export const setUniqueTags = (tags) => async (dispatch) => {

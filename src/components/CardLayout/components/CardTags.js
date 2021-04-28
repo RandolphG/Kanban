@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { handleKeywordAdd } from "../store";
+import { handleKeywordAdd, handleTagsRemove } from "../store";
 
 const CardTags = ({ index, card }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const CardTags = ({ index, card }) => {
 
   const handleRemove = (tag) => {
     const values = card.tags.filter((val) => val !== tag);
-    dispatch(/*handleTagsRemove(values, index)*/);
+    dispatch(handleTagsRemove({ values, index, card }));
   };
 
   const Input = () => (
