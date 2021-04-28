@@ -8,7 +8,7 @@ const AppRouter = () => {
     <Router>
       <Route path="/" exact component={Test} />
       {/*<Route path="/" exact component={DashboardLayout} />*/}
-      <Route path="/:boardID" component={BoardLayout} />
+      {/*<Route path="/:boardID" component={BoardLayout} />*/}
     </Router>
   );
 };

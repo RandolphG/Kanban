@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import TagInput from "./TagInputs";
 import { useState } from "react";
 import ExampleList from "./ExampleList";
+import "./style.scss";
 
-// example project data
 const projects = [
   {
     title: "Example 0",
@@ -82,7 +82,7 @@ const Test = () => {
   };
 
   const handleListTagClick = (tag) => {
-    setTags([...this.state.tags, tag]);
+    setTags([tags, tag]);
   };
 
   return (

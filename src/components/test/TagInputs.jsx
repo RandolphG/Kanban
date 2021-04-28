@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import { hasDuplicates } from "./utils";
 import TagsList from "./TagList";
 
-const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
+const TagInput = ({
+  onNewTag,
+  onTagChange,
+  allowDuplicates,
+  hashtag,
+  tags,
+}) => {
   const [inputValue, setInputValue] = useState("");
-  const [tags, setTags] = useState([]);
+  const [filterTags, setTags] = useState(tags || []);
 
   const handleNewTag = (tags) => {
     if (onNewTag) {
@@ -15,9 +21,10 @@ const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
     }
   };
 
-  const handleInputChange = ({ target: { value: inputValue } }) => {
-    inputValue = inputValue === "," ? "" : inputValue;
-    setInputValue(inputValue);
+  const handleInputChange = (e) => {
+    const input = e.target.value === "," ? "" : e.target.value;
+    console.log(input);
+    setInputValue(input);
   };
 
   const notDuplicate = (tags, newTag) => {
@@ -25,15 +32,15 @@ const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
   };
 
   const addTag = (tag) => {
-    if (notDuplicate(tags, tag)) {
-      setTags([...this.state.tags, tag]);
+    if (notDuplicate(filterTags, tag)) {
+      setTags([...filterTags, tag]);
       setInputValue("");
-      handleNewTag(tags);
+      handleNewTag(filterTags);
     }
   };
 
   const deleteTag = (index, callback) => {
-    let tags = tags.slice();
+    let tags = filterTags.slice();
 
     tags.splice(index, 1);
     setTags(tags);
@@ -43,7 +50,7 @@ const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
 
   const handleTagDelete = (index, e) => {
     deleteTag(index, () => {
-      onTagChange(tags);
+      onTagChange(filterTags);
     });
   };
 
@@ -58,7 +65,7 @@ const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
       case "Enter":
       case ",":
         value = value.trim();
-        if (value && notDuplicate(tags, value)) {
+        if (value && notDuplicate(filterTags, value)) {
           addTag(value);
         } else {
           setInputValue("");
@@ -66,7 +73,7 @@ const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
         break;
       case "Backspace":
         if (!value) {
-          handleTagDelete(tags.length - 1);
+          handleTagDelete(filterTags.length - 1);
         }
         break;
     }
@@ -80,11 +87,11 @@ const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
   };
 
   useEffect(() => {
-    updateControlledTags(tags);
+    updateControlledTags(filterTags);
     return () => {
-      updateControlledTags(tags);
+      updateControlledTags(filterTags);
     };
-  }, [tags]);
+  }, [filterTags]);
 
   return (
     <span className="tagInputWrapper">
@@ -96,7 +103,11 @@ const TagInput = ({ onNewTag, onTagChange, allowDuplicates, hashtag }) => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <TagsList tags={tags} onTagDelete={handleTagDelete} hashtag={hashtag} />
+      <TagsList
+        tags={filterTags}
+        onTagDelete={handleTagDelete}
+        hashtag={hashtag}
+      />
     </span>
   );
 };
