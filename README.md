@@ -11,7 +11,7 @@
 
 
 ```bash
-$ git clone https://github.com/RandolphG/DSS-Table.git
+$ git ttps://github.com/RandolphG/Kanban.git
 $ yarn or npm i
 $ yarn start or npm start
 ```
