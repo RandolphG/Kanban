@@ -1,5 +1,5 @@
 export const reducers = {
-  add: (state, action) => {
+  addToList: (state, action) => {
     const { title, id, board } = action.payload;
 
     const newList = {

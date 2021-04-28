@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import {
-  add,
+  addToCard,
   onDelete,
   onInputChange,
   onSave,
@@ -8,11 +8,11 @@ import {
   onTagRemove,
   setAllTags,
 } from "./card";
-import { addCardToList } from "../../ListLayout/store/list";
+import { addCardToList } from "../../ListLayout";
 
 export const addCard = ({ listID, titleText }) => async (dispatch) => {
   const id = uuid();
-  dispatch(add({ listID, titleText, id }));
+  dispatch(addToCard({ listID, titleText, id }));
   dispatch(addCardToList({ listID, id }));
 };
 

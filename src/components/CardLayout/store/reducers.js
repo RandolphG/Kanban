@@ -1,5 +1,5 @@
 export const reducers = {
-  add: (state, action) => {
+  addToCard: (state, action) => {
     const { listID, titleText: title, id } = action.payload;
     const card = {
       id: `card-${id}`,

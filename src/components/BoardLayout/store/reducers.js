@@ -6,6 +6,16 @@ export const reducers = {
 
     board.lists = [...board.lists, newListID];
   },
+  deleteListFromBoard: (state, action) => {
+    const { listID, board: boardID } = action.payload;
+
+    const board = state[boardID.activeBoard];
+    const lists = board.lists;
+
+    const newLists = lists.filter((id) => id !== listID);
+
+    board.lists = newLists;
+  },
   dragBoard: (state, action) => {
     const { boardID, source, destination, type } = action.payload;
     const board = state[boardID];
@@ -21,16 +31,6 @@ export const reducers = {
       // return { ...state, [boardID]: board };
     }
     return state;
-  },
-  deleteListFromBoard: (state, action) => {
-    const { listID, board: boardID } = action.payload;
-
-    const board = state[boardID.activeBoard];
-    const lists = board.lists;
-
-    const newLists = lists.filter((id) => id !== listID);
-
-    board.lists = newLists;
   },
   addBoardDetails: (state, action) => {
     const { title, id } = action.payload;
