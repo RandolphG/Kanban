@@ -1,0 +1,60 @@
+body {
+  font-family: sans-serif;
+}
+
+.tagInput {
+  position: relative;
+  border-style: none;
+  border: none;
+  display: block;
+  margin: 5px;
+  min-height: 100%;
+  font-size: 13px;
+}
+
+.tagInputWrapper {
+  flex-flow: row wrap;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.tagInputWrapper :focus {
+  outline: blue;
+}
+
+.tagsList {
+  display: block;
+  padding: 0px;
+  margin: 0px;
+  margin-right: 5px;
+
+  li {
+    font-size: 11pt;
+    display: inline-block;
+    margin: 3px;
+    padding: 5px 15px;
+    border-radius: 4px;
+    background: #f4f4f8;
+    color: #444;
+
+    &.clickable:hover {
+      background: #aaa;
+      cursor: pointer;
+      color: black;
+    }
+
+    a {
+      text-decoration: none;
+      color: #666;
+      margin-left: 5px;
+      &:hover {
+        color: #dd3345;
+      }
+
+      padding: 0px 2px 0px 2px;
+    }
+  }
+}
+
+
+
