@@ -5,8 +5,8 @@ import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import card from "../components/CardLayout/store/card";
 import board from "../components/BoardLayout/store/board";
-import dashboard from "../components/DashboardLayout/store/dashboard";
 import list from "../components/ListLayout/store/list";
+import dashboard from "../components/DashboardLayout/store/dashboard";
 
 const reducers = combineReducers({
   board,
@@ -27,5 +27,3 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   middleware: [thunk],
 });
-
-export * from "./selector";
