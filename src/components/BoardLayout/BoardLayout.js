@@ -8,6 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import { getCardDetails } from "../CardLayout";
 import { dragList } from "../ListLayout/store/list";
 import "./styles/_boardLayout.scss";
+import { FilterPanel } from "./components";
 
 const BoardLayout = () => {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const BoardLayout = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="boardLayout">
+        <FilterPanel />
         <div className="boardLayout__container">
           <div className="boardLayout__container_topbar">
             <h2>{board.title}</h2>

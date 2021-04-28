@@ -1,41 +1,66 @@
 @import "fonts";
 @import "colors";
 @import "addListButton";
+@import "filterPanel";
 
 $title-color: #626262;
 $label-font-size: 1rem;
 
 .boardLayout {
+  //background-color: white;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #b86bff;
   width: 100%;
   height: 100vh;
   position: relative;
   //overflow: hidden;
 
   &__container {
+    //background-color: #F5BA58;
     box-sizing: border-box;
-    background-color: #F5BA58;
-    width: 100%;
+    max-width: 1200px;
+    width: 80%;
+    height: 80%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    justify-content: start;
+
+    &_boards {
+      user-select: none;
+      display: flex;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &_topbar {
       background-color: #626262;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      width: 80%;
+      align-items: center;
+      width: 100%;
+      height: 45px;
+      margin-bottom: .5rem;
     }
 
     &_boards {
+      background-color:transparent;
       display: flex;
+      height: 100%;
       flex-direction: row;
-      overflow: scroll;
+      padding-top: 2rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: auto;
+      cursor: grab;
+      box-shadow: inset 0 0 10px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 }

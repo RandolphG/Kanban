@@ -78,7 +78,11 @@ const ListLayout = ({ title, cards, listID, index }) => {
                 <div className="listLayout_section_header">
                   {isEditing ? renderEditTitleInput() : Topbar()}
                 </div>
-                <div {...provided.droppableProps} ref={provided.innerRef}>
+                <div
+                  className="listLayout_section_cards"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
                   {cards &&
                     cards.map((card, index) => (
                       <CardLayout

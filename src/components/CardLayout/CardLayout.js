@@ -11,7 +11,7 @@ import {
 } from "./components";
 import "./styles/_cardLayout.scss";
 
-const CardLayout = ({ card, listID, index }) => {
+const CardLayout = React.memo(({ card, listID, index }) => {
   const TopBar = () => (
     <div className="cardLayout__topbar">
       <CardTitle card={card} />
@@ -45,6 +45,6 @@ const CardLayout = ({ card, listID, index }) => {
       </Draggable>
     </ErrorBoundary>
   );
-};
+});
 
 export default CardLayout;

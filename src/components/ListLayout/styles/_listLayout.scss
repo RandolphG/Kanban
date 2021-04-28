@@ -7,7 +7,7 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
 
 .listLayout {
   background-color: #999999;
-  width: 350px;
+  min-width: 350px;
   padding: .5rem;
   height: fit-content;
   margin: .5rem;
@@ -50,6 +50,18 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
             opacity: 0.8;
           }
         }
+      }
+    }
+
+    &_cards{
+      background-color: #F5BA58;
+      width: 100%;
+      min-height: 317px;
+      max-height: 475px;
+      overflow: scroll;
+      cursor: grab;
+      &::-webkit-scrollbar {
+        display: none;
       }
     }
   }
