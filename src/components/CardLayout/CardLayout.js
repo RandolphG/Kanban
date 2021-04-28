@@ -39,7 +39,7 @@ const CardLayout = ({ card, listID, index }) => {
             <TopBar />
             <Participants />
             <CardDescription card={card} />
-            <CardTags card={card} />
+            <CardTags index={index} card={card} />
           </div>
         )}
       </Draggable>

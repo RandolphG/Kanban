@@ -1,9 +1,7 @@
 import { v4 as uuid } from "uuid";
 import {
   add,
-  onCancel,
   onDelete,
-  onEdit,
   onInputChange,
   onSave,
   onTagAdd,
@@ -30,8 +28,8 @@ export const handleInputChange = (event) => async (dispatch) => {
   dispatch(onInputChange(event));
 };
 
-export const handleKeywordAdd = (tags, index) => async (dispatch) => {
-  dispatch(onTagAdd({ tags, index }));
+export const handleKeywordAdd = ({ tag, index, card }) => async (dispatch) => {
+  dispatch(onTagAdd({ tag, index, card }));
 };
 
 export const handleTagsRemove = (tags, index) => async (dispatch) => {

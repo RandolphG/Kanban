@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { handleKeywordAdd } from "../store";
 
-const CardTags = ({ card }) => {
+const CardTags = ({ index, card }) => {
   const dispatch = useDispatch();
 
   const handleTagAdd = (e) => {
@@ -10,7 +11,7 @@ const CardTags = ({ card }) => {
       if (e.keyCode === 13 || e.key === "," || e.key === "Enter") {
         let tag = [value.trim().split(",")[0]];
         if (tag.length > 0) {
-          dispatch(/*handleKeywordAdd(tag, index)*/);
+          dispatch(handleKeywordAdd({ tag, index, card }));
           e.target.value = "";
         }
       }

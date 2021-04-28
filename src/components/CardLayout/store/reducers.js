@@ -87,21 +87,12 @@ export const reducers = {
     };
   },
   onTagAdd: (state, action) => {
-    const idx = action.payload.index;
-    const tags = [...state.details[idx].tags, ...action.payload.tags];
+    const { tag, card } = action.payload;
+    const tags = [...state.cards[card.id].tags, ...tag];
+    const cards = { ...state.cards[card.id] };
+    cards.tags = tags;
 
-    return {
-      ...state,
-      cardInfo: state.details.map((task, idx) => {
-        if (idx === action.payload.index) {
-          return Object.entries(task).reduce((taskCopyAcc, [key, prop]) => {
-            if (key === "tags") {
-              return { ...taskCopyAcc, tags };
-            } else return { ...taskCopyAcc, [key]: prop };
-          }, {});
-        } else return task;
-      }),
-    };
+    return { ...state, cards: { ...state.cards, [card.id]: cards } };
   },
   setAllTags: (state, action) => {
     return {
