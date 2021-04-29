@@ -71,6 +71,7 @@ const ListLayout = ({ title, cards, listID, index }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
+          onFocus={() => console.log(`focused`)}
         >
           <Droppable droppableId={String(listID)} type="card">
             {(provided) => (

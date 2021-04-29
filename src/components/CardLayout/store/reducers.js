@@ -87,7 +87,6 @@ export const reducers = {
     return { ...state, cards: { ...state.cards, [card.id]: cards } };
   },
   setAllTags: (state, action) => {
-    console.log(`SET ALL TAGS`, action.payload);
     const { uniqueTags: tags } = action.payload;
 
     return {

@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  getCard,
-  getCardDetails,
-  getTags,
-  setAllTags,
-} from "../../../CardLayout";
+import { getCardDetails, getTags, setAllTags } from "../../../CardLayout";
 
 const FilterPanel = () => {
   const dispatch = useDispatch();
@@ -14,14 +9,8 @@ const FilterPanel = () => {
   const tags = useSelector(getTags);
   const state = true;
 
-  console.log(`Filter Panel`);
-  console.log(`Cards`, cards);
-
-  /*set to object*/
-
   /*
     const uniqueTags = Object.entries(cards).reduce((set, [cardId, card]) => {
-    console.log(`card.tags`, card.tags);
     card.tags.forEach((tag) => set.add(tag));
     return set;
   }, new Set());
@@ -29,13 +18,10 @@ const FilterPanel = () => {
 
   const uniqueTags = Array.from(
     Object.entries(cards).reduce((set, [cardId, card]) => {
-      console.log(`card.tags`, card.tags);
       card.tags.forEach((tag) => set.add(tag));
       return set;
     }, new Set())
   );
-
-  console.log(`setOfTags`, uniqueTags);
 
   useEffect(() => {
     dispatch(setAllTags({ uniqueTags }));

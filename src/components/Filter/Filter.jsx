@@ -74,7 +74,7 @@ const projects = [
   },
 ];
 
-const Test = () => {
+const Filter = () => {
   const [tags, setTags] = useState(["game"]);
 
   const handleTagChange = (tags) => {
@@ -97,4 +97,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default Filter;
