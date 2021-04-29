@@ -4,6 +4,7 @@ export const initialState = {
   tags: [],
   cards: {
     "card-0": {
+      display: true,
       id: `card-0`,
       key: uuid(),
       list: "list-0",
@@ -15,6 +16,7 @@ export const initialState = {
       isInEditMode: false,
     },
     "card-1": {
+      display: true,
       id: `card-1`,
       key: uuid(),
       list: "list-0",
@@ -26,6 +28,7 @@ export const initialState = {
       isInEditMode: false,
     },
     "card-2": {
+      display: true,
       id: `card-2`,
       key: uuid(),
       list: "list-1",
@@ -37,6 +40,7 @@ export const initialState = {
       isInEditMode: false,
     },
     "card-3": {
+      display: true,
       id: `card-3`,
       key: uuid(),
       list: "list-1",
@@ -49,5 +53,4 @@ export const initialState = {
     },
   },
   tempInfo: {},
-  inEditMode: { status: false },
 };

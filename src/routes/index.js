@@ -1,14 +1,20 @@
 import React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
-import { DashboardLayout, BoardLayout } from "../components/";
-import { Filter } from "../components/Filter";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { DashboardLayout, BoardLayout, LoginLayout } from "../components/";
 
 const AppRouter = () => {
   return (
     <Router>
-      {/*<Route path="/" exact component={Filter} />*/}
-      <Route path="/" exact component={DashboardLayout} />
-      <Route path="/:boardID" component={BoardLayout} />
+      <Route
+        render={({ location }) => (
+          <Switch location={location} key={location.pathname}>
+            <Route path="/dashboard" exact component={DashboardLayout} />
+            <Route path="/:boardID" exact component={BoardLayout} />
+            <Route path="/" exact component={LoginLayout} />
+          </Switch>
+        )}
+      />
+      />
     </Router>
   );
 };

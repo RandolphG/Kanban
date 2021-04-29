@@ -28,14 +28,11 @@ export const reducers = {
 
     /* dragging lists around - the boardReducer should handle this */
     if (type === "list") {
-      console.log(`\ntype === "list"`);
       return state;
     }
 
     /* in the same list */
     if (source.droppableId === destination.droppableId) {
-      console.log(`\ndroppableIdStart === droppableIdEnd`);
-
       const list = state[source.droppableId];
       const card = list.cards.splice(destination.index, 1);
       list.cards.splice(source.index, 0, ...card);

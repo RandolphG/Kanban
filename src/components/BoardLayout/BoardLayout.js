@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { Link, useParams } from "react-router-dom";
 import { getList, ListLayout, dragList } from "../ListLayout";
@@ -9,16 +9,9 @@ import { FilterPanel, AddListButton } from "./components";
 import "./styles/_boardLayout.scss";
 
 const BoardLayout = () => {
-  const refX = useRef(null);
-  const refY = useRef(null);
-  const [scrollState, setScrollState] = useState({
-    isScrolling: false,
-    clientX: 0,
-    scrollX: 0,
-    clientY: 0,
-    scrollY: 0,
-  });
-
+  let mouseDown = false;
+  let startX, scrollLeft;
+  const draggableArea = useRef();
   const dispatch = useDispatch();
   const lists = useSelector(getList);
   const card = useSelector(getCardDetails);
@@ -32,7 +25,6 @@ const BoardLayout = () => {
 
   function onDragEnd(result) {
     const { destination, source, draggableId, type } = result;
-    console.log(`result`, result);
     dispatch(setActiveBoard(boardID));
 
     if (!destination) {
@@ -64,28 +56,14 @@ const BoardLayout = () => {
     return list.cards.map((cardID) => card[cardID]);
   }
 
-  let mouseDown = false;
-  let startX, scrollLeft;
-
-  const draggableArea = useRef();
-
   function startDragging(e) {
     mouseDown = true;
     startX = e.pageX - draggableArea.current.offsetLeft;
     scrollLeft = draggableArea.current.scrollLeft;
-    console.log(
-      `startDragging() --> event:`,
-      e,
-      `\nstartX`,
-      startX,
-      `\nscrollLeft`,
-      scrollLeft
-    );
   }
 
   function stopDragging(e) {
     mouseDown = false;
-    console.log(`stopDragging() --> event:`, e);
   }
 
   function dragging(e) {
@@ -109,7 +87,7 @@ const BoardLayout = () => {
   const Topbar = () => (
     <div className="boardLayout__container_topbar">
       <h2>{board.title}</h2>
-      <Link to="/">Go Back</Link>
+      <Link to="/dashboard">Go Back</Link>
     </div>
   );
 

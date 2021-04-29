@@ -5,6 +5,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import { CardLayout } from "../CardLayout";
 import { deleteList, handleEditTitle } from "./store";
 import { useDispatch } from "react-redux";
+import { addScrollable, removeScrollable } from "../BoardLayout";
 
 const ListLayout = ({ title, cards, listID, index }) => {
   const dispatch = useDispatch();
@@ -42,7 +43,6 @@ const ListLayout = ({ title, cards, listID, index }) => {
   };
 
   const handleDeleteList = () => {
-    console.log(`title, cards, listID, index`, title, cards, listID, index);
     dispatch(deleteList({ listID }));
   };
 
@@ -71,7 +71,12 @@ const ListLayout = ({ title, cards, listID, index }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          onFocus={() => console.log(`focused`)}
+          onMouseOver={() => {
+            dispatch(removeScrollable());
+          }}
+          onMouseOut={() => {
+            dispatch(addScrollable());
+          }}
         >
           <Droppable droppableId={String(listID)} type="card">
             {(provided) => (

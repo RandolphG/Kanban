@@ -12,6 +12,8 @@ export const {
   dragBoard,
   addBoardDetails,
   addListToBoard,
+  addScrollable,
+  removeScrollable,
   deleteListFromBoard,
   setActiveBoard,
 } = boardSlice.actions;

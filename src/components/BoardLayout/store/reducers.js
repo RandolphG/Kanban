@@ -8,10 +8,8 @@ export const reducers = {
   },
   deleteListFromBoard: (state, action) => {
     const { listID, board: boardID } = action.payload;
-
     const board = state[boardID.activeBoard];
     const lists = board.lists;
-
     const newLists = lists.filter((id) => id !== listID);
 
     board.lists = newLists;
@@ -21,14 +19,11 @@ export const reducers = {
     const board = state[boardID];
     const lists = board.lists;
 
-    /* dragging lists around */
     if (type === "list") {
       const pulledOutList = lists.splice(destination.index, 1);
       lists.splice(source.index, 0, ...pulledOutList);
 
       board.lists = lists;
-
-      // return { ...state, [boardID]: board };
     }
     return state;
   },
@@ -46,5 +41,11 @@ export const reducers = {
   },
   setActiveBoard: (state, action) => {
     return { ...state, activeBoard: action.payload };
+  },
+  addScrollable: (state) => {
+    return { ...state, scrollable: true };
+  },
+  removeScrollable: (state) => {
+    return { ...state, scrollable: false };
   },
 };

@@ -1,4 +1,5 @@
 export const initialState = {
+  scrollable: false,
   activeBoard: null,
   "board-0": {
     id: "board-0",

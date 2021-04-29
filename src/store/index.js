@@ -7,8 +7,10 @@ import card from "../components/CardLayout/store/card";
 import board from "../components/BoardLayout/store/board";
 import list from "../components/ListLayout/store/list";
 import dashboard from "../components/DashboardLayout/store/dashboard";
+import app from "./app";
 
 const reducers = combineReducers({
+  app,
   board,
   dashboard,
   card,
@@ -27,3 +29,6 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   middleware: [thunk],
 });
+
+export * from "./selectors";
+export * from "./app";
