@@ -1,5 +1,3 @@
-import { current } from "@reduxjs/toolkit";
-
 export const reducers = {
   addToCard: (state, action) => {
     const { listID, titleText: title, id } = action.payload;
@@ -102,6 +100,7 @@ export const reducers = {
     const filter = [...state.filtered];
     const cards = { ...state.cards };
     let result;
+    let matched = {};
 
     const test = filter.includes(value);
 
@@ -109,19 +108,22 @@ export const reducers = {
       ? (result = filter.filter((tag) => tag !== value))
       : (result = [...filter, value]);
 
-    const contains = (orig, filter) => {
-      let res = filter.map((item) => {
-        return orig.includes(item);
+    filter.forEach((item) => {
+      Object.keys(cards).forEach((value) => {
+        if (value) {
+          if (cards[value] && cards[value].tags.includes(item)) {
+            matched[value] = cards[value];
+          }
+        }
       });
-      return !res.includes(false);
-    };
+    });
 
-    const objectValues = Object.values(cards);
+    console.log(`filtered cards...`, matched);
 
     return {
       ...state,
       filtered: result,
-      filteredCards: objectValues,
+      filteredCards: cards,
     };
   },
 };

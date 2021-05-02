@@ -52,22 +52,18 @@ const cards = {
   },
 };
 
-let matched = new Set();
+let matched = {};
 
-const listOfCards = ["javascript"];
+const listOfCards = ["javascript", "develop"];
 
 listOfCards.forEach((item) => {
-  Object.keys(cards)
-    .filter((value) => {
-      if (value) {
-        if (cards[value] && cards[value].tags.includes(item)) {
-          matched.add(cards[value]);
-        }
+  Object.keys(cards).forEach((value) => {
+    if (value) {
+      if (cards[value] && cards[value].tags.includes(item)) {
+        matched[value] = cards[value];
       }
-    })
-    .map((key) => {
-      return { [key]: cards[key] };
-    });
+    }
+  });
 });
 
 console.log(`\nmatched items`, matched);
