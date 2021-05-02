@@ -88,11 +88,13 @@ export const reducers = {
   },
   setAllTags: (state, action) => {
     const { uniqueTags: tags } = action.payload;
+    const cards = { ...state.cards };
 
     return {
       ...state,
       tags,
       filtered: tags,
+      filteredCards: cards,
     };
   },
   filterResults: (state, action) => {
@@ -118,12 +120,10 @@ export const reducers = {
       });
     });
 
-    console.log(`filtered cards...`, matched);
-
     return {
       ...state,
       filtered: result,
-      filteredCards: cards,
+      filteredCards: matched,
     };
   },
 };

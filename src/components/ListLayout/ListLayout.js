@@ -7,10 +7,10 @@ import { deleteList, handleEditTitle } from "./store";
 import { useDispatch } from "react-redux";
 import { addScrollable, removeScrollable } from "../BoardLayout";
 
-const ListLayout = ({ title, cards, listID, index }) => {
+const ListLayout = ({ cards, list, index }) => {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [listTitle, setListTitle] = useState(title);
+  const [listTitle, setListTitle] = useState(list.title);
 
   const renderEditTitleInput = () => {
     return (
@@ -38,11 +38,13 @@ const ListLayout = ({ title, cards, listID, index }) => {
   };
 
   const handleFinishEditing = (e) => {
+    const listID = list.id;
     setIsEditing(false);
     dispatch(handleEditTitle({ listID, listTitle }));
   };
 
   const handleDeleteList = () => {
+    const listID = list.id;
     dispatch(deleteList({ listID }));
   };
 
@@ -62,6 +64,7 @@ const ListLayout = ({ title, cards, listID, index }) => {
       </div>
     </div>
   );
+  const listID = list.id;
 
   return (
     <Draggable draggableId={String(listID)} index={index}>

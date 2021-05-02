@@ -3,8 +3,14 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { Link, useParams } from "react-router-dom";
 import { getList, ListLayout, dragList } from "../ListLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { dragBoard, getBoards, setActiveBoard, showFilterPanel } from "./store";
-import { getCardDetails } from "../CardLayout";
+import {
+  dragBoard,
+  getBoards,
+  getFilterPanel,
+  setActiveBoard,
+  showFilterPanel,
+} from "./store";
+import { getCardDetails, getFilteredCards } from "../CardLayout";
 import { FilterPanel, AddListButton } from "./components";
 import "./styles/_boardLayout.scss";
 
@@ -18,6 +24,9 @@ const BoardLayout = () => {
   const boards = useSelector(getBoards);
   const { boardID } = useParams();
   const board = boards[boardID];
+
+  const show = useSelector(getFilterPanel);
+  const filteredCards = useSelector(getFilteredCards);
 
   useEffect(() => {
     dispatch(setActiveBoard(boardID));
@@ -53,7 +62,11 @@ const BoardLayout = () => {
   }
 
   function getCardOrder(list) {
-    return list.cards.map((cardID) => card[cardID]);
+    if (show) {
+      return list.cards.map((cardID) => filteredCards[cardID]);
+    } else {
+      return list.cards.map((cardID) => card[cardID]);
+    }
   }
 
   function startDragging(e) {
@@ -125,14 +138,13 @@ const BoardLayout = () => {
                     listOrder.map((listID, index) => {
                       const list = lists[listID];
                       if (list) {
-                        const listCards = getCardOrder(list);
+                        const cards = getCardOrder(list);
 
                         return (
                           <ListLayout
-                            listID={list.id}
+                            list={list}
                             key={list.id}
-                            title={list.title}
-                            cards={listCards}
+                            cards={cards}
                             index={index}
                           />
                         );
