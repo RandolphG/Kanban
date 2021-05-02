@@ -1,25 +1,28 @@
 @import "fonts";
 
 .tags-input {
-  background-color: #ff3860;
+  //background-color: #ff3860;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
-  min-height: 48px;
+  min-height: 40px;
   width: 100%;
   font-family: $font-main;
   margin-top: .5rem;
+
   input {
     font-family: $font-main;
     flex: 1;
     border: none;
-    height: 46px;
+    height: 24px;
     font-size: 14px;
-    padding: 0px 0 0 5px;
+    padding: 0 0 0 5px;
+    width: fit-content;
     &:focus {
       outline: transparent;
     }
   }
+
   .tag {
     //background: transparent;
     -webkit-animation: rainbow 8s ease infinite;
@@ -68,8 +71,10 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0;
-  margin: 8px 0 0 0;
+  margin: 4px 0 0 0;
 }
+
+
 @media screen and (max-width: 567px) {
   .tags-input {
     width: calc(100vw - 32px);

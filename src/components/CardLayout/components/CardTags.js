@@ -25,6 +25,7 @@ const CardTags = ({ index, card }) => {
 
   const Input = () => (
     <input
+      className="tag-input"
       type="text"
       onKeyUp={(e) => handleTagAdd(e)}
       placeholder="Add more tags..."
@@ -49,15 +50,11 @@ const CardTags = ({ index, card }) => {
             </li>
           ))
         : null}
+      {Input()}
     </ul>
   );
 
-  return (
-    <div className="tags-input">
-      {Tags()}
-      {Input()}
-    </div>
-  );
+  return <div className="tags-input">{Tags()}</div>;
 };
 
 export default CardTags;

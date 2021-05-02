@@ -18,6 +18,7 @@ export const {
   onTagAdd,
   onTagRemove,
   setAllTags,
+  filterResults,
 } = slice.actions;
 
 export default slice.reducer;

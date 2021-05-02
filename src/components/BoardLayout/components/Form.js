@@ -1,26 +1,4 @@
 import React from "react";
-import styled from "styled-components";
-import Textarea from "react-textarea-autosize";
-
-const Container = styled.div`
-  width: 284px;
-  margin-bottom: 8px;
-`;
-
-const StyledTextArea = styled(Textarea)`
-  resize: none;
-  width: 100%;
-  overflow: hidden;
-  outline: none;
-  border: none;
-`;
-
-const ButtonContainer = styled.div`
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  margin-left: 8px;
-`;
 
 const Form = React.memo(
   ({ list, text = "", onChange, closeForm, children }) => {
@@ -33,9 +11,9 @@ const Form = React.memo(
     };
 
     return (
-      <Container>
+      <div>
         <div>
-          <StyledTextArea
+          <textarea
             placeholder={placeholder}
             autoFocus
             onFocus={handleFocus}
@@ -44,11 +22,11 @@ const Form = React.memo(
             onBlur={closeForm}
           />
         </div>
-        <ButtonContainer>
+        <div>
           {children}
           <div onMouseDown={closeForm}>close</div>
-        </ButtonContainer>
-      </Container>
+        </div>
+      </div>
     );
   }
 );

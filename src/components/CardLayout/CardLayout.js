@@ -35,6 +35,7 @@ const CardLayout = React.memo(({ card, listID, index }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
+            // style={{ "--display-none": card.display }}
           >
             <TopBar />
             <Participants />

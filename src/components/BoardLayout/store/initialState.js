@@ -1,4 +1,5 @@
 export const initialState = {
+  filterPanel: false,
   scrollable: false,
   activeBoard: null,
   "board-0": {

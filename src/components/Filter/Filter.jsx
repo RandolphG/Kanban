@@ -22,61 +22,60 @@ const projects = [
     tags: ["javascript", "utility", "web"],
   },
   {
-    title: "Tic Tac Toe",
-    description: "A command-line Tic Tac Toe game written in Ruby",
-    tags: ["ruby", "game", "cli"],
-  },
-  {
-    title: "TodoList",
-    description: "Full stack todo-list written in fullstack Javascript",
-    tags: [
-      "react",
-      "javascript",
-      "node",
-      "fullstack",
-      "front-end",
-      "back-end",
-      "web",
-      "mvc",
-    ],
-  },
-  {
-    title: "Weather",
-    description: "A Weather Test with React Native ",
-    tags: [
-      "react",
-      "javascript",
-      "react-native",
-      "front-end",
-      "mobile",
-      "android",
-      "ios",
-    ],
-  },
-  {
-    title: "Markdown Editor",
-    description: "Markdown Editor powered by Monaco and React",
-    tags: ["react", "javascript", "monaco", "front-end"],
-  },
-  {
-    title: "Bloggie",
-    description: "Rails-powered blog with a React front-end",
-    tags: [
-      "react",
-      "javascript",
-      "ruby",
-      "front-end",
-      "back-end",
-      "fullstack",
-      "ruby-on-rails",
-      "mvc",
-    ],
+    title: "Stencil",
+    description: "Calculator written in Typescript",
+    tags: ["javascript", "utility", "web", "typescript"],
   },
 ];
 
+const obj = {
+  GameOfLife: {
+    hide: false,
+    title: "Game of Life",
+    description: "React implementation of the game of life.",
+    tags: ["react", "e-book", "game", "web", "front-end"],
+  },
+  Calculator: {
+    hide: false,
+    title: "Calculator",
+    description: "Calculator written in Javascript",
+    tags: ["javascript", "e-book", "web"],
+  },
+  Stencil: {
+    hide: false,
+    title: "Stencil",
+    description: "Calculator written in Typescript",
+    tags: ["utility", "web", "e-book", "typescript"],
+  },
+  Pen: {
+    hide: false,
+    title: "Pen",
+    description: "Calculator written in Typescript",
+    tags: ["javascript", "web", "typescript"],
+  },
+  Book: {
+    hide: false,
+    title: "Book",
+    description: "Calculator written in Typescript",
+    tags: ["javascript", "utility", "web", "e-book"],
+  },
+};
+
+const objValues = Object.values(obj);
+
+objValues.forEach(({ tags, hide }, idx) => {
+  if (tags.includes("javascript")) {
+    return { ...objValues[idx], hide: true };
+  }
+});
+
+/**
+ * filter component
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Filter = () => {
   const [tags, setTags] = useState(["game"]);
-
   const handleTagChange = (tags) => {
     setTags(tags);
   };

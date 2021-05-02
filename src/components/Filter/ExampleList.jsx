@@ -1,20 +1,17 @@
 import React, { Fragment } from "react";
 import ExampleListItem from "./ExampleListItem";
 import { contains } from "./utils";
+
 const ExampleList = ({ items, filter, onTagClick }) => {
   let filtered = items.filter((item) => contains(item.tags, filter));
-
-  let renderedItems = filtered.map(({ title, description, tags }, index) => {
-    return (
-      <ExampleListItem
-        title={title}
-        description={description}
-        tags={tags}
-        key={index}
-        onClick={onTagClick}
-      />
-    );
-  });
+  let renderedItems = filtered.map(({ title, description, tags }, index) => (
+    <ExampleListItem
+      title={title}
+      description={description}
+      tags={tags}
+      onClick={onTagClick}
+    />
+  ));
 
   return (
     <Fragment>

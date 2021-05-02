@@ -1,9 +1,15 @@
 const ExampleListItem = ({ title, description, tags, key, onClick }) => {
-  const renderedTags = tags.map((tag, index) => (
-    <li onClick={(e) => onClick(tag, e)} className="tag clickable">
-      {tag}
-    </li>
-  ));
+  const renderedTags =
+    tags &&
+    tags.map((tag, index) => (
+      <li
+        key={index}
+        onClick={(e) => onClick(tag, e)}
+        className="tag clickable"
+      >
+        {tag}
+      </li>
+    ));
 
   return (
     <li

@@ -14,7 +14,6 @@ const AppRouter = () => {
           </Switch>
         )}
       />
-      />
     </Router>
   );
 };

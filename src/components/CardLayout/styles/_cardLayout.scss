@@ -7,14 +7,47 @@ $title-color: #626262;
 $label-font-size: 1rem;
 $font-size: .9rem;
 
+:root {
+  --display-none: flex;
+}
+
+.anim {
+  transform: translateX(0);
+  animation-name: scrolling;
+  animation-duration: var(--anim-duration);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  //left: 50%
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+    //left: 0
+  }
+  15% {
+    transform: translateX(0);
+    //left: 0
+  }
+  85% {
+    transform: translateX(-10%);
+    //left: 100%
+  }
+  100% {
+    transform: translateX(-10%);
+    //left: 100%
+  }
+}
+
 .cardLayout {
-  position: relative;
+  display: var(--display-none);
+  flex-direction: column;
   box-sizing: border-box;
+  position: relative;
   background-color: white;
   min-height: fit-content;
   width: 100%;
-  display: flex;
-  flex-direction: column;
   border-radius: 4px;
   margin-bottom: 1rem;
   padding: .5rem;
@@ -27,7 +60,7 @@ $font-size: .9rem;
 
   /* title section of card */
   &__topbar {
-    background-color: lightseagreen;
+    //background-color: lightseagreen;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -36,10 +69,14 @@ $font-size: .9rem;
     padding: .2rem;
     border-bottom: 2px solid black;
 
-    &_label {
-      //background-color: lightgray;
+    &__label {
+      //background-color: #b86bff;
       color: black;
       font-size: 1rem;
+      width: 170px;
+      display: flex;
+      justify-content: start;
+      overflow: hidden;
 
       .input-label {
         color: #999999;
@@ -49,19 +86,30 @@ $font-size: .9rem;
         background: transparent;
         width: 90px;
       }
+
+      &_text {
+        display: inline-block;
+        color: black;
+        //width: fit-content;
+        white-space: nowrap;
+        text-align: left;
+
+        &:hover {
+          animation-play-state: paused;
+        }
+      }
     }
   }
 
-
   &_participants {
-    background-color: #FEE01C;
+    //background-color: #FEE01C;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     height: 50px;
     margin-top: .5rem;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
 
     .reporter {
       background-color: #F5BA58;
@@ -134,7 +182,6 @@ $font-size: .9rem;
     }
   }
 
-
   &__description {
     font-family: $font-main;
     //background-color: lightskyblue;
@@ -167,5 +214,5 @@ $font-size: .9rem;
       }
     }
   }
-
 }
+

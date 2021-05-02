@@ -45,6 +45,9 @@ export const reducers = {
   addScrollable: (state) => {
     return { ...state, scrollable: true };
   },
+  showFilterPanel: (state) => {
+    return { ...state, filterPanel: !state.filterPanel };
+  },
   removeScrollable: (state) => {
     return { ...state, scrollable: false };
   },

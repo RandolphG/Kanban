@@ -3,7 +3,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { Link, useParams } from "react-router-dom";
 import { getList, ListLayout, dragList } from "../ListLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { dragBoard, getBoards, setActiveBoard } from "./store";
+import { dragBoard, getBoards, setActiveBoard, showFilterPanel } from "./store";
 import { getCardDetails } from "../CardLayout";
 import { FilterPanel, AddListButton } from "./components";
 import "./styles/_boardLayout.scss";
@@ -87,6 +87,13 @@ const BoardLayout = () => {
   const Topbar = () => (
     <div className="boardLayout__container_topbar">
       <h2>{board.title}</h2>
+      <h2
+        onClick={() => {
+          dispatch(showFilterPanel());
+        }}
+      >
+        filter
+      </h2>
       <Link to="/dashboard">Go Back</Link>
     </div>
   );
@@ -119,6 +126,7 @@ const BoardLayout = () => {
                       const list = lists[listID];
                       if (list) {
                         const listCards = getCardOrder(list);
+
                         return (
                           <ListLayout
                             listID={list.id}

@@ -12,64 +12,61 @@ const TagInput = ({
   const [inputValue, setInputValue] = useState("");
   const [filterTags, setTags] = useState(tags || []);
 
-  const handleNewTag = (tags) => {
+  function handleNewTag(tags) {
     if (onNewTag) {
       onNewTag(tags);
     }
     if (onTagChange) {
       onTagChange(tags);
     }
-  };
+  }
 
-  const handleInputChange = (e) => {
+  function handleInputChange(e) {
     const input = e.target.value === "," ? "" : e.target.value;
     console.log(input);
     setInputValue(input);
-  };
+  }
 
   const notDuplicate = (tags, newTag) => {
     return !tags.includes(newTag) || allowDuplicates;
   };
 
-  const addTag = (tag) => {
+  function addTag(tag) {
     if (notDuplicate(filterTags, tag)) {
       setTags([...filterTags, tag]);
       setInputValue("");
       handleNewTag(filterTags);
     }
-  };
+  }
 
-  const deleteTag = (index, callback) => {
+  function deleteTag(index, callback) {
     let tags = filterTags.slice();
-
     tags.splice(index, 1);
     setTags(tags);
 
     if (callback) callback();
-  };
+  }
 
-  const handleTagDelete = (index, e) => {
+  function handleTagDelete(index, e) {
     deleteTag(index, () => {
       onTagChange(filterTags);
     });
-  };
+  }
 
-  const handleKeyDown = (e) => {
+  function handleKeyDown(e) {
     let {
       key,
       target: { value },
     } = e;
     switch (key) {
       case "Tab":
-        if (value) e.preventDefault();
       case "Enter":
       case ",":
+        if (value) e.preventDefault();
         value = value.trim();
-        if (value && notDuplicate(filterTags, value)) {
-          addTag(value);
-        } else {
-          setInputValue("");
-        }
+        value && notDuplicate(filterTags, value)
+          ? addTag(value)
+          : setInputValue("");
         break;
       case "Backspace":
         if (!value) {
@@ -77,14 +74,14 @@ const TagInput = ({
         }
         break;
     }
-  };
+  }
 
-  const updateControlledTags = (tags) => {
+  function updateControlledTags(tags) {
     if (tags && !hasDuplicates(tags)) {
       setTags(tags);
       onTagChange(tags);
     }
-  };
+  }
 
   useEffect(() => {
     updateControlledTags(filterTags);

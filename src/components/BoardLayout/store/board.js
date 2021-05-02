@@ -16,6 +16,7 @@ export const {
   removeScrollable,
   deleteListFromBoard,
   setActiveBoard,
+  showFilterPanel,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
