@@ -9,7 +9,7 @@ const transition = {
 
 /* dashboard animation */
 export const dashboardAnimation = {
-  initial: { opacity: 0 },
+  initial: { opacity: 0, transition },
   animate: { opacity: 1, transition },
   exit: { opacity: 0, transition },
 };

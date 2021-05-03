@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
+import { AnimatePresence, motion } from "framer-motion";
 import { getDashboard, handAddBoardToDashboard } from "./store";
 import { getBoards } from "../BoardLayout";
 import { Project } from "./components";
-import { v4 as uuid } from "uuid";
-import { AnimatePresence, motion } from "framer-motion";
 import { dashboardAnimation } from "./motionSettings";
-import "./styles/_dashboardLayout.scss";
 import { Logo } from "../Common";
+import "./styles/_dashboardLayout.scss";
 
 const DashboardLayout = () => {
   let history = useHistory();
@@ -18,11 +18,8 @@ const DashboardLayout = () => {
   const [title, setTitle] = useState("");
 
   function handleChange(e) {
+    e.preventDefault();
     setTitle(e.target.value);
-  }
-
-  function handleSignOut() {
-    history.push("/");
   }
 
   async function handleSubmit(e) {
@@ -31,33 +28,44 @@ const DashboardLayout = () => {
     dispatch(handAddBoardToDashboard(id, title));
   }
 
-  const renderBoards = () => {
-    return (
-      boardOrder &&
-      boardOrder.map((boardID) => {
-        const board = boards[boardID];
+  console.log(`boardOrder`, boardOrder);
 
-        return (
-          <div className="dashboardLayout_section_projects">
-            <Link
-              className="dashboardLayout_section_projects_link"
-              key={boardID}
-              to={`/${board.id}`}
-            >
-              <Project {...board} />
-            </Link>
-          </div>
-        );
-      })
+  const renderBoards = () => {
+    const mapBoards = [
+      "boards#1",
+      "boards#2",
+      "boards#3",
+      "boards#4",
+      "boards#5",
+    ];
+
+    return (
+      <div className="projectDragContainer">
+        <div className="projectDragContainer_area">
+          {mapBoards &&
+            mapBoards.map((boardID, index) => {
+              const board = boards[boardID];
+              const newBoard = [
+                "board-0",
+                "board-0",
+                "board-0",
+                "board-0",
+                "board-0",
+              ];
+
+              return <Project {...newBoard} boardID={boardID} index={index} />;
+            })}
+        </div>
+      </div>
     );
   };
 
-  const addNewBoardInput = () => {
+  const AddNewBoardInput = () => {
     return (
       <form className="dashboardLayout_form" onSubmit={handleSubmit}>
         <input
           className="dashboardLayout_form_input"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
           value={title}
           placeholder="type the name of project..."
           type="text"
@@ -69,11 +77,11 @@ const DashboardLayout = () => {
   const Container = ({ children }) => (
     <motion.div
       {...dashboardAnimation}
+      className="dashboardLayout"
       key="dashboard"
       initial="initial"
       animate="animate"
       exit="exit"
-      className="dashboardLayout"
     >
       {children}
     </motion.div>
@@ -86,11 +94,17 @@ const DashboardLayout = () => {
     </div>
   );
 
-  const LogoutButton = ({ handleSignOut }) => (
-    <button onClick={handleSignOut} className="signOutButton">
-      sign out
-    </button>
-  );
+  const LogoutButton = () => {
+    function handleSignOut() {
+      history.push("/");
+    }
+
+    return (
+      <button onClick={handleSignOut} className="signOutButton">
+        sign out
+      </button>
+    );
+  };
 
   const AddNewProjectButton = () => (
     <div className="dashboardLayout_addNewProject-button">
@@ -107,14 +121,14 @@ const DashboardLayout = () => {
   useEffect(() => {}, [boardOrder]);
 
   return (
-    <AnimatePresence exitBeforeEnter initial={false}>
+    <AnimatePresence exitBeforeEnter>
       <Container>
         {Title()}
         {Options()}
         {AddNewProjectButton()}
-        {addNewBoardInput()}
-        <div className="dashboardLayout_section">{renderBoards()}</div>
-        <LogoutButton handleSignOut={handleSignOut} />
+        {AddNewBoardInput()}
+        {renderBoards()}
+        {LogoutButton()}
       </Container>
     </AnimatePresence>
   );

@@ -1,0 +1,82 @@
+@import "../../../styles/fonts";
+@import "../../../styles/colors";
+
+
+
+.projectDragContainer {
+  padding: 1rem 0;
+  height: 300px;
+  width: 95%;
+  background: green;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  float: left;
+  &_area{
+    user-select: none;
+    height: 100%;
+    width: 100%;
+    background: grey;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: ew-resize;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.projects {
+  display: flex;
+
+  &_link {
+    text-decoration: none;
+    border: 2px solid black;
+    width: 400px;
+    height: 170px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    padding: 1rem;
+    margin: .5rem;
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+    &:hover {
+      //border: 2px solid green;
+      transform: scale(1.05);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 3px 3px rgba(0, 0, 0, 0.24);
+    }
+
+    &_photo {
+      box-sizing: border-box;
+      background-color: #F5BA58;
+      border-radius: 4px;
+      width: 100px;
+      height: 100px;
+    }
+
+    &_info {
+      margin-left: .5rem;
+      display: flex;
+      flex-direction: column;
+      font-size: .8rem;
+      width: 200px;
+      //background-color:#ff3860;
+      .title {
+        font-size: 1rem;
+        //background-color: #0086e4;
+      }
+
+      .description {
+        margin-top: .5rem;
+        //background-color: #dd3345;
+      }
+    }
+
+  }
+}

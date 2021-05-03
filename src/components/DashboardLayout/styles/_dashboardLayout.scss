@@ -1,5 +1,6 @@
 @import "fonts";
 @import "colors";
+@import "../components/Project/styles/projects";
 
 $title-color: #626262;
 $label-font-size: 1rem;
@@ -14,7 +15,7 @@ $addNewProjectButtonColor: #0086e4;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  overflow: hidden;
 
   &_form {
     background-color: transparent;
@@ -25,6 +26,7 @@ $addNewProjectButtonColor: #0086e4;
     width: fit-content;
     display: flex;
     justify-content: center;
+
     &_input {
       //background: #ff3860;
       border: none;
@@ -88,27 +90,6 @@ $addNewProjectButtonColor: #0086e4;
       background-color: lighten($addNewProjectButtonColor, 20%);
       transform: scale(1.05);
       color: #626262;
-    }
-  }
-
-  &_section {
-    &_projects {
-      display: flex;
-
-      &_link {
-        text-decoration: none;
-
-        &_project {
-          background-color: #FEE01C;
-          width: 200px;
-          height: 70px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin: .5rem;
-          border-radius: .5rem;
-        }
-      }
     }
   }
 }
