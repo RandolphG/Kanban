@@ -1,23 +1,23 @@
 import { motion } from "framer-motion";
 import React, { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { dashboardAnimation } from "./motionSettings";
-import { Logo } from "../Common";
+import { loginAnimation } from "./motionSettings";
 import "./styles/_loginLayout.scss";
+import ErrorBoundary from "../../ErrorBoundary";
 
+/**
+ * login component
+ * @type {React.NamedExoticComponent<object>}
+ */
 const LoginLayout = memo(() => {
-  let history = useHistory();
+  const history = useHistory();
 
   const [credentials, setCredentials] = useState({
     reporter: "",
   });
 
-  function handleLogin() {
-    history.push("/dashboard");
-  }
-
   async function handleSubmit(e) {
-    handleLogin();
+    history.push("/dashboard");
   }
 
   function handleChange(e) {
@@ -77,16 +77,17 @@ const LoginLayout = memo(() => {
   );
 
   return (
-    <motion.div {...dashboardAnimation} key="login" className="login">
-      <motion.div {...dashboardAnimation} className="login_border">
-        <div className="login_border__container">
-          <Logo />
-          {SocialButtons()}
-          <hr className="login_border__container__divider" />
-          {FormAndInput()}
-        </div>
+    <ErrorBoundary>
+      <motion.div {...loginAnimation} key="login" className="login">
+        <motion.div {...loginAnimation} className="login_border">
+          <div className="login_border__container">
+            {SocialButtons()}
+            <hr className="login_border__container__divider" />
+            {FormAndInput()}
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </ErrorBoundary>
   );
 });
 

@@ -2,8 +2,8 @@
 @import "./colors";
 
 .login {
-  box-sizing: border-box;
   //background: $background-color;
+  box-sizing: border-box;
   background: $background-color;
   display: flex;
   justify-content: center;
@@ -14,7 +14,7 @@
 
   &_border {
     position: relative;
-    //border: #142824 2px solid;
+    border: #142824 2px solid;
     box-sizing: border-box;
     background-color: transparent;
     width: 80%;
@@ -30,6 +30,12 @@
       height: 50%;
       width: 350px;
       flex-direction: column;
+
+      .logo {
+        //background: #0086e4;
+        position: absolute;
+        top: 1rem;
+      }
 
       &__divider {
         text-align: center;
@@ -198,8 +204,4 @@
 }
 
 
-.logo {
-  position: absolute;
-  top: 1rem;
-  left: 3rem;
-}
+

@@ -1,20 +1,35 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import { DashboardLayout, BoardLayout, LoginLayout } from "../components/";
-import { Filter } from "../components/Filter";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import {
+  Notification,
+  DashboardLayout,
+  BoardLayout,
+  LoginLayout,
+} from "../components/";
 
+/**
+ * application router
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const AppRouter = () => {
   return (
     <Router>
       <Route
-        render={({ location }) => (
-          <Switch location={location} key={location.pathname}>
-            <Route path="/dashboard" exact component={DashboardLayout} />
-            <Route path="/:boardID" exact component={BoardLayout} />
-            {/*<Route path="/" exact component={Filter} />*/}
-            <Route path="/" exact component={LoginLayout} />
-          </Switch>
-        )}
+        render={({ location }) => {
+          console.log(`\nlocation -->`, location);
+          return (
+            <AnimatePresence exitBeforeEnter>
+              <Notification />
+              <Switch location={location} key={location.pathname}>
+                <Route path="/:boardID" component={BoardLayout} />
+                <Route exact path="/dashboard" component={DashboardLayout} />
+                <Route exact path="/" component={LoginLayout} />
+              </Switch>
+            </AnimatePresence>
+          );
+        }}
       />
     </Router>
   );

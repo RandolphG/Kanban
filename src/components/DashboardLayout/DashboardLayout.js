@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { getDashboard, handAddBoardToDashboard } from "./store";
 import { useDispatch, useSelector } from "react-redux";
+import { getDashboard, handAddBoardToDashboard } from "./store";
 import { getBoards } from "../BoardLayout";
 import { Project } from "./components";
-import "./styles/_dashboardLayout.scss";
 import { v4 as uuid } from "uuid";
+import { motion } from "framer-motion";
+import { dashboardAnimation } from "./motionSettings";
+import "./styles/_dashboardLayout.scss";
+import ErrorBoundary from "../../ErrorBoundary";
 
 const DashboardLayout = () => {
   const dispatch = useDispatch();
   let history = useHistory();
-
   const boardOrder = useSelector(getDashboard);
   const boards = useSelector(getBoards);
   const [title, setTitle] = useState("");
@@ -65,18 +67,27 @@ const DashboardLayout = () => {
     );
   };
 
-  useEffect(() => {}, [boardOrder]);
+  // useEffect(() => {}, [boardOrder]);
 
   return (
-    <div className="dashboardLayout">
-      <div className="dashboardLayout_section">
-        {addNewBoardInput()}
-        <div className="dashboardLayout_section_projects">{renderBoards()}</div>
-      </div>
-      <button onClick={handleSignOut} className="signOutButton">
-        sign out
-      </button>
-    </div>
+    <ErrorBoundary>
+      <motion.div
+        {...dashboardAnimation}
+        key="dashboard"
+        className="dashboardLayout"
+      >
+        {/* <div className="dashboardLayout_section">
+          {addNewBoardInput()}
+          <div className="dashboardLayout_section_projects">
+            {renderBoards()}
+          </div>
+        </div>
+        <button onClick={handleSignOut} className="signOutButton">
+          sign out
+        </button>*/}
+      </motion.div>
+    </ErrorBoundary>
   );
 };
+
 export default DashboardLayout;
