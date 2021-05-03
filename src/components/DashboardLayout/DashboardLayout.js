@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getDashboard, handAddBoardToDashboard } from "./store";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoards } from "../BoardLayout";
@@ -9,12 +9,18 @@ import { v4 as uuid } from "uuid";
 
 const DashboardLayout = () => {
   const dispatch = useDispatch();
+  let history = useHistory();
+
   const boardOrder = useSelector(getDashboard);
   const boards = useSelector(getBoards);
   const [title, setTitle] = useState("");
 
   function handleChange(e) {
     setTitle(e.target.value);
+  }
+
+  function handleSignOut() {
+    history.push("/");
   }
 
   async function handleSubmit(e) {
@@ -64,9 +70,12 @@ const DashboardLayout = () => {
   return (
     <div className="dashboardLayout">
       <div className="dashboardLayout_section">
-        <div className="dashboardLayout_section_projects">{renderBoards()}</div>
         {addNewBoardInput()}
+        <div className="dashboardLayout_section_projects">{renderBoards()}</div>
       </div>
+      <button onClick={handleSignOut} className="signOutButton">
+        sign out
+      </button>
     </div>
   );
 };

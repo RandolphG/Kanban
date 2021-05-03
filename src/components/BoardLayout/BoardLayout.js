@@ -11,7 +11,8 @@ import {
   showFilterPanel,
 } from "./store";
 import { getCardDetails, getFilteredCards } from "../CardLayout";
-import { FilterPanel, AddListButton } from "./components";
+import { AddListButton } from "./components";
+import { FilterPanel } from "../Common";
 import "./styles/_boardLayout.scss";
 
 const BoardLayout = () => {

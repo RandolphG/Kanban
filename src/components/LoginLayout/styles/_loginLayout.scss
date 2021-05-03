@@ -14,7 +14,7 @@
 
   &_border {
     position: relative;
-    border: #142824 2px solid;
+    //border: #142824 2px solid;
     box-sizing: border-box;
     background-color: transparent;
     width: 80%;
@@ -24,7 +24,7 @@
     justify-content: center;
     align-items: center;
     &__container {
-      background-color: #FEE01C;
+      //background-color: #FEE01C;
       //display: flex;
       //align-self: center;
       height: 50%;
@@ -146,12 +146,14 @@
         }
 
         &__google-sign-in {
+          font-family: $font-main;
+
           background-color: #2a75f3;
           border: none;
           color: #ffffff;
-          border-radius: 8px;
+          border-radius: 4px;
           width: 75%;
-          height: 80%;
+          height: 2rem;
           cursor: pointer;
           font-weight: bold;
           letter-spacing: .5px;
@@ -163,9 +165,9 @@
           background-color: #dfdfe2;
           border: none;
           color: #ffffff;
-          border-radius: 8px;
+          border-radius: 4px;
           width: 15%;
-          height: 80%;
+          height: 2rem;
           cursor: pointer;
           font-weight: bold;
           letter-spacing: .3px;

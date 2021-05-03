@@ -11,8 +11,8 @@ const AppRouter = () => {
           <Switch location={location} key={location.pathname}>
             <Route path="/dashboard" exact component={DashboardLayout} />
             <Route path="/:boardID" exact component={BoardLayout} />
-            <Route path="/" exact component={Filter} />
-            {/*<Route path="/" exact component={LoginLayout} />*/}
+            {/*<Route path="/" exact component={Filter} />*/}
+            <Route path="/" exact component={LoginLayout} />
           </Switch>
         )}
       />
