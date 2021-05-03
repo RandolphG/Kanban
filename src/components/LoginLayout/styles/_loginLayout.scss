@@ -13,8 +13,8 @@
   width: 100%;
 
   &_border {
+    //border: #142824 2px solid;
     position: relative;
-    border: #142824 2px solid;
     box-sizing: border-box;
     background-color: transparent;
     width: 80%;
@@ -23,6 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     &__container {
       //background-color: #FEE01C;
       //display: flex;
@@ -167,7 +168,7 @@
           margin-bottom: 2rem;
         }
 
-        &__alternative-options {
+        &__twitter {
           background-color: #dfdfe2;
           border: none;
           color: #ffffff;
@@ -179,7 +180,9 @@
           letter-spacing: .3px;
           line-height: 10px;
           margin-bottom: 1rem;
-
+          &:hover {
+            background: #626262;
+          }
           &__icon {
             height: 15px;
           }

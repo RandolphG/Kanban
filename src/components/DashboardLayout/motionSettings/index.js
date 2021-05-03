@@ -1,6 +1,6 @@
 const ease = { ease: "easeInOut" };
 
-const duration = 2.0;
+const duration = 3.0;
 
 const transition = {
   duration,
@@ -9,7 +9,7 @@ const transition = {
 
 /* dashboard animation */
 export const dashboardAnimation = {
-  initial: { opacity: 0, transition },
+  initial: { opacity: 0 },
   animate: { opacity: 1, transition },
   exit: { opacity: 0, transition },
 };

@@ -5,14 +5,14 @@ import { getDashboard, handAddBoardToDashboard } from "./store";
 import { getBoards } from "../BoardLayout";
 import { Project } from "./components";
 import { v4 as uuid } from "uuid";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { dashboardAnimation } from "./motionSettings";
 import "./styles/_dashboardLayout.scss";
-import ErrorBoundary from "../../ErrorBoundary";
+import { Logo } from "../Common";
 
 const DashboardLayout = () => {
-  const dispatch = useDispatch();
   let history = useHistory();
+  const dispatch = useDispatch();
   const boardOrder = useSelector(getDashboard);
   const boards = useSelector(getBoards);
   const [title, setTitle] = useState("");
@@ -38,13 +38,15 @@ const DashboardLayout = () => {
         const board = boards[boardID];
 
         return (
-          <Link
-            className="dashboardLayout_section_projects_link"
-            key={boardID}
-            to={`/${board.id}`}
-          >
-            <Project {...board} />
-          </Link>
+          <div className="dashboardLayout_section_projects">
+            <Link
+              className="dashboardLayout_section_projects_link"
+              key={boardID}
+              to={`/${board.id}`}
+            >
+              <Project {...board} />
+            </Link>
+          </div>
         );
       })
     );
@@ -52,12 +54,9 @@ const DashboardLayout = () => {
 
   const addNewBoardInput = () => {
     return (
-      <form className="dashboardLayout_section_form" onSubmit={handleSubmit}>
-        <div className="dashboardLayout_section_form_title">
-          Add new Project
-        </div>
+      <form className="dashboardLayout_form" onSubmit={handleSubmit}>
         <input
-          className="dashboardLayout_section_form_input"
+          className="dashboardLayout_form_input"
           onChange={handleChange}
           value={title}
           placeholder="type the name of project..."
@@ -67,26 +66,57 @@ const DashboardLayout = () => {
     );
   };
 
-  // useEffect(() => {}, [boardOrder]);
+  const Container = ({ children }) => (
+    <motion.div
+      {...dashboardAnimation}
+      key="dashboard"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="dashboardLayout"
+    >
+      {children}
+    </motion.div>
+  );
+
+  const Options = () => (
+    <div className="dashboardLayout__options">
+      <span className="dashboardLayout__options_settings" />
+      <span className="dashboardLayout__options_photo" />
+    </div>
+  );
+
+  const LogoutButton = ({ handleSignOut }) => (
+    <button onClick={handleSignOut} className="signOutButton">
+      sign out
+    </button>
+  );
+
+  const AddNewProjectButton = () => (
+    <div className="dashboardLayout_addNewProject-button">
+      + add new project
+    </div>
+  );
+
+  const Title = () => (
+    <div className="dashboardLayout_title">
+      <Logo />
+    </div>
+  );
+
+  useEffect(() => {}, [boardOrder]);
 
   return (
-    <ErrorBoundary>
-      <motion.div
-        {...dashboardAnimation}
-        key="dashboard"
-        className="dashboardLayout"
-      >
-        {/* <div className="dashboardLayout_section">
-          {addNewBoardInput()}
-          <div className="dashboardLayout_section_projects">
-            {renderBoards()}
-          </div>
-        </div>
-        <button onClick={handleSignOut} className="signOutButton">
-          sign out
-        </button>*/}
-      </motion.div>
-    </ErrorBoundary>
+    <AnimatePresence exitBeforeEnter initial={false}>
+      <Container>
+        {Title()}
+        {Options()}
+        {AddNewProjectButton()}
+        {addNewBoardInput()}
+        <div className="dashboardLayout_section">{renderBoards()}</div>
+        <LogoutButton handleSignOut={handleSignOut} />
+      </Container>
+    </AnimatePresence>
   );
 };
 

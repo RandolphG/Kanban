@@ -116,7 +116,7 @@ const BoardLayout = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="boardLayout">
+      <div key="board" className="boardLayout">
         <FilterPanel />
         <div className="boardLayout__container">
           {Topbar()}

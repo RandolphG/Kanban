@@ -4,21 +4,101 @@
 $title-color: #626262;
 $label-font-size: 1rem;
 $font-main: 'operatorMonoBoldItalic', sans-serif;
+$addNewProjectButtonColor: #0086e4;
 
 .dashboardLayout {
   box-sizing: border-box;
-  background-color: #0086e4;
+  background-color: $background-color;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  &_section{
-    &_projects{
+
+
+  &_form {
+    background-color: transparent;
+    //border: 2px solid black;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    &_input {
+      //background: #ff3860;
+      border: none;
+      font-family: $font-main;
+      width: 325px;
+      height: 60px;
+      font-size: 1.3rem;
+      padding: 10px;
+      box-sizing: border-box;
+      align-self: center;
+    }
+  }
+
+  &_title {
+    background: #ff3860;
+    position: absolute;
+    top: 3rem;
+    left: 2rem;
+  }
+
+  &__options {
+    //background-color: black;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    color: white;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    padding: .3rem;
+    border-radius: 4px;
+
+    &_photo {
+      margin-right: .4rem;
+      border-radius: 50%;
+      background-color: #ff3860;
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &_settings {
+      margin-right: .4rem;
+      border-radius: 50%;
+      background-color: #b86bff;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+
+  &_addNewProject-button {
+    background: $addNewProjectButtonColor;
+    color: white;
+    position: absolute;
+    right: 2rem;
+    top: 4rem;
+    border-radius: 4px;
+    padding: .3rem;
+
+    &:hover {
+      background-color: lighten($addNewProjectButtonColor, 20%);
+      transform: scale(1.05);
+      color: #626262;
+    }
+  }
+
+  &_section {
+    &_projects {
       display: flex;
-      &_link{
+
+      &_link {
         text-decoration: none;
-        &_project{
+
+        &_project {
           background-color: #FEE01C;
           width: 200px;
           height: 70px;
@@ -30,39 +110,10 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
         }
       }
     }
-
-    &_form {
-      background-color: #999999;
-      height: 250px;
-      width: 425px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      &_title {
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-      }
-
-      &_input {
-        font-family: $font-main;
-        width: 400px;
-        height: 80px;
-        font-size: 22px;
-        padding: 10px;
-        box-sizing: border-box;
-        border-radius: 3px;
-        border: none;
-        outline-color: blue;
-        box-shadow: 0 2px 4px grey;
-        align-self: center;
-      }
-    }
   }
 }
 
-.signOutButton{
+.signOutButton {
   font-family: $font-main;
   font-size: 1.5rem;
   position: absolute;
@@ -70,7 +121,8 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
   left: 2rem;
   transition: all 0.5s cubic-bezier(.25, .8, .25, 1);
   border: none;
-  &:hover{
+
+  &:hover {
     background: black;
     color: white;
   }
