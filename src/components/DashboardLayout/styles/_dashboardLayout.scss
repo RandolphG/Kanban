@@ -1,6 +1,5 @@
 @import "fonts";
 @import "colors";
-@import "../components/Project/styles/projects";
 
 $title-color: #626262;
 $label-font-size: 1rem;
@@ -9,36 +8,49 @@ $addNewProjectButtonColor: #0086e4;
 
 .dashboardLayout {
   box-sizing: border-box;
-  background-color: $background-color;
+  background: $background-color;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  overscroll-behavior-x: none;
 
-  &_form {
-    background-color: transparent;
-    //border: 2px solid black;
+  &_container{
     position: absolute;
-    top: 4rem;
-    right: 1rem;
+    top: 7rem;
+    right: 2rem;
     width: fit-content;
     display: flex;
-    justify-content: center;
-
-    &_input {
-      //background: #ff3860;
-      border: none;
+    &_form {
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      border-radius: 4px;
+      &_input {
+        //background: #ff3860;
+        border: 2px solid black;
+        border-radius: 4px;
+        font-family: $font-main;
+        width: 325px;
+        height: 60px;
+        font-size: 1.3rem;
+        padding: 10px;
+        box-sizing: border-box;
+        align-self: center;
+        margin-right: .5rem;
+      }
+    }
+    &_cancelButton {
+      color: white;
+      border-radius: 4px;
       font-family: $font-main;
-      width: 325px;
-      height: 60px;
-      font-size: 1.3rem;
-      padding: 10px;
-      box-sizing: border-box;
-      align-self: center;
+      background-color: $addNewProjectButtonColor;
     }
   }
+
+
 
   &_title {
     background: #ff3860;
@@ -78,18 +90,22 @@ $addNewProjectButtonColor: #0086e4;
 
 
   &_addNewProject-button {
+    font-family: $font-main;
     background: $addNewProjectButtonColor;
     color: white;
     position: absolute;
     right: 2rem;
     top: 4rem;
+    border: none;
     border-radius: 4px;
     padding: .3rem;
+
 
     &:hover {
       background-color: lighten($addNewProjectButtonColor, 20%);
       transform: scale(1.05);
       color: #626262;
+      cursor: pointer;
     }
   }
 }

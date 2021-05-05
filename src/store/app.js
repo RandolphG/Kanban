@@ -8,6 +8,10 @@ export const appSlice = createSlice({
   reducers,
 });
 
-export const { onAddNotification, onRemoveNotification } = appSlice.actions;
+export const {
+  setLogoColor,
+  onAddNotification,
+  onRemoveNotification,
+} = appSlice.actions;
 
 export default appSlice.reducer;

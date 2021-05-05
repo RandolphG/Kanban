@@ -8,8 +8,9 @@ import board from "../components/BoardLayout/store/board";
 import list from "../components/ListLayout/store/list";
 import dashboard from "../components/DashboardLayout/store/dashboard";
 import app from "./app";
-
+import logo from "../components/Common/Logo/store/logo";
 const reducers = combineReducers({
+  logo,
   app,
   board,
   dashboard,

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuid } from "uuid";
 import { AnimatePresence, motion } from "framer-motion";
 import { getDashboard, handAddBoardToDashboard } from "./store";
 import { getBoards } from "../BoardLayout";
-import { Project } from "./components";
 import { dashboardAnimation } from "./motionSettings";
 import { Logo } from "../Common";
+import { v4 as uuid } from "uuid";
+import { Project } from "./components";
 import "./styles/_dashboardLayout.scss";
 
 const DashboardLayout = () => {
@@ -15,7 +15,27 @@ const DashboardLayout = () => {
   const dispatch = useDispatch();
   const boardOrder = useSelector(getDashboard);
   const boards = useSelector(getBoards);
+
+  let singleRefs = useRef([]);
+  let mouseDown = false;
+  let startX, scrollLeft;
+  const draggableArea = useRef();
+
   const [title, setTitle] = useState("");
+  const [showInput, setShowInput] = useState(false);
+
+  const colors = [
+    "#f1bace",
+    "#ffbc00",
+    "#cfdfde",
+    "#3c94c5",
+    "#99aba0",
+    "#b0e6db",
+    "#fe6f62",
+    "#f8bbc6",
+    "#08bac3",
+    "#dcdcdc",
+  ];
 
   function handleChange(e) {
     e.preventDefault();
@@ -26,34 +46,69 @@ const DashboardLayout = () => {
     e.preventDefault();
     const id = uuid();
     dispatch(handAddBoardToDashboard(id, title));
+    setTitle("");
   }
 
-  console.log(`boardOrder`, boardOrder);
+  function startDragging(e) {
+    mouseDown = true;
+    startX = e.pageX - draggableArea.current.offsetLeft;
+    scrollLeft = draggableArea.current.scrollLeft;
+  }
+
+  function stopDragging(e) {
+    mouseDown = false;
+  }
+
+  function dragging(e) {
+    e.preventDefault();
+    if (!mouseDown) {
+      return;
+    }
+    const x = e.pageX - draggableArea.current.offsetLeft;
+    const scroll = x - startX;
+    draggableArea.current.scrollLeft = scrollLeft - scroll;
+  }
+
+  function callbackFunction(entries) {
+    const randomColors = Math.floor(Math.random() * colors.length);
+
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "scale(1)";
+        draggableArea.current.style.backgroundColor = colors[randomColors];
+      } else {
+        entry.target.style.opacity = 0;
+        entry.target.style.transform = "scale(.35)";
+        draggableArea.current.style.backgroundColor = colors[randomColors];
+      }
+    });
+  }
 
   const renderBoards = () => {
-    const mapBoards = [
-      "boards#1",
-      "boards#2",
-      "boards#3",
-      "boards#4",
-      "boards#5",
-    ];
-
     return (
       <div className="projectDragContainer">
-        <div className="projectDragContainer_area">
-          {mapBoards &&
-            mapBoards.map((boardID, index) => {
+        <div
+          className="projectDragContainer_area "
+          onMouseDown={startDragging}
+          onMouseUp={stopDragging}
+          onMouseLeave={stopDragging}
+          onMouseMove={dragging}
+          ref={draggableArea}
+        >
+          {boardOrder &&
+            boardOrder.map((boardID, index) => {
               const board = boards[boardID];
-              const newBoard = [
-                "board-0",
-                "board-0",
-                "board-0",
-                "board-0",
-                "board-0",
-              ];
 
-              return <Project {...newBoard} boardID={boardID} index={index} />;
+              return (
+                <Project
+                  ref={singleRefs}
+                  key={index}
+                  {...board}
+                  boardID={boardID}
+                  index={index}
+                />
+              );
             })}
         </div>
       </div>
@@ -62,30 +117,34 @@ const DashboardLayout = () => {
 
   const AddNewBoardInput = () => {
     return (
-      <form className="dashboardLayout_form" onSubmit={handleSubmit}>
-        <input
-          className="dashboardLayout_form_input"
-          onChange={(e) => handleChange(e)}
-          value={title}
-          placeholder="type the name of project..."
-          type="text"
-        />
-      </form>
+      <motion.div
+        className="dashboardLayout_container"
+        key="addNewBoardInput"
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: -100, opacity: 0 }}
+      >
+        <form
+          className="dashboardLayout_container_form"
+          onSubmit={handleSubmit}
+        >
+          <input
+            className="dashboardLayout_container_form_input"
+            onChange={handleChange}
+            value={title}
+            placeholder="type the name of project..."
+            type="text"
+          />
+        </form>
+        <button
+          onClick={displayInput}
+          className="dashboardLayout_container_cancelButton"
+        >
+          Cancel
+        </button>
+      </motion.div>
     );
   };
-
-  const Container = ({ children }) => (
-    <motion.div
-      {...dashboardAnimation}
-      className="dashboardLayout"
-      key="dashboard"
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
-      {children}
-    </motion.div>
-  );
 
   const Options = () => (
     <div className="dashboardLayout__options">
@@ -106,10 +165,18 @@ const DashboardLayout = () => {
     );
   };
 
+  function displayInput() {
+    setShowInput(!showInput);
+  }
+
   const AddNewProjectButton = () => (
-    <div className="dashboardLayout_addNewProject-button">
+    <button
+      className="dashboardLayout_addNewProject-button"
+      onClick={displayInput}
+      disabled={showInput}
+    >
       + add new project
-    </div>
+    </button>
   );
 
   const Title = () => (
@@ -118,18 +185,45 @@ const DashboardLayout = () => {
     </div>
   );
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(callbackFunction, {
+      threshold: 0.25,
+    });
+
+    if (singleRefs) {
+      singleRefs.current.forEach((ref) => {
+        observer.observe(ref);
+      });
+    }
+
+    return () => {
+      if (singleRefs) {
+        singleRefs.current.forEach((ref) => {
+          observer.disconnect();
+        });
+      }
+    };
+  }, [singleRefs]);
+
   useEffect(() => {}, [boardOrder]);
 
   return (
     <AnimatePresence exitBeforeEnter>
-      <Container>
+      <motion.div
+        {...dashboardAnimation}
+        className="dashboardLayout"
+        key="dashboard"
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         {Title()}
         {Options()}
         {AddNewProjectButton()}
-        {AddNewBoardInput()}
+        {showInput && AddNewBoardInput()}
         {renderBoards()}
         {LogoutButton()}
-      </Container>
+      </motion.div>
     </AnimatePresence>
   );
 };

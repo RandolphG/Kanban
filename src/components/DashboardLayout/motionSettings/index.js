@@ -13,3 +13,9 @@ export const dashboardAnimation = {
   animate: { opacity: 1, transition },
   exit: { opacity: 0, transition },
 };
+
+export const addInputAnimation = {
+  initial: { x: 100, opacity: 0, transition },
+  animate: { x: 0, opacity: 1, transition },
+  exit: { x: 100, opacity: 0, transition },
+};

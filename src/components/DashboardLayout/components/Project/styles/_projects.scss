@@ -1,26 +1,56 @@
 @import "../../../styles/fonts";
 @import "../../../styles/colors";
 
-
+:root {
+  --background-color: white;
+}
 
 .projectDragContainer {
-  padding: 1rem 0;
-  height: 300px;
-  width: 95%;
-  background: green;
+  //background: green;
+  padding: 1rem;
+  height: 400px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   overflow: hidden;
   float: left;
+  transition: 0.3s;
+
+  .left-scrim {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10%;
+      height: 100%;
+      background: linear-gradient(to right, #444, transparent);
+    }
+  }
+
+  .right-scrim {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 10%;
+      height: 100%;
+      background: linear-gradient(to left, #444, transparent);
+    }
+  }
+
   &_area{
+    transition: 0.3s;
     user-select: none;
+    overflow: auto;
     height: 100%;
     width: 100%;
-    background: grey;
+    border-radius: 4px;
+    background: var(--background-color);
     display: flex;
     align-items: center;
-    overflow: hidden;
     cursor: ew-resize;
     &::-webkit-scrollbar {
       display: none;
@@ -30,12 +60,13 @@
 
 .projects {
   display: flex;
+  transition: 0.3s;
 
   &_link {
     text-decoration: none;
     border: 2px solid black;
     width: 400px;
-    height: 170px;
+    height: 275px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -44,12 +75,11 @@
     padding: 1rem;
     margin: .5rem;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-    //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32), 0 1px 2px rgba(0, 0, 0, 0.24);
     &:hover {
-      //border: 2px solid green;
+      border: 2px solid green;
       transform: scale(1.05);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 3px 3px rgba(0, 0, 0, 0.24);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12), 0 3px 4px rgba(0, 0, 0, 0.24);
     }
 
     &_photo {
@@ -77,6 +107,9 @@
         //background-color: #dd3345;
       }
     }
-
   }
+}
+
+.projects:first-child {
+  margin-left: 10vw;
 }
