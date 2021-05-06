@@ -6,6 +6,7 @@ $label-font-size: 1rem;
 $font-main: 'operatorMonoBoldItalic', sans-serif;
 $defaultBlueColor: #0086e4;
 
+
 .dashboardLayout {
   box-sizing: border-box;
   background: $background-color;
@@ -93,10 +94,19 @@ $defaultBlueColor: #0086e4;
     }
 
     &_projects {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       color: black;
+      background-color: #F5BA58;
       margin-right: .4rem;
       border-radius: 50%;
+      width: 1rem;
+      height: 1rem;
+      cursor: context-menu;
     }
+
+
   }
 
 
@@ -138,7 +148,13 @@ $defaultBlueColor: #0086e4;
   }
 }
 
-.logout-svg{
+.logout-svg {
   height: 40px;
-  background:transparent;
+  background: transparent;
+}
+
+.time {
+  color: black;
+  position: absolute;
+  top: 2rem;
 }

@@ -30,8 +30,6 @@ const CardLayout = React.memo(({ card, listID, index }) => {
     </div>
   );
 
-  console.log(`this is the show value`, show);
-
   return (
     <ErrorBoundary>
       <Draggable draggableId={String(card.id)} index={index}>

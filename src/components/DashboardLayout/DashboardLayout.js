@@ -11,6 +11,7 @@ import {
   LogoutButton,
   Options,
   RenderBoards,
+  Time,
   Title,
 } from "./components";
 import { dashboardLayout } from "./motionSettings";
@@ -103,6 +104,7 @@ const DashboardLayout = () => {
       className="dashboardLayout"
     >
       {Title()}
+      {/*{Time()}*/}
       {Options({ projects })}
       {AddProjectButton({ isOpen, toggleOpen })}
       {AddBoardInput({

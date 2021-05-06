@@ -17,7 +17,7 @@
   float: left;
   transition: 0.3s;
 
-  &_area{
+  &_area {
     transition: 0.3s;
     user-select: none;
     overflow: auto;
@@ -27,7 +27,12 @@
     background: var(--background-color);
     display: flex;
     align-items: center;
-    cursor: ew-resize;
+    cursor: grab;
+
+    &:active{
+      cursor: grabbing;
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -48,30 +53,29 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border-radius: .5rem;
-    margin: .5rem;
+    border-radius: 4px;
+    margin: 1rem;
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32), 0 1px 2px rgba(0, 0, 0, 0.24);
+
     &:hover {
       border: 2px solid green;
       transform: scale(1.05);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.52), 0 3px 4px rgba(0, 0, 0, 0.44);
     }
 
-    &_deleteButton{
-      font-size: 2rem;
+    &_deleteButton {
       position: absolute;
-      top: .5rem;
-      right: 1.5rem;
-      &:hover{
-        transform: scale(1.05);
-        color: #dd3345;
+      top: 1rem;
+      right: 1rem;
+
+      &:hover {
+        transform: scale(1.10);
         cursor: pointer;
       }
-
     }
 
-    &_photo {
+    .photo {
       box-sizing: border-box;
       background-color: #F5BA58;
       border-radius: 4px;
@@ -80,6 +84,7 @@
     }
 
     &_info {
+      //background-color: #ff3860;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -87,19 +92,32 @@
       font-size: .8rem;
       width: 100%;
       height: 100%;
-      background-color:#ff3860;
-      .title {
-        font-size: 1rem;
-        //background-color: #0086e4;
-      }
+      overflow: hidden;
 
-      .description {
-        margin-top: .5rem;
-        //background-color: #dd3345;
-      }
+      &_container {
+        box-sizing: border-box;
+        padding: .3rem;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
 
-      .link{
+        .title {
+          font-size: 1.1rem;
 
+          //background-color: #0086e4;
+        }
+
+        .description {
+          margin-top: .5rem;
+          //background-color: #dd3345;
+        }
+
+        .link {
+          margin: .5rem 0;
+          text-decoration: none;
+        }
       }
     }
   }

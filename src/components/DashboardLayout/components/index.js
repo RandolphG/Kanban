@@ -5,3 +5,4 @@ export { default as Options } from "./Options";
 export { default as AddBoardInput } from "./AddBoardInput";
 export { default as LogoutButton } from "./LogoutButton";
 export { default as RenderBoards } from "./RenderBoards";
+export { default as Time } from "./Time";
