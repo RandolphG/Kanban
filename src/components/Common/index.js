@@ -1,3 +1,3 @@
 export * from "./Logo";
-export { Notification } from "./Notification";
+export * from "./Notification";
 export { FilterPanel } from "./FilterPanel";

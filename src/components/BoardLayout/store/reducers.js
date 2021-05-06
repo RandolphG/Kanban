@@ -39,6 +39,12 @@ export const reducers = {
 
     return { ...state, [newID]: newBoard };
   },
+  remove: (state, action) => {
+    const { boardID } = action.payload;
+    const newState = state;
+    delete newState[boardID];
+    // return newState;
+  },
   setActiveBoard: (state, action) => {
     return { ...state, activeBoard: action.payload };
   },

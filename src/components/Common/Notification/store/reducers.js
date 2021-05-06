@@ -2,7 +2,8 @@ import { add, remove } from "../utils";
 
 export const reducers = {
   onAddNotification: (state, action) => {
-    const message = action.payload.message;
+    const { title } = action.payload;
+    const message = `${title} added`;
 
     return {
       ...state,

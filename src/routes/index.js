@@ -17,18 +17,16 @@ const AppRouter = () => {
   return (
     <Router>
       <Route
-        render={({ location }) => {
-          return (
-            <>
-              <Notification />
-              <Switch location={location} key={location.pathname}>
-                <Route exact path="/dashboard" component={DashboardLayout} />
-                <Route path="/:boardID" component={BoardLayout} />
-                <Route exact path="/" component={LoginLayout} />
-              </Switch>
-            </>
-          );
-        }}
+        render={({ location }) => (
+          <AnimatePresence exitBeforeEnter>
+            <Notification />
+            <Switch location={location} key={location.pathname}>
+              <Route exact path="/dashboard" component={DashboardLayout} />
+              <Route path="/:boardID" component={BoardLayout} />
+              <Route exact path="/" component={LoginLayout} />
+            </Switch>
+          </AnimatePresence>
+        )}
       />
     </Router>
   );

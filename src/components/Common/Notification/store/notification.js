@@ -2,16 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import { reducers } from "./reducers";
 import { initialState } from "./initialState";
 
-export const appSlice = createSlice({
-  name: "app",
+export const notificationSlice = createSlice({
+  name: "notifications",
   initialState,
   reducers,
 });
 
 export const {
-  setLogoColor,
   onAddNotification,
   onRemoveNotification,
-} = appSlice.actions;
+} = notificationSlice.actions;
 
-export default appSlice.reducer;
+export default notificationSlice.reducer;

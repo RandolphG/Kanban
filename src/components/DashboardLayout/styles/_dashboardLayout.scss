@@ -4,7 +4,7 @@
 $title-color: #626262;
 $label-font-size: 1rem;
 $font-main: 'operatorMonoBoldItalic', sans-serif;
-$addNewProjectButtonColor: #0086e4;
+$defaultBlueColor: #0086e4;
 
 .dashboardLayout {
   box-sizing: border-box;
@@ -17,17 +17,20 @@ $addNewProjectButtonColor: #0086e4;
   overflow: hidden;
   overscroll-behavior-x: none;
 
-  &_container{
+  &_container {
     position: absolute;
     top: 7rem;
     right: 2rem;
     width: fit-content;
     display: flex;
+    overflow: hidden;
+
     &_form {
       background-color: transparent;
       display: flex;
       justify-content: center;
       border-radius: 4px;
+
       &_input {
         //background: #ff3860;
         border: 2px solid black;
@@ -42,14 +45,16 @@ $addNewProjectButtonColor: #0086e4;
         margin-right: .5rem;
       }
     }
+
     &_cancelButton {
       color: white;
+      width: 70px;
       border-radius: 4px;
       font-family: $font-main;
-      background-color: $addNewProjectButtonColor;
+      font-size: 1rem;
+      background-color: $defaultBlueColor;
     }
   }
-
 
 
   &_title {
@@ -86,12 +91,19 @@ $addNewProjectButtonColor: #0086e4;
       width: 1rem;
       height: 1rem;
     }
+
+    &_projects {
+      color: black;
+      margin-right: .4rem;
+      border-radius: 50%;
+    }
   }
 
 
-  &_addNewProject-button {
+  &_addProjectButton {
     font-family: $font-main;
-    background: $addNewProjectButtonColor;
+    font-size: 1rem;
+    background: $defaultBlueColor;
     color: white;
     position: absolute;
     right: 2rem;
@@ -102,15 +114,16 @@ $addNewProjectButtonColor: #0086e4;
 
 
     &:hover {
-      background-color: lighten($addNewProjectButtonColor, 20%);
+      background-color: lighten($defaultBlueColor, 10%);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32), 0 1px 2px rgba(0, 0, 0, 0.24);
       transform: scale(1.05);
-      color: #626262;
       cursor: pointer;
     }
   }
 }
 
 .signOutButton {
+  background: transparent;
   font-family: $font-main;
   font-size: 1.5rem;
   position: absolute;
@@ -120,7 +133,12 @@ $addNewProjectButtonColor: #0086e4;
   border: none;
 
   &:hover {
-    background: black;
-    color: white;
+    color: $defaultBlueColor;
+    transform: scale(1.03);
   }
+}
+
+.logout-svg{
+  height: 40px;
+  background:transparent;
 }

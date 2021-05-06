@@ -36,7 +36,7 @@ const Logo = () => {
     return () => {
       clearInterval(changeColor);
     };
-  }, []);
+  }, [logoColor]);
 
   return (
     <div className="logo">

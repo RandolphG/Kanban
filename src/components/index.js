@@ -1,6 +1,6 @@
-export { BoardLayout } from "./BoardLayout";
-export { DashboardLayout } from "./DashboardLayout";
-export { ListLayout } from "./ListLayout";
-export { CardLayout } from "./CardLayout";
-export { LoginLayout } from "./LoginLayout";
+export * from "./BoardLayout";
+export * from "./DashboardLayout";
+export * from "./ListLayout";
+export * from "./CardLayout";
+export * from "./LoginLayout";
 export * from "./Common";

@@ -5,4 +5,9 @@ export const reducers = {
 
     return [...state, newKeyValue];
   },
+  removeBoard: (state, action) => {
+    const { boardID } = action.payload;
+    const newState = state;
+    return newState.filter((val) => val !== boardID);
+  },
 };

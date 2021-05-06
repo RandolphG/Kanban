@@ -8,6 +8,6 @@ export const dashboardSlice = createSlice({
   reducers,
 });
 
-export const { addBoard } = dashboardSlice.actions;
+export const { addBoard, removeBoard } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

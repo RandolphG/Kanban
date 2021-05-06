@@ -1,21 +1,21 @@
-const ease = { ease: "easeInOut" };
+/* motion settings for Dashboard layout */
 
-const duration = 3.0;
+const transition = { duration: 1.0 };
 
-const transition = {
-  duration,
-  ease,
+export const dashboardLayout = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
-/* dashboard animation */
-export const dashboardAnimation = {
-  initial: { opacity: 0, transition },
-  animate: { opacity: 1, transition },
-  exit: { opacity: 0, transition },
-};
-
-export const addInputAnimation = {
-  initial: { x: 100, opacity: 0, transition },
+export const title = {
+  initial: { x: -50, opacity: 0 },
   animate: { x: 0, opacity: 1, transition },
-  exit: { x: 100, opacity: 0, transition },
+  exit: { y: -30, opacity: 0, transition },
+};
+
+export const input = {
+  initial: { x: -100, opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  exit: { x: -100, opacity: 0 },
 };

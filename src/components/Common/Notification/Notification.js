@@ -2,7 +2,8 @@ import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NotificationCloseButton } from "./NotificationCloseButton";
 import { useDispatch, useSelector } from "react-redux";
-import { getNotifications, onRemoveNotification } from "../../../store";
+import { getNotifications, onRemoveNotification } from "./store";
+import "./styles/_notifications.scss";
 
 const Notification = () => {
   const dispatch = useDispatch();

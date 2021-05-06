@@ -13,6 +13,8 @@ import {
 import { getCardDetails, getFilteredCards } from "../CardLayout";
 import { AddListButton } from "./components";
 import { FilterPanel } from "../Common";
+import { motion } from "framer-motion";
+import { boardLayout } from "./motionSettings";
 import "./styles/_boardLayout.scss";
 
 const BoardLayout = () => {
@@ -24,14 +26,9 @@ const BoardLayout = () => {
   const card = useSelector(getCardDetails);
   const boards = useSelector(getBoards);
   const { boardID } = useParams();
-  const board = boards[boardID];
-
   const show = useSelector(getFilterPanel);
   const filteredCards = useSelector(getFilteredCards);
-
-  useEffect(() => {
-    dispatch(setActiveBoard(boardID));
-  }, []);
+  const board = boards[boardID];
 
   function onDragEnd(result) {
     const { destination, source, draggableId, type } = result;
@@ -114,9 +111,13 @@ const BoardLayout = () => {
 
   nothingToRender();
 
+  useEffect(() => {
+    dispatch(setActiveBoard(boardID));
+  }, []);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div key="board" className="boardLayout">
+      <motion.div {...boardLayout} key="board" className="boardLayout">
         <FilterPanel />
         <div className="boardLayout__container">
           {Topbar()}
@@ -158,7 +159,7 @@ const BoardLayout = () => {
             )}
           </Droppable>
         </div>
-      </div>
+      </motion.div>
     </DragDropContext>
   );
 };
