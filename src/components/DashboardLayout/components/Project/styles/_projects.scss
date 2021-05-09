@@ -5,6 +5,8 @@
   --background-color: transparent;
 }
 
+$defaultBlueColor: #0086e4;
+
 .projectDragContainer {
   //background: green;
   padding: 1rem;
@@ -59,7 +61,7 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     &:hover {
-      border: 2px solid green;
+      border: 2px solid $defaultBlueColor;
       transform: scale(1.05);
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.52), 0 3px 4px rgba(0, 0, 0, 0.44);
     }
@@ -103,6 +105,30 @@
         width: 100%;
         height: 100%;
 
+        &_section {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          background: green;
+          &_items {
+            color: black;
+            border: solid black 2px;
+            margin: .5rem .5rem .5rem 0;
+            padding: .5rem;
+            border-radius: 4px;
+            height: 65px;
+            width: 150px;
+          }
+          &_nothingToDisplay {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 100%;
+            margin: .5rem .5rem .5rem 0;
+          }
+        }
+
         .title {
           font-size: 1.1rem;
 
@@ -115,6 +141,10 @@
         }
 
         .link {
+          font-size: 1.5rem;
+          display: flex;
+          align-self: center;
+          background-color: #dd3345;
           margin: .5rem 0;
           text-decoration: none;
         }

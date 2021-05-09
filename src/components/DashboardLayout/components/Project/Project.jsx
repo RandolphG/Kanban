@@ -5,17 +5,24 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoards } from "../../../BoardLayout";
 import { getList } from "../../../ListLayout";
+import { projectsAnim } from "./motionSettings";
 
 /* TODO
-    resolve deleting issue regarding the INTERSECTION OBSERVER
-*   Add the image the LINK
+    Resolve deleting issue regarding the INTERSECTION OBSERVER
+    Add the image the LINK
     Add hover animation to scale image
-    Resolve scrolling to end all the time issue*/
+    Resolve scrolling to end all the time issue
+*/
 
 const Project = forwardRef(({ title, boardID, index }, ref) => {
   const dispatch = useDispatch();
   const boards = useSelector(getBoards);
   const lists = useSelector(getList);
+
+  function deleteBoard() {
+    // dispatch(removeBoard({ boardID }));
+    // dispatch(remove({ boardID }));
+  }
 
   const setReferences = (element) => {
     if (ref && ref.current) {
@@ -36,7 +43,7 @@ const Project = forwardRef(({ title, boardID, index }, ref) => {
     </span>
   );
 
-  const ProfileSvg = () => (
+  const optionsSvg = () => (
     <svg height="16" viewBox="0 0 16 16" width="16" role="img">
       <clipPath id="a">
         <path d="m0 0h16v16h-16z" />
@@ -53,80 +60,52 @@ const Project = forwardRef(({ title, boardID, index }, ref) => {
     }
   }, []);
 
+  const Nothing = () => (
+    <span className="projects_link_info_container_section_nothingToDisplay">
+      nothing to display
+    </span>
+  );
+
+  const Lists = ({ item, idx }) => (
+    <div key={idx} className="projects_link_info_container_section_items">
+      {lists[item].title} <br />
+      tasks : {lists[item].cards.length} <br />
+      tags:
+    </div>
+  );
+
+  const GoToBoards = () => (
+    <Link className="link" to={boardID}>
+      Preview
+    </Link>
+  );
+
   return (
     <motion.div
       ref={(element) => setReferences(element)}
       className="projects"
-      initial={{ x: 50, opacity: 0, scale: 0.75 }}
-      animate={{ x: 0, opacity: 1, scale: 1 }}
-      exit={{ x: 50, opacity: 0, scale: 0 }}
-      transition={{ duration: 0.2 }}
-      fo
+      {...projectsAnim}
     >
       <span className="projects_link" key={boardID}>
-        <span
-          onClick={() => {
-            // dispatch(removeBoard({ boardID }));
-            // dispatch(remove({ boardID }));
-          }}
-          className="projects_link_deleteButton"
-        >
-          {ProfileSvg()}
+        <span onClick={deleteBoard} className="projects_link_deleteButton">
+          {optionsSvg()}
         </span>
         {Image()}
         <div className="projects_link_info">
           <div className="projects_link_info_container">
             {Title()}
-            <span
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                width: "100%",
-                background: "green",
-              }}
-            >
-              {boards[boardID].lists.length ? (
-                boards[boardID].lists.map((item, idx) => (
-                  <div
-                    key={idx}
-                    style={{
-                      color: "black",
-                      border: "solid black 2px",
-                      margin: ".5rem .5rem .5rem 0",
-                      padding: ".5rem",
-                      borderRadius: "4px",
-                      height: "65px",
-                      width: "150px",
-                    }}
-                  >
-                    {lists[item].title} <br />
-                    tasks : {lists[item].cards.length} <br />
-                    tags:
-                  </div>
-                ))
-              ) : (
-                <span
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "50px",
-                    width: "100%",
-                    margin: ".5rem .5rem .5rem 0",
-                  }}
-                >
-                  nothing to display
-                </span>
-              )}
+            <span className="projects_link_info_container_section">
+              {boards[boardID].lists.length
+                ? boards[boardID].lists.map((item, idx) => Lists({ item, idx }))
+                : Nothing()}
             </span>
             {Description()}
-            <Link className="link" to={`/board-0`}>
-              Preview
-            </Link>
+            {GoToBoards()}
           </div>
         </div>
       </span>
     </motion.div>
   );
 });
+
 export default Project;

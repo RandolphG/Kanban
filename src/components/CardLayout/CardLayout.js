@@ -10,12 +10,8 @@ import {
   CardReporter,
 } from "./components";
 import "./styles/_cardLayout.scss";
-import { useSelector } from "react-redux";
-import { getFilterPanel } from "../BoardLayout";
 
 const CardLayout = React.memo(({ card, listID, index }) => {
-  const show = useSelector(getFilterPanel);
-
   const TopBar = () => (
     <div className="cardLayout__topbar">
       <CardTitle card={card} />

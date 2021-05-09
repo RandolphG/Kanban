@@ -1,0 +1,32 @@
+@import "src/components/DashboardLayout/styles/fonts";
+@import "src/components/DashboardLayout/styles/colors";
+
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  padding: .3rem;
+  border-radius: 4px;
+
+  &_name{
+    color: black;
+    margin-right: .5rem;
+  }
+
+  &_projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: #F5BA58;
+    margin-right: .4rem;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    cursor: context-menu;
+  }
+}

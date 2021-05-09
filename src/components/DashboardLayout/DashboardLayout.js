@@ -11,7 +11,6 @@ import {
   LogoutButton,
   Options,
   RenderBoards,
-  Time,
   Title,
 } from "./components";
 import { dashboardLayout } from "./motionSettings";
@@ -21,10 +20,10 @@ import "./styles/_dashboardLayout.scss";
 const DashboardLayout = () => {
   let history = useHistory();
   let singleRefs = useRef([]);
-  const [isOpen, toggleOpen] = useCycle(false, true);
   let mouseDown = false;
   let startX, scrollLeft;
   const dispatch = useDispatch();
+  const [isOpen, toggleOpen] = useCycle(false, true);
   const boardOrder = useSelector(getDashboard);
   const boards = useSelector(getBoards);
   const draggableArea = useRef();
@@ -104,7 +103,6 @@ const DashboardLayout = () => {
       className="dashboardLayout"
     >
       {Title()}
-      {/*{Time()}*/}
       {Options({ projects })}
       {AddProjectButton({ isOpen, toggleOpen })}
       {AddBoardInput({

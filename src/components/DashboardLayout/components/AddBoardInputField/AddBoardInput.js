@@ -1,23 +1,8 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { input } from "../motionSettings";
 import React from "react";
-
-const variants = {
-  open: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      x: { stiffness: 1000, velocity: -100 },
-    },
-  },
-  closed: {
-    x: -100,
-    opacity: 0,
-    transition: {
-      x: { stiffness: 1000 },
-    },
-  },
-};
+import { AnimatePresence, motion } from "framer-motion";
+import { input } from "./motionSettings";
+import { variants } from "./motionSettings";
+import "./styles/_addBoardInput.scss";
 
 const AddBoardInput = ({
   title,
@@ -33,9 +18,9 @@ const AddBoardInput = ({
   }
 
   const InputField = () => (
-    <form className="dashboardLayout_container_form" onSubmit={handleSubmit}>
+    <form className="addBoardInput_form" onSubmit={handleSubmit}>
       <input
-        className="dashboardLayout_container_form_input"
+        className="addBoardInput_form_input"
         onChange={handleChange}
         value={title}
         placeholder="type the name of project..."
@@ -45,10 +30,7 @@ const AddBoardInput = ({
   );
 
   const CancelButton = () => (
-    <button
-      onClick={cancelInput}
-      className="dashboardLayout_container_cancelButton"
-    >
+    <button onClick={cancelInput} className="addBoardInput_cancelButton">
       Cancel
     </button>
   );
@@ -56,8 +38,8 @@ const AddBoardInput = ({
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
+        className="addBoardInput"
         key="addBoardInput"
-        className="dashboardLayout_container"
         initial={false}
         animate={isOpen ? "open" : "closed"}
         variants={variants}

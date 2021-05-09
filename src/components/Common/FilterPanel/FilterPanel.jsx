@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -11,56 +11,31 @@ import {
 } from "../../CardLayout";
 import { getFilterPanel } from "../../BoardLayout";
 import "./styles/_filterPanel.scss";
+import { CloseButton, Tag } from "./components";
 
-const FilterPanel = () => {
+const variants = {
+  open: {
+    transition: { staggerChildren: 0.27, delayChildren: 0.7 },
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+  },
+};
+
+/* TODO convert to React portal instead of zIndex */
+
+/**
+ * Filter panel for unique tags
+ * @returns {JSX.Element}
+ * @constructor
+ */
+const FilterPanel = ({ isOpen, toggle }) => {
   const dispatch = useDispatch();
   const cards = useSelector(getCardDetails);
   const tags = useSelector(getTags);
   const show = useSelector(getFilterPanel);
   const filteredCards = useSelector(getFilteredCards);
   const filter = useSelector(getFilter);
-
-  /*
-    const uniqueTags = Object.entries(cards).reduce((set, [cardId, card]) => {
-    card.tags.forEach((tag) => set.add(tag));
-    return set;
-  }, new Set());
-  */
-
-  const uniqueTags = Array.from(
-    Object.entries(cards).reduce((set, [cardId, card]) => {
-      card.tags.forEach((tag) => set.add(tag));
-      return set;
-    }, new Set())
-  );
-
-  Object.entries(cards).reduce((array, [cardId, card]) => {
-    if (card.tags.includes(uniqueTags)) {
-      console.log(`included`);
-    }
-  });
-
-  const Tag = ({ index, value }) => {
-    const [on, setCloseButton] = useState({ flag: false });
-
-    const clicked = () => {
-      setCloseButton({ flag: !on });
-    };
-
-    return (
-      <li
-        onClick={() => {
-          clicked();
-          dispatch(filterResults({ value }));
-        }}
-        className="tag"
-        key={index}
-      >
-        <span className="tag-title">{value}</span>
-        {on.value && <span className="tag-close-icon">&times;</span>}
-      </li>
-    );
-  };
 
   useEffect(() => {
     const uniqueTags = Array.from(
@@ -73,22 +48,50 @@ const FilterPanel = () => {
     dispatch(setAllTags({ uniqueTags }));
   }, [cards]);
 
+  const Tags = () => (
+    <div className="tags-input">
+      <motion.ul id="tags" variants={variants}>
+        {tags.map((value, index) => (
+          <Tag key={index} index={index} value={value} />
+        ))}
+      </motion.ul>
+    </div>
+  );
+
+  const Labels = () => (
+    <div className="filter-panel__elements_label">
+      <span className="filter-panel__elements_label_title">
+        Filter by category
+      </span>
+      <span className="filter-panel__elements_label_subtitle">
+        {tags.length} tags discovered
+      </span>
+    </div>
+  );
+
   return (
-    <AnimatePresence>
-      {show ? (
-        <div className="filterBackground">
-          <motion.div className="filter-panel">
-            <div className="filter-panel__container">
-              <div className="tags-input">
-                <ul id="tags">
-                  {tags.map((value, index) => (
-                    <Tag key={index} index={index} value={value} />
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+    <AnimatePresence exitBeforeEnter>
+      {isOpen ? (
+        <motion.div
+          className="filterBackground"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <div className="filter-panel">
+            <motion.div
+              className="filter-panel__elements"
+              initial={{ y: 75, x: 75, opacity: 0 }}
+              animate={{ y: 0, x: 0, opacity: 1 }}
+              exit={{ y: -50, x: -50, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 100 }}
+            >
+              {Labels()}
+              {Tags()}
+              {CloseButton({ toggle })}
+            </motion.div>
+          </div>
+        </motion.div>
       ) : null}
     </AnimatePresence>
   );

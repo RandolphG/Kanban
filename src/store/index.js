@@ -9,8 +9,10 @@ import list from "../components/ListLayout/store/list";
 import dashboard from "../components/DashboardLayout/store/dashboard";
 import logo from "../components/Common/Logo/store/logo";
 import notification from "../components/Common/Notification/store/notification";
+import user from "./userInfo/user";
 
 const reducers = combineReducers({
+  user,
   notification,
   logo,
   board,
@@ -31,3 +33,5 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   middleware: [thunk],
 });
+
+export * from "./userInfo";
