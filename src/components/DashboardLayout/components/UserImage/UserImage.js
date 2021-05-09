@@ -3,7 +3,7 @@ import image from "./assets/_default_profile_img.png";
 import "./styles/_userImage.scss";
 
 /**
- * UserImage
+ * editable user profile image
  * @returns {JSX.Element}
  * @constructor
  */
@@ -20,7 +20,6 @@ const UserImage = () => {
         blob: theFile?.target?.result,
         name: file.name,
       };
-      // @ts-ignore
       setImageFile(data.blob);
     };
     reader.onerror = function (error) {

@@ -1,11 +1,12 @@
 import React, { forwardRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./styles/_projects.scss";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoards } from "../../../BoardLayout";
 import { getList } from "../../../ListLayout";
 import { projectsAnim } from "./motionSettings";
+import { Tooltip } from "../../../Common";
+import "./styles/_projects.scss";
 
 /* TODO
     Resolve deleting issue regarding the INTERSECTION OBSERVER
@@ -24,11 +25,11 @@ const Project = forwardRef(({ title, boardID, index }, ref) => {
     // dispatch(remove({ boardID }));
   }
 
-  const setReferences = (element) => {
+  function setReferences(element) {
     if (ref && ref.current) {
       ref.current[index] = element;
     }
-  };
+  }
 
   /* images */
   const Image = () => <span className="photo" />;
@@ -54,12 +55,6 @@ const Project = forwardRef(({ title, boardID, index }, ref) => {
     </svg>
   );
 
-  useEffect(() => {
-    if (ref && ref.current) {
-      ref.current[index].scrollIntoView({ behavior: "smooth", block: "end" });
-    }
-  }, []);
-
   const Nothing = () => (
     <span className="projects_link_info_container_section_nothingToDisplay">
       nothing to display
@@ -79,6 +74,12 @@ const Project = forwardRef(({ title, boardID, index }, ref) => {
       Preview
     </Link>
   );
+
+  useEffect(() => {
+    if (ref && ref.current) {
+      ref.current[index].scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, []);
 
   return (
     <motion.div
