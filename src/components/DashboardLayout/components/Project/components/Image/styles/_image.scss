@@ -1,0 +1,110 @@
+.image {
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 100%;
+  height: 450px;
+  position: relative;
+  clear: both;
+  margin: 0 auto;
+  max-width: 1000px;
+  list-style: none;
+  text-align: center;
+  overflow: hidden;
+
+  figure {
+    position: relative;
+    float: left;
+    overflow: hidden;
+    min-width: 420px;
+    max-width: 480px;
+    max-height: 360px;
+    width: 48%;
+    height: auto;
+    background: #3498db;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      img {
+        opacity: 0.6;
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+
+      figcaption::before {
+        transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
+      }
+
+      p {
+        opacity: 1;
+        transition-delay: 0.1s;
+      }
+    }
+
+    img {
+      position: relative;
+      display: block;
+      min-height: 100%;
+      max-width: 100%;
+      opacity: 0.95;
+      transition: opacity 0.35s, transform 0.35s;
+      transform: scale3d(1.05, 1.05, 1);
+    }
+
+    figcaption {
+      //padding: 2em;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 1.25em;
+      backface-visibility: hidden;
+
+      p {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 3em;
+        padding: 0 1em;
+        max-width: 250px;
+        border-right: 4px solid #fff;
+        text-align: right;
+        opacity: 0;
+        -webkit-transition: opacity 0.35s;
+        transition: opacity 0.35s;
+      }
+
+
+      a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        text-indent: 200%;
+        white-space: nowrap;
+        font-size: 0;
+        opacity: 0;
+      }
+
+      &::before {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.5);
+        content: '';
+        -webkit-transition: -webkit-transform 0.6s;
+        transition: transform 0.6s;
+        -webkit-transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+        transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -100%, 0);
+      }
+
+      &::after {
+        pointer-events: none;
+      }
+    }
+  }
+}
+

@@ -99,8 +99,8 @@ const DashboardLayout = () => {
   return (
     <motion.div
       key="dashboard"
-      {...dashboardLayout}
       className="dashboardLayout"
+      {...dashboardLayout}
     >
       {Title()}
       {Options({ projects })}
