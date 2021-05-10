@@ -1,6 +1,6 @@
 export { Image } from "./Image";
-export { default as Nothing } from "./Nothing";
-export { default as Description } from "./Description";
-export { default as OptionsSvg } from "./OptionsSvg";
-export { default as GoToBoards } from "./GoToBoards";
+export { Button } from "./Button";
+export { BoardSection } from "./BoardSection";
 export { default as Lists } from "./Lists";
+export { default as Nothing } from "./Nothing";
+export { default as OptionsSvg } from "./OptionsSvg";

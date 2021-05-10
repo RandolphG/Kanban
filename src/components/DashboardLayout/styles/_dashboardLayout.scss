@@ -7,6 +7,7 @@ $font-main: 'operatorMonoBoldItalic', sans-serif;
 $defaultBlueColor: #0086e4;
 
 $gradientBackground: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+$gradientDarkTheme: linear-gradient(-45deg, #070707, #474747, #8a8a8a, #676767);
 $backgroundSize: 400% 400%;
 
 @keyframes gradient {
@@ -70,7 +71,7 @@ $backgroundSize: 400% 400%;
 
 .projectDragContainer {
   padding: 1rem;
-  height: 440px;
+  height: 500px;
   width: 100%;
   display: flex;
   flex-direction: row;

@@ -4,21 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBoards } from "../../../BoardLayout";
 import { getList } from "../../../ListLayout";
 import { projectsAnim } from "./motionSettings";
-import {
-  Description,
-  GoToBoards,
-  Image,
-  Lists,
-  Nothing,
-  OptionsSvg,
-} from "./components";
+import { Button, Image, BoardSection, Nothing, OptionsSvg } from "./components";
 import "./styles/_projects.scss";
 
 /* TODO
-    Resolve deleting issue regarding the Intersection Observer
-    Add the image the Link
-    Add hover animation to scale image
-    Resolve scrolling to end all the time issue
+    Resolve deleting issue.
+    Resolve scrolling issue.
+    Add Tags component.
 */
 
 /**
@@ -47,14 +39,6 @@ const Project = forwardRef(({ title, boardID, index }, ref) => {
     }
   }, []);
 
-  const BoardSection = ({ boards, boardID, lists }) => (
-    <span className="projects_link_info_container_section">
-      {boards[boardID].lists.length
-        ? boards[boardID].lists.map((item, idx) => Lists({ lists, item, idx }))
-        : Nothing()}
-    </span>
-  );
-
   const Tags = () => (
     <span className="tags">
       {[0, 1, 2, 3, 4].map((i, idx) => (
@@ -78,16 +62,8 @@ const Project = forwardRef(({ title, boardID, index }, ref) => {
         {Image({ title })}
         <div className="projects_link_info">
           <div className="projects_link_info_container">
-            <span className="projects_link_info_container_section">
-              {boards[boardID].lists.length
-                ? boards[boardID].lists.map((item, idx) =>
-                    Lists({ lists, item, idx })
-                  )
-                : Nothing()}
-            </span>
-            {/*{Tags()}*/}
-            {/*{Description()}*/}
-            {GoToBoards({ boardID })}
+            {BoardSection({ boards, boardID, lists })}
+            {Button({ boardID })}
           </div>
         </div>
       </span>

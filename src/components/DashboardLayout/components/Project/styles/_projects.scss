@@ -16,7 +16,7 @@ $defaultBlueColor: #0086e4;
     text-decoration: none;
     border: 2px solid black;
     width: 375px;
-    height: 375px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -36,6 +36,7 @@ $defaultBlueColor: #0086e4;
       position: absolute;
       top: 1rem;
       right: 1rem;
+      z-index: 100;
 
       &:hover {
         transform: scale(1.10);
@@ -107,15 +108,6 @@ $defaultBlueColor: #0086e4;
 
         .description {
           margin-top: .5rem;
-        }
-
-        .link {
-          color: white;
-          font-size: 1.5rem;
-          display: flex;
-          align-self: center;
-          margin: .5rem 0;
-          text-decoration: none;
         }
       }
     }
