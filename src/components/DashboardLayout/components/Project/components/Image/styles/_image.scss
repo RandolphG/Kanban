@@ -1,6 +1,5 @@
 .image {
   box-sizing: border-box;
-  border-radius: 4px;
   width: 100%;
   height: 450px;
   position: relative;
@@ -72,7 +71,6 @@
         text-shadow: 0 4px 6px rgba(0, 0, 0, 0.52), 0 3px 4px rgba(0, 0, 0, 0.44);
         transition: opacity 0.35s;
       }
-
 
       a {
         position: absolute;

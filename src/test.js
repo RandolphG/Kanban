@@ -1,3 +1,4 @@
+/*
 const cards = {
   "card-0": {
     display: false,
@@ -67,3 +68,4 @@ listOfCards.forEach((item) => {
 });
 
 console.log(`\nmatched items`, matched);
+*/

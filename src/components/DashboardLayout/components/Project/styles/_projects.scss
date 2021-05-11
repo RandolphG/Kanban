@@ -12,6 +12,7 @@ $defaultBlueColor: #0086e4;
   transition: 0.3s;
 
   &_link {
+    overflow: hidden;
     position: relative;
     text-decoration: none;
     border: 2px solid black;

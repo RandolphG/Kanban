@@ -1,0 +1,17 @@
+.scrollIntro {
+  box-sizing: border-box;
+  background: #ddd;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lowerText {
+  position: absolute;
+  top: 0;
+  font-size: 3rem;
+}
+
+.upperText {
+  font-size: 3rem;
+}

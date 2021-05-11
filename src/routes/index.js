@@ -5,7 +5,7 @@ import {
   Notification,
   DashboardLayout,
   BoardLayout,
-  LoginLayout,
+  ScrollIntro,
 } from "../components/";
 
 /**
@@ -23,7 +23,7 @@ const AppRouter = () => {
             <Switch location={location} key={location.pathname}>
               <Route exact path="/dashboard" component={DashboardLayout} />
               <Route path="/:boardID" component={BoardLayout} />
-              <Route exact path="/" component={LoginLayout} />
+              <Route exact path="/" component={ScrollIntro} />
             </Switch>
           </AnimatePresence>
         )}

@@ -6,7 +6,7 @@ import "./styles/_loginLayout.scss";
 import ErrorBoundary from "../../ErrorBoundary";
 import { Divider, Inputfield, Social } from "./components";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserState, setName } from "../../store/userInfo";
+import { getUserState, setName } from "../../store";
 
 const LoginLayout = memo(() => {
   const history = useHistory();
@@ -30,8 +30,6 @@ const LoginLayout = memo(() => {
       [e.target.name]: e.target.value,
     });
   }
-
-  console.log(`USER STATE`, userState);
 
   return (
     <ErrorBoundary>
