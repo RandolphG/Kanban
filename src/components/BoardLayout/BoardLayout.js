@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getList, ListLayout, dragList } from "../ListLayout";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,11 +11,13 @@ import {
   showFilterPanel,
 } from "./store";
 import { getCardDetails, getFilteredCards } from "../CardLayout";
-import { AddListButton } from "./components";
-import { FilterPanel } from "../Common";
+import { AddListButton, BackButton } from "./components";
+import { FilterPanel, Logo } from "../Common";
 import { motion, useCycle } from "framer-motion";
 import { boardLayout } from "./motionSettings";
 import "./styles/_boardLayout.scss";
+import { title } from "../DashboardLayout/motionSettings";
+import { Options } from "../DashboardLayout/components";
 
 const BoardLayout = () => {
   let mouseDown = false;
@@ -30,6 +32,7 @@ const BoardLayout = () => {
   const filteredCards = useSelector(getFilteredCards);
   const board = boards[boardID];
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const projects = Object.keys(boards).length - 3;
 
   function onDragEnd(result) {
     const { destination, source, draggableId, type } = result;
@@ -96,22 +99,6 @@ const BoardLayout = () => {
     }
   };
 
-  const ModalBackButtonSvg = () => (
-    <Link style={{ width: "32px", color: "black" }} to="/dashboard">
-      <svg
-        viewBox="0 0 16 16"
-        fill="none"
-        role="presentation"
-        focusable="false"
-      >
-        <path
-          d="M0 12.782c0 .85.1 1.65.3 2.45.1.45.35.45.5 0 1.05-2.65 2.75-5.15 5.55-5.65H8v2.2c0 1 .6 1.3 1.3.7l6.4-5.5c.35-.3.35-.8 0-1.15L9.3.332c-.7-.65-1.3-.3-1.3.65v2.35c-4.8.8-8 4.7-8 9.45z"
-          fill="currentColor"
-        />
-      </svg>
-    </Link>
-  );
-
   const Topbar = () => (
     <div className="boardLayout__container_topbar">
       <h2>{board.title}</h2>
@@ -123,11 +110,16 @@ const BoardLayout = () => {
       >
         filter
       </h2>
-      {ModalBackButtonSvg()}
     </div>
   );
 
   nothingToRender();
+
+  const Title = () => (
+    <motion.div {...title} className="boardLayout_title">
+      <Logo />
+    </motion.div>
+  );
 
   useEffect(() => {
     dispatch(setActiveBoard(boardID));
@@ -143,6 +135,9 @@ const BoardLayout = () => {
         animate={isOpen ? "open" : "closed"}
       >
         <FilterPanel isOpen={isOpen} toggle={toggleOpen} />
+        {Title()}
+        {Options({ projects })}
+        {BackButton()}
         <div className="boardLayout__container">
           {Topbar()}
           <Droppable droppableId="all-lists" direction="horizontal" type="list">

@@ -33,7 +33,7 @@ export const stayLoggedIn = {
 };
 
 export const signInButton = {
-  initial: { x: -50, opacity: 0 },
-  animate: { x: 0, opacity: 1, transition },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition },
   exit: { y: 30, opacity: 0, transition },
 };

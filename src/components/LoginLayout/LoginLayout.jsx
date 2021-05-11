@@ -5,13 +5,12 @@ import { loginLayout } from "./motionSettings";
 import "./styles/_loginLayout.scss";
 import ErrorBoundary from "../../ErrorBoundary";
 import { Divider, Inputfield, Social } from "./components";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserState, setName } from "../../store";
+import { useDispatch } from "react-redux";
+import { setName } from "../../store";
 
 const LoginLayout = memo(() => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userState = useSelector(getUserState);
 
   const [credentials, setCredentials] = useState({
     reporter: "",

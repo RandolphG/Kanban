@@ -5,20 +5,40 @@
 
 $title-color: #626262;
 $label-font-size: 1rem;
+$defaultBlueColor: #0086e4;
+$gradientBackground: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+$backgroundSize: 400% 400%;
 
 .boardLayout {
-  //background-color: white;
   box-sizing: border-box;
+  background: $gradientBackground;
+  background-size: $backgroundSize;
+  animation: gradient 15s ease infinite;
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100vh;
   position: relative;
   overflow: hidden;
 
+  &_title {
+    position: absolute;
+    top: 3rem;
+    left: 2rem;
+  }
+
+  &_backButton {
+    color: black;
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    bottom:2rem;
+    left:2rem;
+    z-index: 1000;
+  }
+
   &__container {
-    //background-color: #F5BA58;
     box-sizing: border-box;
     max-width: 1200px;
     width: 80%;
@@ -26,12 +46,12 @@ $label-font-size: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: start;
+
     &::-webkit-scrollbar {
       display: none;
     }
 
     &_topbar {
-      //background-color: #626262;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -47,8 +67,9 @@ $label-font-size: 1rem;
       width: 100%;
       height: 100%;
       float: left;
+
       &_boards {
-        background-color:#0086e4;
+        background-color: #0086e4;
         display: flex;
         height: 100%;
         width: fit-content;
@@ -60,6 +81,7 @@ $label-font-size: 1rem;
         cursor: ew-resize;
         box-shadow: inset 0 0 10px;
         user-select: none;
+
         &::-webkit-scrollbar {
           display: none;
         }

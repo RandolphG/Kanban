@@ -10,6 +10,18 @@
   text-align: center;
   overflow: hidden;
 
+  &_title{
+    position: absolute;
+    top:1rem;
+    left: 1rem;
+    z-index: 10;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    backface-visibility: hidden;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.52), 0 3px 4px rgba(0, 0, 0, 0.44);
+  }
+
   figure {
     position: relative;
     float: left;

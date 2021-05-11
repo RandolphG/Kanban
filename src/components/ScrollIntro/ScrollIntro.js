@@ -69,7 +69,7 @@ const ScrollIntro = () => {
     scrollToBottom();
     setTimeout(() => {
       setShow(true);
-    }, 500);
+    }, 250);
   }
 
   return (
