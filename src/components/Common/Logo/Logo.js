@@ -31,7 +31,7 @@ const Logo = () => {
       const color = colors[Math.floor((Math.random() * colors.length) >> 0)];
       dispatch(setLogoColor({ color }));
       listItemRef.current.style.setProperty("--textColor", logoColor);
-    }, 3000);
+    }, 6000);
 
     return () => {
       clearInterval(changeColor);

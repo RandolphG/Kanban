@@ -1,10 +1,10 @@
 /* motion settings for loginLayout elements */
 
-const transition = { duration: 1.0 };
+const transition = { duration: 0.75 };
 
 export const loginLayout = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition },
+  initial: { y: 50, opacity: 0 },
+  animate: { y: 0, opacity: 1, transition },
   exit: { opacity: 0, transition: { duration: 2.0 } },
 };
 

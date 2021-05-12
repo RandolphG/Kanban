@@ -17,6 +17,10 @@ import { dashboardLayout } from "./motionSettings";
 import { onAddNotification } from "../Common";
 import "./styles/_dashboardLayout.scss";
 
+/* TODO
+ *   make animation only on hover
+ * */
+
 const DashboardLayout = () => {
   let history = useHistory();
   let singleRefs = useRef([]);

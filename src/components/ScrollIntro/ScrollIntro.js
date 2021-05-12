@@ -11,6 +11,8 @@ import {
   UpperSection,
 } from "./components";
 import "./styles/_scrollIntro.scss";
+import { scrollIntro } from "./motionSettings";
+import { viewBox } from "./assets";
 
 const ScrollIntro = () => {
   const [show, setShow] = useState(false);
@@ -73,15 +75,10 @@ const ScrollIntro = () => {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.1 }}
-      className="scrollIntro"
-    >
+    <motion.div {...scrollIntro} className="scrollIntro">
       <div className="main">
         {show && <LoginLayout />}
-        <svg viewBox="0 0 1200 800">
+        <svg {...viewBox}>
           {UpperSection()}
           {Images()}
           {IntroMessage()}

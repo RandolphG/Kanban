@@ -1,15 +1,18 @@
-@import "fonts";
-@import "colors";
+@import "src/styles";
+
 $defaultBlueColor: #0086e4;
+
+/*TODO
+   center the input based on percentage
+   */
 
 .addBoardInput {
   position: absolute;
-  top: 8rem;
-  right: 2rem;
+  top: 9rem;
+  right: 15rem;
   width: fit-content;
   padding: .5rem 0 .5rem .5rem;
   display: flex;
-  //overflow: hidden;
 
   &_form {
     background-color: transparent;
@@ -18,7 +21,7 @@ $defaultBlueColor: #0086e4;
     border-radius: 4px;
 
     &_input {
-      border: 2px solid black;
+      border: none;
       border-radius: 4px;
       font-family: $font-main;
       width: 325px;
@@ -35,10 +38,13 @@ $defaultBlueColor: #0086e4;
     color: white;
     width: 70px;
     border-radius: 4px;
+    border: none;
     font-family: $font-main;
     font-size: 1rem;
     background-color: $defaultBlueColor;
     transition: .05s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32), 0 1px 2px rgba(0, 0, 0, 0.24);
+
     &:hover {
       background-color: lighten($defaultBlueColor, 10%);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.32), 0 1px 2px rgba(0, 0, 0, 0.24);

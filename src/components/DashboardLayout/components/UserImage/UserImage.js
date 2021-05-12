@@ -2,6 +2,10 @@ import React, { useRef, useState } from "react";
 import image from "./assets/_default_profile_img.png";
 import "./styles/_userImage.scss";
 
+/*TODO
+ *  react forms: tools for input manipulation
+ *  */
+
 /**
  * editable user profile image
  * @returns {JSX.Element}

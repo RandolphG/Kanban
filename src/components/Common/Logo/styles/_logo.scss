@@ -1,6 +1,6 @@
-@import "fonts";
+@import "../../../../styles";
 
-$logoColor: #0086e4;
+$logoColor: black;
 
 :root {
   --textColor: $logoColor;
@@ -41,7 +41,7 @@ $logoColor: #0086e4;
       text-align: left;
       list-style: none;
       animation-name: change;
-      animation-duration: 15s;
+      animation-duration: 20s;
       animation-iteration-count: infinite;
 
       &__item {

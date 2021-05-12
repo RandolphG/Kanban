@@ -9,6 +9,10 @@ import mountMg from "./mountMg.webp";
 
 export { cloud1, cloud2, cloud3, cloud1Mask, sky, mountBg, mountFg, mountMg };
 
+export const viewBox = {
+  viewBox: "0 0 1200 800",
+};
+
 export const imageSection = [
   {
     className: "sky",

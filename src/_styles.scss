@@ -1,9 +1,25 @@
+/* global font style */
 @font-face {
   font-family: 'operatorMonoBoldItalic';
   src: url("./fonts/operatorMono/OperatorMono-BoldItalic.woff") format("woff");
 }
 $font-main: 'operatorMonoBoldItalic', sans-serif;
 
+
+/* color variables */
+$background-color: linear-gradient(to bottom, #f9fbf7, #C9D8FF);
+$lightcoral: lighten(coral, 10%);
+$gray: #999999;
+$dark-gray: #333333;
+$blue: #0086e4;
+$primary-color: $blue;
+$border-color: #dddddd;
+
+/* Input */
+$input-height: 40px;
+$small-wrapper: 330px;
+
+/* default styling */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
