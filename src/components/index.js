@@ -2,6 +2,6 @@ export * from "./BoardLayout";
 export * from "./DashboardLayout";
 export * from "./ListLayout";
 export * from "./CardLayout";
-export * from "./LoginLayout";
 export * from "./Common";
-export { ScrollIntro } from "./ScrollIntro";
+export { Intro } from "./Intro";
+export * from "./Topbar";

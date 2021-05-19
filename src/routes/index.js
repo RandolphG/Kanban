@@ -1,12 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import {
-  Notification,
-  DashboardLayout,
-  BoardLayout,
-  ScrollIntro,
-} from "../components/";
+import { DashboardLayout, Intro } from "../components/";
 
 /**
  * application router
@@ -19,11 +14,9 @@ const AppRouter = () => {
       <Route
         render={({ location }) => (
           <AnimatePresence exitBeforeEnter>
-            <Notification />
-            <Switch location={location} key={location.pathname}>
-              <Route exact path="/dashboard" component={DashboardLayout} />
-              <Route path="/:boardID" component={BoardLayout} />
-              <Route exact path="/" component={ScrollIntro} />
+            <Switch location={location} key={location.key}>
+              <Route path="/dashboard" component={DashboardLayout} />
+              <Route exact path="/" component={Intro} />
             </Switch>
           </AnimatePresence>
         )}

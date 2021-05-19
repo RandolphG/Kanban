@@ -38,7 +38,7 @@ const Notification = () => {
                   <span className="notification_list_item_message">
                     {notification.message}
                   </span>
-                  <NotificationCloseButton close={() => remove(idx)} />
+                  {/*<NotificationCloseButton close={() => remove(idx)} />*/}
                 </motion.li>
               );
             })}

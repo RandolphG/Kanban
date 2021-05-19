@@ -1,0 +1,36 @@
+@import "src/styles";
+
+
+.projectDragContainer {
+  background: #dd3345;
+  padding: 1rem;
+  height: 500px;
+  width: 900px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  float: left;
+  transition: 0.3s;
+
+  &_area {
+    transition: 0.3s;
+    user-select: none;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    background: var(--background-color);
+    display: flex;
+    align-items: center;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

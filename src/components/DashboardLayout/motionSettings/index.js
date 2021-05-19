@@ -2,10 +2,10 @@
 
 const transition = { duration: 1.0 };
 
-export const dashboardLayout = {
+export const dashboard = {
   initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 2.0 } },
+  exit: { opacity: 0, transition: { duration: 2.0 } },
 };
 
 export const title = {

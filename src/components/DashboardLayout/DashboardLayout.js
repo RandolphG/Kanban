@@ -1,132 +1,36 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { motion, useCycle } from "framer-motion";
-import { getDashboard, handAddBoardToDashboard } from "./store";
-import { getBoards } from "../BoardLayout";
-import { v4 as uuid } from "uuid";
-import {
-  AddBoardInput,
-  AddProjectButton,
-  LogoutButton,
-  Options,
-  RenderBoards,
-  Title,
-} from "./components";
-import { dashboardLayout } from "./motionSettings";
-import { onAddNotification } from "../Common";
+import React from "react";
+import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AnimatePresence, motion } from "framer-motion";
+import { BoardLayout, getBoards } from "../BoardLayout";
+import { dashboard } from "./motionSettings";
+import { Topbar } from "../Topbar";
+import { HomeLayout } from "../HomeLayout";
+import { Notification } from "../Common";
+import { LogoutButton } from "./components";
 import "./styles/_dashboardLayout.scss";
 
 /* TODO
- *   make animation only on hover
+ *   make animation only on hover.
  * */
 
-const DashboardLayout = () => {
+const DashboardLayout = ({ location }) => {
+  let { path } = useRouteMatch();
   let history = useHistory();
-  let singleRefs = useRef([]);
-  let mouseDown = false;
-  let startX, scrollLeft;
-  const dispatch = useDispatch();
-  const [isOpen, toggleOpen] = useCycle(false, true);
-  const boardOrder = useSelector(getDashboard);
   const boards = useSelector(getBoards);
-  const draggableArea = useRef();
-  const [title, setTitle] = useState("");
   const projects = Object.keys(boards).length - 3;
 
-  function handleChange(e) {
-    e.preventDefault();
-    setTitle(e.target.value);
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const id = uuid();
-    dispatch(handAddBoardToDashboard(id, title));
-    dispatch(onAddNotification({ title }));
-    setTitle("");
-    toggleOpen();
-  }
-
-  function startDragging(e) {
-    mouseDown = true;
-    startX = e.pageX - draggableArea.current.offsetLeft;
-    scrollLeft = draggableArea.current.scrollLeft;
-  }
-
-  function stopDragging(e) {
-    mouseDown = false;
-  }
-
-  function dragging(e) {
-    e.preventDefault();
-    if (!mouseDown) {
-      return;
-    }
-    const x = e.pageX - draggableArea.current.offsetLeft;
-    const scroll = x - startX;
-    draggableArea.current.scrollLeft = scrollLeft - scroll;
-  }
-
-  function callbackFunction(entries) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "scale(1)";
-      } else {
-        entry.target.style.opacity = 0;
-        entry.target.style.transform = "scale(.35)";
-      }
-    });
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(callbackFunction, {
-      threshold: 0.55,
-    });
-
-    if (singleRefs && singleRefs.current) {
-      singleRefs.current.forEach((ref) => {
-        observer.observe(ref);
-      });
-    }
-
-    return () => {
-      if (singleRefs && singleRefs.current) {
-        singleRefs.current.forEach((ref) => {
-          observer.disconnect();
-        });
-      }
-    };
-  }, [singleRefs, boardOrder]);
-
   return (
-    <motion.div
-      key="dashboard"
-      className="dashboardLayout"
-      {...dashboardLayout}
-    >
-      {Title()}
-      {Options({ projects })}
-      {AddProjectButton({ isOpen, toggleOpen })}
-      {AddBoardInput({
-        handleChange,
-        handleSubmit,
-        isOpen,
-        title,
-        toggleOpen,
-        setTitle,
-      })}
-      {RenderBoards({
-        boards,
-        boardOrder,
-        draggableArea,
-        singleRefs,
-        stopDragging,
-        dragging,
-        startDragging,
-      })}
+    <motion.div key="dashboard" className="dashboard" {...dashboard}>
+      {Topbar({ projects })}
+      {Notification()}
       {LogoutButton({ history })}
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          <Route path={`${path}/:boardID`} component={BoardLayout} />
+          <Route path={`/`} component={HomeLayout} />
+        </Switch>
+      </AnimatePresence>
     </motion.div>
   );
 };

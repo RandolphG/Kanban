@@ -7,11 +7,13 @@ import card from "../components/CardLayout/store/card";
 import board from "../components/BoardLayout/store/board";
 import list from "../components/ListLayout/store/list";
 import dashboard from "../components/DashboardLayout/store/dashboard";
-import logo from "../components/Common/Logo/store/logo";
+import logo from "../components/Topbar/components/Logo/store/logo";
 import notification from "../components/Common/Notification/store/notification";
 import user from "./userInfo/user";
+import time from "../components/Topbar/components/UserInfoOptions/components/Time/store/time";
 
 const reducers = combineReducers({
+  time,
   user,
   notification,
   logo,

@@ -6,4 +6,7 @@ export const initialState = {
     country: "Croatia",
     city: "Velika Gorica",
   },
+  navigation: {
+    baselocation: "",
+  },
 };

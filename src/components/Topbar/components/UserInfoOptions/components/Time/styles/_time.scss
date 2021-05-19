@@ -1,0 +1,21 @@
+.time {
+  position: absolute;
+  top: 2.3rem;
+  margin: .5rem;
+  color: #282828;
+  &_date {
+    display: flex;
+    &_day {
+      font-size: 1.1rem;
+    }
+    &_number {
+      margin-left: .3rem;
+    }
+  }
+  &_localTime {
+    position: absolute;
+    right: 0;
+    font-size: 0.8rem;
+    width: fit-content;
+  }
+}

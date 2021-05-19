@@ -12,12 +12,10 @@ import {
 } from "./store";
 import { getCardDetails, getFilteredCards } from "../CardLayout";
 import { AddListButton, BackButton } from "./components";
-import { FilterPanel, Logo } from "../Common";
+import { FilterPanel } from "../Common";
 import { motion, useCycle } from "framer-motion";
 import { boardLayout } from "./motionSettings";
 import "./styles/_boardLayout.scss";
-import { title } from "../DashboardLayout/motionSettings";
-import { Options } from "../DashboardLayout/components";
 
 const BoardLayout = () => {
   let mouseDown = false;
@@ -32,7 +30,6 @@ const BoardLayout = () => {
   const filteredCards = useSelector(getFilteredCards);
   const board = boards[boardID];
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const projects = Object.keys(boards).length - 3;
 
   function onDragEnd(result) {
     const { destination, source, draggableId, type } = result;
@@ -99,7 +96,7 @@ const BoardLayout = () => {
     }
   };
 
-  const Topbar = () => (
+  const Navbar = () => (
     <div className="boardLayout__container_topbar">
       <h2>{board.title}</h2>
       <h2
@@ -115,12 +112,6 @@ const BoardLayout = () => {
 
   nothingToRender();
 
-  const Title = () => (
-    <motion.div {...title} className="boardLayout_title">
-      <Logo />
-    </motion.div>
-  );
-
   useEffect(() => {
     dispatch(setActiveBoard(boardID));
   }, []);
@@ -135,11 +126,9 @@ const BoardLayout = () => {
         animate={isOpen ? "open" : "closed"}
       >
         <FilterPanel isOpen={isOpen} toggle={toggleOpen} />
-        {Title()}
-        {Options({ projects })}
         {BackButton()}
         <div className="boardLayout__container">
-          {Topbar()}
+          {Navbar()}
           <Droppable droppableId="all-lists" direction="horizontal" type="list">
             {(provided) => (
               <div
