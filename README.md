@@ -1,6 +1,6 @@
 # _kanban
 
-![KANBAN](_kanban_00.gif)
+![KANBAN](_kanban_intro_final.gif)
 
 ### Installation process :
 
